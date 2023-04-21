@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace eShop.Data.Migrations
 {
     /// <inheritdoc />
@@ -75,7 +77,7 @@ namespace eShop.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 21, 21, 37, 5, 147, DateTimeKind.Local).AddTicks(3121)),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 4, 21, 23, 32, 34, 714, DateTimeKind.Local).AddTicks(3270)),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ShipName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     ShipAddress = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
@@ -98,8 +100,7 @@ namespace eShop.Data.Migrations
                     OriginalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Stock = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
                     ViewCount = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SeoAlias = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -280,6 +281,64 @@ namespace eShop.Data.Migrations
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AppConfigs",
+                columns: new[] { "Key", "Value" },
+                values: new object[,]
+                {
+                    { "HomeDescription", "This is description of EShop" },
+                    { "HomeKeyword", "This is keywork of EShop" },
+                    { "HomeTile", "This is homepage of EShop" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "IsShowOnHome", "ParentId", "SortOrder", "Status" },
+                values: new object[,]
+                {
+                    { 1, true, null, 0, 1 },
+                    { 2, true, null, 0, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Languages",
+                columns: new[] { "Id", "IsDefault", "Name" },
+                values: new object[,]
+                {
+                    { "en-EN", false, "English" },
+                    { "vi-VN", true, "Tiếng Việt" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "DateCreated", "OriginalPrice", "Price" },
+                values: new object[] { 1, new DateTime(2023, 4, 21, 23, 32, 34, 716, DateTimeKind.Local).AddTicks(6203), 150000m, 200000m });
+
+            migrationBuilder.InsertData(
+                table: "CategoryTranslations",
+                columns: new[] { "Id", "CategoryId", "LanguageId", "Name", "SeoAlias", "SeoDescription", "SeoTitle" },
+                values: new object[,]
+                {
+                    { 1, 1, "vi-VN", "Áo nam", "ao-nam", "Sản phẩm áo thời trang nam", "Sản phẩm áo thời trang nam" },
+                    { 2, 1, "vi-VN", "Men shirt", "men-shirt", "The shirt products for men", "The shirt products for men" },
+                    { 3, 2, "vi-VN", "Áo nữ", "ao-nu", "Sản phẩm áo thời trang nữ", "Sản phẩm áo thời trang nữ" },
+                    { 4, 2, "vi-VN", "Women shirt", "women-shirt", "The shirt products for women", "The shirt products for women" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProductInCategories",
+                columns: new[] { "CategoryId", "ProductId" },
+                values: new object[] { 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "ProductTranslations",
+                columns: new[] { "Id", "Description", "Details", "LanguageId", "Name", "ProductId", "SeoAlias", "SeoDescription", "SeoTitle" },
+                values: new object[,]
+                {
+                    { 1, "", "Áo sơ mi nam trắng Việt Tiến", "vi-VN", "Áo sơ mi nam trắng Việt Tiến", 1, "ao-so-mi-nam-trang-viet-tien", "Áo sơ mi nam trắng Việt Tiến", "Áo sơ mi nam trắng Việt Tiến" },
+                    { 2, "", "Viet Tien Men T-Shirt", "vi-VN", "Viet Tien Men T-Shirt", 1, "viet-tien-men-t-shirt", "Viet Tien Men T-Shirt", "Viet Tien Men T-Shirt" }
                 });
 
             migrationBuilder.CreateIndex(

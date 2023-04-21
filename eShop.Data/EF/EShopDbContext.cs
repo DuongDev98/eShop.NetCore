@@ -1,5 +1,6 @@
 ﻿using eShop.Data.Configurations;
 using eShop.Data.Entities;
+using eShop.Data.Extentions;
 using Microsoft.EntityFrameworkCore;
 
 namespace eShop.Data.EF
@@ -10,6 +11,7 @@ namespace eShop.Data.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //config fluent api
             modelBuilder.ApplyConfiguration(new CartConfiguration());
 
             modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
@@ -25,6 +27,9 @@ namespace eShop.Data.EF
             modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
+
+            //data seeding
+            modelBuilder.Seed();
         }
 
         public DbSet<AppConfig> AppConfigs { get; set; }
