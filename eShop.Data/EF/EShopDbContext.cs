@@ -1,4 +1,5 @@
-﻿using eShop.Data.Configurations;
+﻿
+using eShop.Data.Configurations;
 using eShop.Data.Entities;
 using eShop.Data.Extentions;
 using Microsoft.AspNetCore.Identity;
