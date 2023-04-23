@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "EShop.Utilities/1.0.0": {
+      "eShop.Utilities/1.0.0": {
         "runtime": {
-          "EShop.Utilities.dll": {}
+          "eShop.Utilities.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "EShop.Utilities/1.0.0": {
+    "eShop.Utilities/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

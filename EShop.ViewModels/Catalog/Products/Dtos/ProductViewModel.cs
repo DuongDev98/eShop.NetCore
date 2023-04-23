@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace eShop.Application.Catalog.Products.Dtos.Manage
+﻿namespace eShop.ViewModels.Catalog.Products.Dtos
 {
-    public class ProductCreateRequest
+    public class ProductViewModel
     {
         public decimal Price { set; get; }
         public decimal OriginalPrice { set; get; }
         public int Stock { set; get; }
+        public int ViewCount { set; get; }
         public DateTime DateCreated { set; get; }
 
         public string Name { set; get; }
@@ -19,6 +14,5 @@ namespace eShop.Application.Catalog.Products.Dtos.Manage
         public string SeoDescription { set; get; }
         public string SeoTitle { set; get; }
         public string SeoAlias { get; set; }
-        public string LanguageId { set; get; }
     }
 }

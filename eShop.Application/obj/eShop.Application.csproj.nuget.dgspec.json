@@ -31,8 +31,11 @@
               "H:\\NET.CORE\\eShopSolution\\eShop.Data\\eShop.Data.csproj": {
                 "projectPath": "H:\\NET.CORE\\eShopSolution\\eShop.Data\\eShop.Data.csproj"
               },
-              "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\EShop.Utilities.csproj": {
-                "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\EShop.Utilities.csproj"
+              "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj": {
+                "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj"
+              },
+              "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\eShop.ViewModels.csproj": {
+                "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\eShop.ViewModels.csproj"
               }
             }
           }
@@ -58,6 +61,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
@@ -155,12 +161,12 @@
         }
       }
     },
-    "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\EShop.Utilities.csproj": {
+    "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\EShop.Utilities.csproj",
-        "projectName": "EShop.Utilities",
-        "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\EShop.Utilities.csproj",
+        "projectUniqueName": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj",
+        "projectName": "eShop.Utilities",
+        "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj",
         "packagesPath": "C:\\Users\\DuongNN\\.nuget\\packages\\",
         "outputPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\obj\\",
         "projectStyle": "PackageReference",
@@ -190,6 +196,67 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\eShop.ViewModels.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\eShop.ViewModels.csproj",
+        "projectName": "eShop.ViewModels",
+        "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\eShop.ViewModels.csproj",
+        "packagesPath": "C:\\Users\\DuongNN\\.nuget\\packages\\",
+        "outputPath": "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\DuongNN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

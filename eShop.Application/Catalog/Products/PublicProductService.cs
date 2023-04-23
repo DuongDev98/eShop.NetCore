@@ -1,9 +1,8 @@
-﻿using eShop.Application.Catalog.Products.Dtos;
-using eShop.Application.Catalog.Products.Dtos.Public;
-using eShop.Application.Dtos;
+﻿using eShop.ViewModels.Dtos;
 using eShop.Data.EF;
-using eShop.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using eShop.ViewModels.Catalog.Products.Dtos;
+using eShop.ViewModels.Catalog.Products.Dtos.Public;
 
 namespace eShop.Application.Catalog.Products
 {
