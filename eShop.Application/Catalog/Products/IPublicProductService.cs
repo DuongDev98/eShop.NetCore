@@ -1,6 +1,6 @@
-﻿using eShop.Application.Catalog.Products.Dtos;
-using eShop.Application.Catalog.Products.Dtos.Public;
-using eShop.Application.Dtos;
+﻿using eShop.ViewModels.Catalog.Products.Dtos;
+using eShop.ViewModels.Catalog.Products.Dtos.Public;
+using eShop.ViewModels.Dtos;
 
 namespace eShop.Application.Catalog.Products
 {

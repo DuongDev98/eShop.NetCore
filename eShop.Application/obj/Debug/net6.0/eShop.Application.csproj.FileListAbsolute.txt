@@ -15,3 +15,5 @@ H:\NET.CORE\eShopSolution\eShop.Application\bin\Debug\net6.0\eShop.Data.pdb
 H:\NET.CORE\eShopSolution\eShop.Application\obj\Debug\net6.0\eShop.Application.csproj.CopyComplete
 H:\NET.CORE\eShopSolution\eShop.Application\bin\Debug\net6.0\EShop.Utilities.dll
 H:\NET.CORE\eShopSolution\eShop.Application\bin\Debug\net6.0\EShop.Utilities.pdb
+H:\NET.CORE\eShopSolution\eShop.Application\bin\Debug\net6.0\eShop.ViewModels.dll
+H:\NET.CORE\eShopSolution\eShop.Application\bin\Debug\net6.0\eShop.ViewModels.pdb

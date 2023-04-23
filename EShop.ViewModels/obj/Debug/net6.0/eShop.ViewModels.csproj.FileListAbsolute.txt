@@ -1,0 +1,12 @@
+H:\NET.CORE\eShopSolution\EShop.ViewModels\bin\Debug\net6.0\eShop.ViewModels.deps.json
+H:\NET.CORE\eShopSolution\EShop.ViewModels\bin\Debug\net6.0\eShop.ViewModels.dll
+H:\NET.CORE\eShopSolution\EShop.ViewModels\bin\Debug\net6.0\eShop.ViewModels.pdb
+H:\NET.CORE\eShopSolution\EShop.ViewModels\obj\Debug\net6.0\eShop.ViewModels.csproj.AssemblyReference.cache
+H:\NET.CORE\eShopSolution\EShop.ViewModels\obj\Debug\net6.0\eShop.ViewModels.GeneratedMSBuildEditorConfig.editorconfig
+H:\NET.CORE\eShopSolution\EShop.ViewModels\obj\Debug\net6.0\eShop.ViewModels.AssemblyInfoInputs.cache
+H:\NET.CORE\eShopSolution\EShop.ViewModels\obj\Debug\net6.0\eShop.ViewModels.AssemblyInfo.cs
+H:\NET.CORE\eShopSolution\EShop.ViewModels\obj\Debug\net6.0\eShop.ViewModels.csproj.CoreCompileInputs.cache
+H:\NET.CORE\eShopSolution\EShop.ViewModels\obj\Debug\net6.0\eShop.ViewModels.dll
+H:\NET.CORE\eShopSolution\EShop.ViewModels\obj\Debug\net6.0\refint\eShop.ViewModels.dll
+H:\NET.CORE\eShopSolution\EShop.ViewModels\obj\Debug\net6.0\eShop.ViewModels.pdb
+H:\NET.CORE\eShopSolution\EShop.ViewModels\obj\Debug\net6.0\ref\eShop.ViewModels.dll

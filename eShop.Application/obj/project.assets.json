@@ -75,6 +75,23 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Http.Features/5.0.17": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "5.0.1",
+          "System.IO.Pipelines": "5.0.2"
+        },
+        "compile": {
+          "lib/net5.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.16": {
         "type": "package",
         "dependencies": {
@@ -914,6 +931,19 @@
           }
         }
       },
+      "System.IO.Pipelines/5.0.2": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/System.IO.Pipelines.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/System.IO.Pipelines.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.Memory/4.5.4": {
         "type": "package",
         "compile": {
@@ -1287,14 +1317,27 @@
           "bin/placeholder/eShop.Data.dll": {}
         }
       },
-      "EShop.Utilities/1.0.0": {
+      "eShop.Utilities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/EShop.Utilities.dll": {}
+          "bin/placeholder/eShop.Utilities.dll": {}
         },
         "runtime": {
-          "bin/placeholder/EShop.Utilities.dll": {}
+          "bin/placeholder/eShop.Utilities.dll": {}
+        }
+      },
+      "eShop.ViewModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "5.0.17"
+        },
+        "compile": {
+          "bin/placeholder/eShop.ViewModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/eShop.ViewModels.dll": {}
         }
       }
     }
@@ -1374,6 +1417,25 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
         "microsoft.aspnetcore.cryptography.keyderivation.6.0.16.nupkg.sha512",
         "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Http.Features/5.0.17": {
+      "sha512": "3jG2xS+dx8DDCGV/F+STdPTg89lX3ao3dF/VEPvJaz3wzBIjuadipTtYNEXDIVuOPZwb6jdmhrX9jkzOIBm5cw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.http.features/5.0.17",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.AspNetCore.Http.Features.dll",
+        "lib/net461/Microsoft.AspNetCore.Http.Features.xml",
+        "lib/net5.0/Microsoft.AspNetCore.Http.Features.dll",
+        "lib/net5.0/Microsoft.AspNetCore.Http.Features.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.xml",
+        "microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+        "microsoft.aspnetcore.http.features.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore/6.0.16": {
@@ -2741,6 +2803,32 @@
         "system.io.nuspec"
       ]
     },
+    "System.IO.Pipelines/5.0.2": {
+      "sha512": "Iew+dfa6FFiyvWBdRmXApixRY1db+beyutpIck4SOSe0NLM8FD/7AD54MscqVLhvfSMLHO7KadjTRT7fqxOGTA==",
+      "type": "package",
+      "path": "system.io.pipelines/5.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.IO.Pipelines.dll",
+        "lib/net461/System.IO.Pipelines.xml",
+        "lib/netcoreapp3.0/System.IO.Pipelines.dll",
+        "lib/netcoreapp3.0/System.IO.Pipelines.xml",
+        "lib/netstandard1.3/System.IO.Pipelines.dll",
+        "lib/netstandard1.3/System.IO.Pipelines.xml",
+        "lib/netstandard2.0/System.IO.Pipelines.dll",
+        "lib/netstandard2.0/System.IO.Pipelines.xml",
+        "ref/netcoreapp2.0/System.IO.Pipelines.dll",
+        "ref/netcoreapp2.0/System.IO.Pipelines.xml",
+        "system.io.pipelines.5.0.2.nupkg.sha512",
+        "system.io.pipelines.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Memory/4.5.4": {
       "sha512": "1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
       "type": "package",
@@ -3782,16 +3870,22 @@
       "path": "../eShop.Data/eShop.Data.csproj",
       "msbuildProject": "../eShop.Data/eShop.Data.csproj"
     },
-    "EShop.Utilities/1.0.0": {
+    "eShop.Utilities/1.0.0": {
       "type": "project",
-      "path": "../EShop.Utilities/EShop.Utilities.csproj",
-      "msbuildProject": "../EShop.Utilities/EShop.Utilities.csproj"
+      "path": "../EShop.Utilities/eShop.Utilities.csproj",
+      "msbuildProject": "../EShop.Utilities/eShop.Utilities.csproj"
+    },
+    "eShop.ViewModels/1.0.0": {
+      "type": "project",
+      "path": "../EShop.ViewModels/eShop.ViewModels.csproj",
+      "msbuildProject": "../EShop.ViewModels/eShop.ViewModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "EShop.Utilities >= 1.0.0",
-      "eShop.Data >= 1.0.0"
+      "eShop.Data >= 1.0.0",
+      "eShop.Utilities >= 1.0.0",
+      "eShop.ViewModels >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3824,8 +3918,11 @@
             "H:\\NET.CORE\\eShopSolution\\eShop.Data\\eShop.Data.csproj": {
               "projectPath": "H:\\NET.CORE\\eShopSolution\\eShop.Data\\eShop.Data.csproj"
             },
-            "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\EShop.Utilities.csproj": {
-              "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\EShop.Utilities.csproj"
+            "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj": {
+              "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj"
+            },
+            "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\eShop.ViewModels.csproj": {
+              "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\eShop.ViewModels.csproj"
             }
           }
         }
@@ -3851,6 +3948,9 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }

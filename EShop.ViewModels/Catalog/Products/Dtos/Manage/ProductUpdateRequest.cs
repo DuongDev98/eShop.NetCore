@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 
-namespace eShop.Application.Catalog.Products.Dtos.Manage
+namespace eShop.ViewModels.Catalog.Products.Dtos.Manage
 {
     public class ProductUpdateRequest
     {
@@ -16,5 +12,7 @@ namespace eShop.Application.Catalog.Products.Dtos.Manage
         public string SeoTitle { set; get; }
         public string SeoAlias { get; set; }
         public string LanguageId { set; get; }
+
+        public IFormFile ThumbnailImage { set; get; }
     }
 }

@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\EShop.Utilities.csproj": {}
+    "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj": {}
   },
   "projects": {
-    "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\EShop.Utilities.csproj": {
+    "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\EShop.Utilities.csproj",
-        "projectName": "EShop.Utilities",
-        "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\EShop.Utilities.csproj",
+        "projectUniqueName": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj",
+        "projectName": "eShop.Utilities",
+        "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj",
         "packagesPath": "C:\\Users\\DuongNN\\.nuget\\packages\\",
         "outputPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\obj\\",
         "projectStyle": "PackageReference",
