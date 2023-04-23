@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using eShop.Utilities.Contants;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
@@ -14,7 +15,7 @@ namespace eShop.Data.EF
                 .Build();
 
             DbContextOptionsBuilder<EShopDbContext> optionsBuilder = new DbContextOptionsBuilder<EShopDbContext>();
-            optionsBuilder.UseSqlServer(root.GetConnectionString("eShopDatabase"));
+            optionsBuilder.UseSqlServer(root.GetConnectionString(SystemContants.MainConnectionString));
 
             return new EShopDbContext(optionsBuilder.Options);
         }

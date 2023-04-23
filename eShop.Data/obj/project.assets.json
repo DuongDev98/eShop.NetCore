@@ -1359,6 +1359,16 @@
             "rid": "win"
           }
         }
+      },
+      "eShop.Utilities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/eShop.Utilities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/eShop.Utilities.dll": {}
+        }
       }
     }
   },
@@ -3959,6 +3969,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "eShop.Utilities/1.0.0": {
+      "type": "project",
+      "path": "../EShop.Utilities/eShop.Utilities.csproj",
+      "msbuildProject": "../EShop.Utilities/eShop.Utilities.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3969,7 +3984,8 @@
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.5",
       "Microsoft.Extensions.Configuration >= 7.0.0",
       "Microsoft.Extensions.Configuration.FileExtensions >= 7.0.0",
-      "Microsoft.Extensions.Configuration.Json >= 7.0.0"
+      "Microsoft.Extensions.Configuration.Json >= 7.0.0",
+      "eShop.Utilities >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3998,7 +4014,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj": {
+              "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

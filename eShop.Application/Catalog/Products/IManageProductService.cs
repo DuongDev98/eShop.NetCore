@@ -1,5 +1,4 @@
 ﻿using eShop.ViewModels.Catalog.Products.Dtos;
-using eShop.ViewModels.Catalog.Products.Dtos.Manage;
 using eShop.ViewModels.Dtos;
 using Microsoft.AspNetCore.Http;
 
@@ -15,7 +14,7 @@ namespace eShop.Application.Catalog.Products
         Task UpdateStock(int productId, int addedQuantity);
         Task UpdatePrice(int productId, decimal newPrice);
 
-        Task<PageResult<ProductViewModel>> getAllPaging(GetProductPagingRequest request);
+        Task<PageResult<ProductViewModel>> getAllPaging(GetManageProductPagingRequest request);
 
         Task<int> AddImages(int productId, List<IFormFile> files);
         Task<int> RemoveImages(int imageId);

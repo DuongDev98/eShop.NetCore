@@ -14,7 +14,8 @@
           "Microsoft.EntityFrameworkCore.Tools": "7.0.5",
           "Microsoft.Extensions.Configuration": "7.0.0",
           "Microsoft.Extensions.Configuration.FileExtensions": "7.0.0",
-          "Microsoft.Extensions.Configuration.Json": "7.0.0"
+          "Microsoft.Extensions.Configuration.Json": "7.0.0",
+          "eShop.Utilities": "1.0.0"
         },
         "runtime": {
           "eShop.Data.dll": {}
@@ -833,6 +834,11 @@
             "fileVersion": "5.0.20.51904"
           }
         }
+      },
+      "eShop.Utilities/1.0.0": {
+        "runtime": {
+          "eShop.Utilities.dll": {}
+        }
       }
     }
   },
@@ -1394,6 +1400,11 @@
       "sha512": "sha512-c1ho9WU9ZxMZawML+ssPKZfdnrg/OjR3pe0m9v8230z3acqphwvPJqzAkH54xRYm5ntZHGG1EPP3sux9H3qSPg==",
       "path": "system.windows.extensions/5.0.0",
       "hashPath": "system.windows.extensions.5.0.0.nupkg.sha512"
+    },
+    "eShop.Utilities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

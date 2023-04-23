@@ -1,13 +1,11 @@
-﻿using eShop.ViewModels.Catalog.Products.Dtos;
-using eShop.ViewModels.Catalog.Products.Dtos.Manage;
-using eShop.ViewModels.Dtos;
+﻿using eShop.Application.Common;
 using eShop.Data.EF;
 using eShop.Data.Entities;
+using eShop.ViewModels.Catalog.Products.Dtos;
+using eShop.ViewModels.Dtos;
 using EShop.Utilities.Exceptions;
-using Microsoft.EntityFrameworkCore;
-using Azure.Core;
-using eShop.Application.Common;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System.Net.Http.Headers;
 
 namespace eShop.Application.Catalog.Products
@@ -118,7 +116,7 @@ namespace eShop.Application.Catalog.Products
             }
         }
 
-        public async Task<PageResult<ProductViewModel>> getAllPaging(GetProductPagingRequest request)
+        public async Task<PageResult<ProductViewModel>> getAllPaging(GetManageProductPagingRequest request)
         {
             //select
             var query = from p in db.Products
