@@ -2,7 +2,6 @@
 using eShop.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using eShop.ViewModels.Catalog.Products.Dtos;
-using eShop.ViewModels.Catalog.Products.Dtos.Public;
 
 namespace eShop.Application.Catalog.Products
 {
@@ -12,7 +11,7 @@ namespace eShop.Application.Catalog.Products
 
         public PublicProductService(EShopDbContext db) { this.db = db; }
 
-        public async Task<PageResult<ProductViewModel>> GetAllByCategoryId(GetProductPagingRequest request)
+        public async Task<PageResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request)
         {
             //select
             var query = from p in db.Products

@@ -1,0 +1,362 @@
+{
+  "format": 1,
+  "restore": {
+    "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\eShop.BackendApi.csproj": {}
+  },
+  "projects": {
+    "H:\\NET.CORE\\eShopSolution\\eShop.Application\\eShop.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\NET.CORE\\eShopSolution\\eShop.Application\\eShop.Application.csproj",
+        "projectName": "eShop.Application",
+        "projectPath": "H:\\NET.CORE\\eShopSolution\\eShop.Application\\eShop.Application.csproj",
+        "packagesPath": "C:\\Users\\DuongNN\\.nuget\\packages\\",
+        "outputPath": "H:\\NET.CORE\\eShopSolution\\eShop.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\DuongNN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "H:\\NET.CORE\\eShopSolution\\eShop.Data\\eShop.Data.csproj": {
+                "projectPath": "H:\\NET.CORE\\eShopSolution\\eShop.Data\\eShop.Data.csproj"
+              },
+              "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj": {
+                "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj"
+              },
+              "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\eShop.ViewModels.csproj": {
+                "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\eShop.ViewModels.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\eShop.BackendApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\eShop.BackendApi.csproj",
+        "projectName": "eShop.BackendApi",
+        "projectPath": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\eShop.BackendApi.csproj",
+        "packagesPath": "C:\\Users\\DuongNN\\.nuget\\packages\\",
+        "outputPath": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\DuongNN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "H:\\NET.CORE\\eShopSolution\\eShop.Application\\eShop.Application.csproj": {
+                "projectPath": "H:\\NET.CORE\\eShopSolution\\eShop.Application\\eShop.Application.csproj"
+              },
+              "H:\\NET.CORE\\eShopSolution\\eShop.Data\\eShop.Data.csproj": {
+                "projectPath": "H:\\NET.CORE\\eShopSolution\\eShop.Data\\eShop.Data.csproj"
+              },
+              "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj": {
+                "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj"
+              },
+              "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\eShop.ViewModels.csproj": {
+                "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\eShop.ViewModels.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "H:\\NET.CORE\\eShopSolution\\eShop.Data\\eShop.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\NET.CORE\\eShopSolution\\eShop.Data\\eShop.Data.csproj",
+        "projectName": "eShop.Data",
+        "projectPath": "H:\\NET.CORE\\eShopSolution\\eShop.Data\\eShop.Data.csproj",
+        "packagesPath": "C:\\Users\\DuongNN\\.nuget\\packages\\",
+        "outputPath": "H:\\NET.CORE\\eShopSolution\\eShop.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\DuongNN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj": {
+                "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.16, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj",
+        "projectName": "eShop.Utilities",
+        "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj",
+        "packagesPath": "C:\\Users\\DuongNN\\.nuget\\packages\\",
+        "outputPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\DuongNN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\eShop.ViewModels.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\eShop.ViewModels.csproj",
+        "projectName": "eShop.ViewModels",
+        "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\eShop.ViewModels.csproj",
+        "packagesPath": "C:\\Users\\DuongNN\\.nuget\\packages\\",
+        "outputPath": "H:\\NET.CORE\\eShopSolution\\EShop.ViewModels\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\DuongNN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

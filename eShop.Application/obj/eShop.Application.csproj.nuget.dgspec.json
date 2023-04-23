@@ -95,7 +95,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj": {
+                "projectPath": "H:\\NET.CORE\\eShopSolution\\EShop.Utilities\\eShop.Utilities.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
