@@ -2,21 +2,22 @@
 using eShop.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using eShop.ViewModels.Catalog.Products.Dtos;
+using Azure.Core;
 
 namespace eShop.Application.Catalog.Products
 {
     public class PublicProductService : IPublicProductService
     {
         private readonly EShopDbContext db;
-
         public PublicProductService(EShopDbContext db) { this.db = db; }
 
-        public async Task<PageResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request)
+        public async Task<PageResult<ProductViewModel>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request)
         {
             //select
             var query = from p in db.Products
                         join pic in db.ProductInCategories on p.Id equals pic.ProductId
                         join pt in db.ProductTranslations on p.Id equals pt.ProductId
+                        where pt.LanguageId == languageId
                         select new { p, pt, pic };
             //filter
             if (request.categoryId > 0)

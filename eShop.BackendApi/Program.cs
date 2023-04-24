@@ -1,3 +1,5 @@
+using eShop.Application.Catalog.Products;
+using eShop.Application.Common;
 using eShop.Data.EF;
 using eShop.Utilities.Contants;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +13,9 @@ builder.Services.AddDbContext<EShopDbContext>(
 );
 
 //declare DI
-
+builder.Services.AddTransient<IPublicProductService, PublicProductService>();
+builder.Services.AddTransient<IManageProductService, ManageProductService>();
+builder.Services.AddTransient<IStorageService, FileStorageService>();
 
 builder.Services.AddControllersWithViews();
 

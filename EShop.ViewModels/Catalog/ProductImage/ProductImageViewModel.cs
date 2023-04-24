@@ -1,7 +1,9 @@
-﻿namespace eShop.ViewModels.Catalog.Products.Dtos
+﻿namespace eShop.ViewModels.Catalog.ProductImage
 {
     public class ProductImageViewModel
     {
+        public int Id { set; get; }
+        public int ProductId { set; get; }
         public string ImagePath { set; get; }
         public string Caption { set; get; }
         public bool IsDefault { set; get; }
