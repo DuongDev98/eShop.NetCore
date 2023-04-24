@@ -5,6 +5,6 @@ namespace eShop.Application.Catalog.Products
 {
     public interface IPublicProductService
     {
-        Task<PageResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request);
+        Task<PageResult<ProductViewModel>> GetAllByCategoryId(string langguageId, GetPublicProductPagingRequest request);
     }
 }

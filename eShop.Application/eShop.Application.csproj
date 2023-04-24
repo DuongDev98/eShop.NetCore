@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\eShop.Data\eShop.Data.csproj" />
     <ProjectReference Include="..\EShop.Utilities\eShop.Utilities.csproj" />
     <ProjectReference Include="..\EShop.ViewModels\eShop.ViewModels.csproj" />
