@@ -44,12 +44,12 @@ namespace eShop.Application.System.Users
                 new Claim(ClaimTypes.Role, string.Join(";", roles))
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Tokens:Key"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetValue<string>("Tokens:Key")));
             var cres = new SigningCredentials(key , SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
-                    issuer: configuration["Tokens:Issuer"],
-                    audience: configuration["Tokens:Issuer"],
+                    issuer: configuration.GetValue<string>("Tokens:Issuer"),
+                    audience: configuration.GetValue<string>("Tokens:Issuer"),
                     expires: DateTime.Now.AddHours(3),
                     claims: claims,
                     signingCredentials: cres);

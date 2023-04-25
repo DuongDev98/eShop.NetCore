@@ -100,3 +100,4 @@ H:\NET.CORE\eShopSolution\eShop.BackendApi\bin\Debug\net6.0\Swashbuckle.AspNetCo
 H:\NET.CORE\eShopSolution\eShop.BackendApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 H:\NET.CORE\eShopSolution\eShop.BackendApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\eShop.BackendApi.MvcApplicationPartsAssemblyInfo.cs
+H:\NET.CORE\eShopSolution\eShop.BackendApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
