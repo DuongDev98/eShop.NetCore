@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "i9LggX7acjxn3d8lHvxO/WuEXh9+H2Rg+G09uzetMZHzfyWi70/QkRGHSefdNlFRoVO+IDBQX3675Q+M6mj9uA==",
+  "dgSpecHash": "D2oONtGZOw63oTCMK2Rtst1WhytvRFsq9TxFEJNGc3G3fdcOkXmFg/Sd7Sh2DKc1bG3NPomfh8pV3dx+mAYoZw==",
   "success": true,
   "projectFilePath": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\eShop.BackendApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DuongNN\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\DuongNN\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\DuongNN\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.16\\microsoft.aspnetcore.authentication.jwtbearer.6.0.16.nupkg.sha512",
     "C:\\Users\\DuongNN\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.16\\microsoft.aspnetcore.cryptography.internal.6.0.16.nupkg.sha512",
     "C:\\Users\\DuongNN\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.16\\microsoft.aspnetcore.cryptography.keyderivation.6.0.16.nupkg.sha512",
     "C:\\Users\\DuongNN\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",

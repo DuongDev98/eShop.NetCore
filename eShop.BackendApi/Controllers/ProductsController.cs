@@ -1,14 +1,14 @@
-﻿using Azure.Core;
-using eShop.Application.Catalog.Products;
+﻿using eShop.Application.Catalog.Products;
 using eShop.ViewModels.Catalog.ProductImage;
 using eShop.ViewModels.Catalog.Products.Dtos;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eShop.BackendApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly IPublicProductService publicProductService;
