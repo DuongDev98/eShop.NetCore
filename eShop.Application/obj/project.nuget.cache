@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "A9dyPXKxH1XoDyuwDP4HehRC7a4JY6EiDerITwqMa0nMkfs+xLuJTdJ5iAObHqxsWoWY+RirTe7fic+snJrxAQ==",
+  "dgSpecHash": "FZzOJYa3YuZ/CqSavxQ954Pwr/kpZsuZNtyoUjQTy7z9viHjNzQyrJUWDql3udJtqgnzFAh9mjgq5cdjAve0Vw==",
   "success": true,
   "projectFilePath": "H:\\NET.CORE\\eShopSolution\\eShop.Application\\eShop.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DuongNN\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\DuongNN\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\DuongNN\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
+    "C:\\Users\\DuongNN\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\DuongNN\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\DuongNN\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.16\\microsoft.aspnetcore.cryptography.internal.6.0.16.nupkg.sha512",
     "C:\\Users\\DuongNN\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.16\\microsoft.aspnetcore.cryptography.keyderivation.6.0.16.nupkg.sha512",
     "C:\\Users\\DuongNN\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",

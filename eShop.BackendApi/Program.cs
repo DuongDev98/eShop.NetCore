@@ -4,6 +4,9 @@ using eShop.Application.System.Users;
 using eShop.Data.EF;
 using eShop.Data.Entities;
 using eShop.Utilities.Contants;
+using eShop.ViewModels.System.Users;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +35,10 @@ builder.Services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
 builder.Services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
 builder.Services.AddTransient<IUserService, UserService>();
 
+//validator cach 1
+//builder.Services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
+//builder.Services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
+
 //add authenticate
 builder.Services.AddAuthentication(options =>
 {
@@ -52,7 +59,12 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddControllers();
+//validator cach 2
+builder.Services.AddControllers()
+.AddFluentValidation(s =>
+{
+    s.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>();
+});
 
 //swagger
 builder.Services.AddSwaggerGen(options =>
