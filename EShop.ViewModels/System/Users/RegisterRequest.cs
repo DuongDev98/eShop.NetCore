@@ -9,6 +9,6 @@
         public string PhoneNumber { set; get; }
         public string UserName { set; get; }
         public string PassWord { set; get; }
-        public string ConfirmPas{ set; get; }
+        public string ConfirmPass{ set; get; }
     }
 }

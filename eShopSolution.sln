@@ -11,14 +11,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.Application", "eShop.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.Utilities", "EShop.Utilities\eShop.Utilities.csproj", "{850FDC0C-749C-4F5A-A695-2ABF81C09A13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop.ViewModels", "EShop.ViewModels\eShop.ViewModels.csproj", "{2ED8243F-64C2-4657-BD5E-373F6F3F179B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.ViewModels", "EShop.ViewModels\eShop.ViewModels.csproj", "{2ED8243F-64C2-4657-BD5E-373F6F3F179B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop.BackendApi", "eShop.BackendApi\eShop.BackendApi.csproj", "{C74CB5B0-F677-4B7F-9F34-5D5E827558DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.BackendApi", "eShop.BackendApi\eShop.BackendApi.csproj", "{C74CB5B0-F677-4B7F-9F34-5D5E827558DC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E608D657-599F-4AD9-B03D-F47D5D0F395C}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop.AdminApp", "eShop.AdminApp\eShop.AdminApp.csproj", "{EA44C50E-EE9A-4BC5-9945-08E82D6AC068}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +52,10 @@ Global
 		{C74CB5B0-F677-4B7F-9F34-5D5E827558DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C74CB5B0-F677-4B7F-9F34-5D5E827558DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C74CB5B0-F677-4B7F-9F34-5D5E827558DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA44C50E-EE9A-4BC5-9945-08E82D6AC068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA44C50E-EE9A-4BC5-9945-08E82D6AC068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA44C50E-EE9A-4BC5-9945-08E82D6AC068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA44C50E-EE9A-4BC5-9945-08E82D6AC068}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
