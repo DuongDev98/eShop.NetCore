@@ -1,4 +1,5 @@
-﻿using eShop.AdminApp.Service;
+﻿using eShop.AdminApp.Controllers;
+using eShop.AdminApp.Service;
 using eShop.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -11,7 +12,7 @@ using System.Text;
 
 namespace eshop.AdminApp.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private IUserClientApi _userClientApi;
         private IConfiguration _configuration;
@@ -21,9 +22,18 @@ namespace eshop.AdminApp.Controllers
             _configuration = configuration;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string keyword = "", int pageIndex = 1, int pageSize = 10)
         {
-            return View();
+            var token = HttpContext.Session.GetString("Token");
+            GetUsersPagingRequest request = new GetUsersPagingRequest()
+            {
+                BearerToken = token,
+                keyword = keyword,
+                pageIndex = pageIndex,
+                pageSize = pageSize
+            };
+            var users = await _userClientApi.GetUsersPaging(request);
+            return View(users);
         }
 
         [HttpGet]
@@ -52,6 +62,8 @@ namespace eshop.AdminApp.Controllers
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal, authProperties);
 
+            HttpContext.Session.SetString("Token", token);
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -59,7 +71,26 @@ namespace eshop.AdminApp.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.Remove("Token");
             return RedirectToAction("Login", "User");
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAsync(RegisterRequest request)
+        {
+            if (!ModelState.IsValid) return View();
+
+            var rs = await _userClientApi.RegisterUser(request);
+
+            if (rs) return RedirectToAction("Index");
+
+            return View();
         }
 
         private ClaimsPrincipal ValidateToken(string jwtToken)
