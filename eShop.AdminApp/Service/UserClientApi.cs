@@ -54,11 +54,23 @@ namespace eShop.AdminApp.Service
             return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
         }
 
-        public async Task<ApiResult<bool>> UpdateUser(UpdateUserRequest request)
+        public async Task<ApiResult<bool>> UpdateUser(UserUpdateRequest request)
         {
             HttpClient httpClient = GetHttpClient();
             var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
             var response = await httpClient.PutAsync("users/" + request.Id.ToString(), content);
+
+            var result = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
+
+            return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
+        }
+
+        public async Task<ApiResult<bool>> DeleteUser(Guid Id)
+        {
+            HttpClient httpClient = GetHttpClient();
+            var response = await httpClient.DeleteAsync("users/" + Id.ToString());
 
             var result = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)

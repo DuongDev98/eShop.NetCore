@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace eShop.ViewModels.System.Users
 {
-    public class UpdateUserRequest
+    public class UserUpdateRequest
     {
         public Guid Id { get; set; }
         [Display(Name = "Tên")]
