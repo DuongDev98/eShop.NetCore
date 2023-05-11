@@ -8,7 +8,8 @@ namespace eShop.Application.System.Users
         Task<ApiResult<string>> Authenticate(LoginRequest request);
         Task<ApiResult<PagedResult<UserVm>>> GetUsersPaging(GetUsersPagingRequest request);
         Task<ApiResult<bool>> Register(RegisterRequest request);
-        Task<ApiResult<bool>> Update(UpdateUserRequest request);
+        Task<ApiResult<bool>> Update(UserUpdateRequest request);
         Task<ApiResult<UserVm>> GetById(Guid Id);
+        Task<ApiResult<bool>> Delete(Guid Id);
     }
 }

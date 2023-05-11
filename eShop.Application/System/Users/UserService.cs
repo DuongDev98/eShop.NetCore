@@ -118,7 +118,7 @@ namespace eShop.Application.System.Users
             else return new ApiErrorResult<bool>("Đăng ký không thành công");
         }
 
-        public async Task<ApiResult<bool>> Update(UpdateUserRequest request)
+        public async Task<ApiResult<bool>> Update(UserUpdateRequest request)
         {
             var user = await _userManager.FindByIdAsync(request.Id.ToString());
             if (user == null) return new ApiErrorResult<bool>("Tài khoản không tồn tại");
@@ -158,6 +158,27 @@ namespace eShop.Application.System.Users
                     PhoneNumber = user.PhoneNumber,
                     UserName = user.UserName,
                 });
+            }
+        }
+
+        public async Task<ApiResult<bool>> Delete(Guid Id)
+        {
+            var user = await _userManager.FindByIdAsync(Id.ToString());
+            if (user == null)
+            {
+                return new ApiErrorResult<bool>("Id người dùng không tồn tại trong hệ thống");
+            }
+            else
+            {
+                IdentityResult result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    return new ApiSuccessResult<bool>();
+                }
+                else
+                {
+                    return new ApiErrorResult<bool>("Có lỗi trong quá trình xóa người dùng");
+                }
             }
         }
     }

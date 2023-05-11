@@ -61,11 +61,23 @@ namespace eShop.BackendApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromBody] UpdateUserRequest request)
+        public async Task<IActionResult> Update([FromBody] UserUpdateRequest request)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var result = await _userService.Update(request);
+
+            if (!result.success) return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var result = await _userService.Delete(id);
 
             if (!result.success) return BadRequest(result);
 

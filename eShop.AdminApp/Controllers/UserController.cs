@@ -1,4 +1,5 @@
-﻿using eShop.AdminApp.Service;
+﻿using Azure.Core;
+using eShop.AdminApp.Service;
 using eShop.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -101,7 +102,7 @@ namespace eShop.AdminApp.Controllers
                 return BadRequest(result);
             }
             //chuyển từ UserVm => UpdateUserRequet
-            UpdateUserRequest model = new UpdateUserRequest()
+            UserUpdateRequest model = new UserUpdateRequest()
             {
                 Id = result.data.Id,
                 FirstName = result.data.FirstName,
@@ -114,7 +115,7 @@ namespace eShop.AdminApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(UpdateUserRequest request)
+        public async Task<IActionResult> Edit(UserUpdateRequest request)
         {
             if (!ModelState.IsValid) return View();
 
@@ -136,6 +137,31 @@ namespace eShop.AdminApp.Controllers
                 return BadRequest(result);
             }
             return View(result.data);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await _userClientApi.GetUserById(id);
+            if (!result.success)
+            {
+                return BadRequest(result);
+            }
+            return View(result.data);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(UserDeleteRequest request)
+        {
+            if (!ModelState.IsValid) return View();
+
+            var result = await _userClientApi.DeleteUser(request.Id);
+
+            if (result.success) return RedirectToAction("Index");
+
+            ModelState.AddModelError("", result.message);
+
+            return View();
         }
 
         private ClaimsPrincipal ValidateToken(string jwtToken)
