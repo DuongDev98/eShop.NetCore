@@ -26,6 +26,9 @@
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">ĐĂNG NHẬP HỆ THỐNG</h3></div>
                                 <div class="card-body">
                                     <form method="post">
+
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+
                                         <div class="form-floating mb-3">
                                             <input class="form-control" type="text" placeholder="Tài khoản đăng nhập" asp-for="UserName" />
                                             <label>Tài khoản</label>
