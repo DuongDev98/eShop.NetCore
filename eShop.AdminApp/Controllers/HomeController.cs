@@ -1,10 +1,9 @@
-﻿using eshop.AdminApp.Models;
-using eShop.AdminApp.Controllers;
+﻿using eShop.AdminApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace eshop.AdminApp.Controllers
+namespace eShop.AdminApp.Controllers
 {
     [Authorize]
     public class HomeController : BaseController

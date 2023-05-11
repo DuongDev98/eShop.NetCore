@@ -1,5 +1,4 @@
-﻿using eShop.AdminApp.Controllers;
-using eShop.AdminApp.Service;
+﻿using eShop.AdminApp.Service;
 using eShop.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -10,7 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace eshop.AdminApp.Controllers
+namespace eShop.AdminApp.Controllers
 {
     public class UserController : BaseController
     {
@@ -22,7 +21,7 @@ namespace eshop.AdminApp.Controllers
             _configuration = configuration;
         }
 
-        public async Task<IActionResult> Index(string keyword = "", int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(string keyword = "", int pageIndex = 1, int pageSize = 20)
         {
             GetUsersPagingRequest request = new GetUsersPagingRequest()
             {
@@ -94,9 +93,9 @@ namespace eshop.AdminApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            var result = _userClientApi.GetUserById(id).Result;
+            var result = await _userClientApi.GetUserById(id);
             if (!result.success)
             {
                 return BadRequest(result);
@@ -126,6 +125,17 @@ namespace eshop.AdminApp.Controllers
             ModelState.AddModelError("", result.message);
 
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var result = await _userClientApi.GetUserById(id);
+            if (!result.success)
+            {
+                return BadRequest(result);
+            }
+            return View(result.data);
         }
 
         private ClaimsPrincipal ValidateToken(string jwtToken)
