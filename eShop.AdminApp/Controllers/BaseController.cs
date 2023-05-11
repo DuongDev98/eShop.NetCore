@@ -18,7 +18,6 @@ namespace eShop.AdminApp.Controllers
                     context.Result = new RedirectToActionResult("Login", "User", null);
                 }
             }
-            base.OnActionExecuting(context);
         }
     }
 }

@@ -23,10 +23,28 @@ namespace eShop.BackendApi.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var token = await _userService.Authenticate(request);
-            if (string.IsNullOrEmpty(token)) return BadRequest("Username or password is incorrect.");
+            var result = await _userService.Authenticate(request);
 
-            return Ok(token);
+            if (result.success)
+            {
+                if (string.IsNullOrEmpty(result.data)) return BadRequest("Username or password is incorrect.");
+            }
+
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid Id)
+        {
+            var result = await _userService.GetById(Id);
+            return Ok(result);
+        }
+
+        [HttpGet("paging")]
+        public async Task<IActionResult> GetAllPaging([FromQuery] GetUsersPagingRequest request)
+        {
+            var result = await _userService.GetUsersPaging(request);
+            return Ok(result);
         }
 
         [HttpPost]
@@ -35,17 +53,23 @@ namespace eShop.BackendApi.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var success = await _userService.Register(request);
-            if (!success) return BadRequest("Register is unsuccessful");
+            var result = await _userService.Register(request);
 
-            return Ok();
+            if (!result.success) return BadRequest(result);
+
+            return Ok(result);
         }
 
-        [HttpGet("paging")]
-        public async Task<IActionResult> GetAllPaging([FromQuery] GetUsersPagingRequest request)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromBody] UpdateUserRequest request)
         {
-            var users = await _userService.GetUsersPaging(request);
-            return Ok(users);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var result = await _userService.Update(request);
+
+            if (!result.success) return BadRequest(result);
+
+            return Ok(result);
         }
     }
 }

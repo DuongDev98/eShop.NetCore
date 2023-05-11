@@ -24,16 +24,14 @@ namespace eshop.AdminApp.Controllers
 
         public async Task<IActionResult> Index(string keyword = "", int pageIndex = 1, int pageSize = 10)
         {
-            var token = HttpContext.Session.GetString("Token");
             GetUsersPagingRequest request = new GetUsersPagingRequest()
             {
-                BearerToken = token,
                 keyword = keyword,
                 pageIndex = pageIndex,
                 pageSize = pageSize
             };
-            var users = await _userClientApi.GetUsersPaging(request);
-            return View(users);
+            var result = await _userClientApi.GetUsersPaging(request);
+            return View(result.data);
         }
 
         [HttpGet]
@@ -49,11 +47,11 @@ namespace eshop.AdminApp.Controllers
             if (!ModelState.IsValid)
                 return View(ModelState);
 
-            var token = await _userClientApi.Authenticate(request);
+            var result = await _userClientApi.Authenticate(request);
 
-            if (string.IsNullOrEmpty(token)) return View();
+            if (!result.success || string.IsNullOrEmpty(result.data)) return View();
 
-            var userPrincipal = ValidateToken(token);
+            var userPrincipal = ValidateToken(result.data);
             var authProperties = new AuthenticationProperties()
             {
                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
@@ -62,7 +60,7 @@ namespace eshop.AdminApp.Controllers
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal, authProperties);
 
-            HttpContext.Session.SetString("Token", token);
+            HttpContext.Session.SetString("Token", result.data);
 
             return RedirectToAction("Index", "Home");
         }
@@ -82,13 +80,50 @@ namespace eshop.AdminApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(RegisterRequest request)
+        public async Task<IActionResult> Create(RegisterRequest request)
         {
             if (!ModelState.IsValid) return View();
 
-            var rs = await _userClientApi.RegisterUser(request);
+            var result = await _userClientApi.RegisterUser(request);
 
-            if (rs) return RedirectToAction("Index");
+            if (result.success) return RedirectToAction("Index");
+
+            ModelState.AddModelError("", result.message);
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Edit(Guid id)
+        {
+            var result = _userClientApi.GetUserById(id).Result;
+            if (!result.success)
+            {
+                return BadRequest(result);
+            }
+            //chuyển từ UserVm => UpdateUserRequet
+            UpdateUserRequest model = new UpdateUserRequest()
+            {
+                Id = result.data.Id,
+                FirstName = result.data.FirstName,
+                LastName = result.data.LastName,
+                Email = result.data.Email,
+                Dob = result.data.Dob,
+                PhoneNumber = result.data.PhoneNumber
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(UpdateUserRequest request)
+        {
+            if (!ModelState.IsValid) return View();
+
+            var result = await _userClientApi.UpdateUser(request);
+
+            if (result.success) return RedirectToAction("Index");
+
+            ModelState.AddModelError("", result.message);
 
             return View();
         }
