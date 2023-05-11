@@ -1,5 +1,6 @@
 using eShop.AdminApp.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,7 @@ builder.Services.AddSession(options =>
 });
 
 //declare DI
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient<IUserClientApi, UserClientApi>();
 
 var app = builder.Build();
