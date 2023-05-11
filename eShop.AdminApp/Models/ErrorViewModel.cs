@@ -1,4 +1,4 @@
-namespace eshop.AdminApp.Models
+namespace eShop.AdminApp.Models
 {
     public class ErrorViewModel
     {

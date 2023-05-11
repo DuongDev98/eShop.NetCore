@@ -1,10 +1,10 @@
 ﻿using eShop.Application.Common;
 using eShop.Data.EF;
 using eShop.Data.Entities;
+using eShop.Utilities.Exceptions;
 using eShop.ViewModels.Catalog.ProductImage;
 using eShop.ViewModels.Catalog.Products.Dtos;
 using eShop.ViewModels.Common;
-using EShop.Utilities.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Http.Headers;
@@ -316,7 +316,7 @@ namespace eShop.Application.Catalog.Products
                     ViewCount = x.p.ViewCount,
                 })
                 .ToListAsync();
-            return new PagedResult<ProductViewModel>() { Items = data, TotalRecord = totalCount };
+            return new PagedResult<ProductViewModel>() { Items = data, TotalRecords = totalCount };
         }
 
         public async Task<PagedResult<ProductViewModel>> GetAllByCategoryId(string languageId, GetProductPagingRequest request)
@@ -352,7 +352,7 @@ namespace eShop.Application.Catalog.Products
                     ViewCount = x.p.ViewCount,
                 })
                 .ToListAsync();
-            return new PagedResult<ProductViewModel>() { Items = data, TotalRecord = totalCount };
+            return new PagedResult<ProductViewModel>() { Items = data, TotalRecords = totalCount };
         }
     }
 }

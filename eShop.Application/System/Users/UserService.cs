@@ -72,6 +72,7 @@ namespace eShop.Application.System.Users
 
             int totalCount = await query.CountAsync();
 
+            query = query.OrderBy(x => x.UserName);
             var data = query.Skip((request.pageIndex - 1) * request.pageSize).Take(request.pageSize)
                 .Select(x=> new UserVm()
                 {
@@ -86,7 +87,9 @@ namespace eShop.Application.System.Users
             var pagedResult = new PagedResult<UserVm>()
             {
                 Items = data,
-                TotalRecord = totalCount
+                PageIndex = request.pageIndex,
+                PageSize = request.pageSize,
+                TotalRecords = totalCount
             };
 
             return new ApiSuccessResult<PagedResult<UserVm>>(pagedResult);
