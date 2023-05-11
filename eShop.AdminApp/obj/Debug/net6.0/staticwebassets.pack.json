@@ -57,6 +57,10 @@
       "PackagePath": "staticwebassets\\js\\fontawesome.all.js"
     },
     {
+      "Id": "H:\\NET.CORE\\eShopSolution\\eShop.AdminApp\\wwwroot\\js\\jquery-3.6.4.js",
+      "PackagePath": "staticwebassets\\js\\jquery-3.6.4.js"
+    },
+    {
       "Id": "H:\\NET.CORE\\eShopSolution\\eShop.AdminApp\\wwwroot\\js\\scripts.js",
       "PackagePath": "staticwebassets\\js\\scripts.js"
     },

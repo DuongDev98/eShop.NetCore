@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using eShop.AdminApp.Service;
+﻿using eShop.AdminApp.Service;
 using eShop.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -31,6 +30,13 @@ namespace eShop.AdminApp.Controllers
                 pageSize = pageSize
             };
             var result = await _userClientApi.GetUsersPaging(request);
+
+            ViewData["keyword"] = keyword;
+            if (TempData["successMessage"] != null)
+            {
+                ViewData["successMessage"] = TempData["successMessage"];
+            }
+
             return View(result.data);
         }
 
@@ -49,7 +55,11 @@ namespace eShop.AdminApp.Controllers
 
             var result = await _userClientApi.Authenticate(request);
 
-            if (!result.success || string.IsNullOrEmpty(result.data)) return View();
+            if (!result.success || string.IsNullOrEmpty(result.data))
+            {
+                ModelState.AddModelError("", result.message);
+                return View();
+            }
 
             var userPrincipal = ValidateToken(result.data);
             var authProperties = new AuthenticationProperties()
@@ -86,7 +96,11 @@ namespace eShop.AdminApp.Controllers
 
             var result = await _userClientApi.RegisterUser(request);
 
-            if (result.success) return RedirectToAction("Index");
+            if (result.success)
+            {
+                TempData["successMessage"] = "Thêm mới thành công";
+                return RedirectToAction("Index");
+            }
 
             ModelState.AddModelError("", result.message);
 
@@ -121,7 +135,11 @@ namespace eShop.AdminApp.Controllers
 
             var result = await _userClientApi.UpdateUser(request);
 
-            if (result.success) return RedirectToAction("Index");
+            if (result.success)
+            {
+                TempData["successMessage"] = "Cập nhật thành công";
+                return RedirectToAction("Index");
+            }
 
             ModelState.AddModelError("", result.message);
 
@@ -157,7 +175,11 @@ namespace eShop.AdminApp.Controllers
 
             var result = await _userClientApi.DeleteUser(request.Id);
 
-            if (result.success) return RedirectToAction("Index");
+            if (result.success)
+            {
+                TempData["successMessage"] = "Xóa người dùng thành công";
+                return RedirectToAction("Index");
+            }
 
             ModelState.AddModelError("", result.message);
 

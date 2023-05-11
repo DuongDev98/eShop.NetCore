@@ -6,6 +6,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section Scripts
+{
+    <script>
+        $(document).ready(function(){
+            setTimeout(()=>{
+                $('#alertMessage').fadeOut("slow");
+            }, 2000);
+        });
+    </script>
+}
+
 <div class="container-fluid px-4">
     <h1 class="mt-4">Danh sách người dùng</h1>
     <ol class="breadcrumb mb-4">
@@ -14,9 +25,34 @@
     </ol>
     <div class="card mb-4">
         <div class="card-header">
-            <a class="btn btn-success" asp-action="Create">Tạo mới tài khoản</a>
+            <div class="row">
+                <div class="col-6">
+                    <a class="btn btn-success" asp-action="Create">Tạo mới tài khoản</a>
+                </div>
+
+                <form asp-action="Index" method="get" class="col-6">
+                    <div class="row justify-content-end">
+                        <div class="col-4">
+                            <input class="form-control" type="text" placeholder="Nhập dữ liệu tìm kiếm" name="keyword" value="@ViewData["keyword"]">
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-info">Tìm kiếm</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="card-body">
+
+            @{
+                if (ViewData["successMessage"] != null)
+                {
+                    <div id="alertMessage" class="alert alert-success" role="alert">
+                        @ViewData["successMessage"]
+                    </div>
+                }
+            }
+
             <table class="table">
                 <thead>
                     <tr>
