@@ -1,4 +1,5 @@
 ﻿using eShop.ViewModels.Common;
+using eShop.ViewModels.System.Roles;
 using eShop.ViewModels.System.Users;
 
 namespace eShop.Application.System.Users
@@ -11,5 +12,6 @@ namespace eShop.Application.System.Users
         Task<ApiResult<bool>> Update(UserUpdateRequest request);
         Task<ApiResult<UserVm>> GetById(Guid Id);
         Task<ApiResult<bool>> Delete(Guid Id);
+        Task<ApiResult<bool>> RoleAssign(Guid Id, RoleAssignRequest request);
     }
 }

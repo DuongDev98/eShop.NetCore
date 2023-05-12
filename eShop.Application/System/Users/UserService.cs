@@ -1,6 +1,7 @@
 ﻿using Azure.Core;
 using eShop.Data.Entities;
 using eShop.ViewModels.Common;
+using eShop.ViewModels.System.Roles;
 using eShop.ViewModels.System.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -16,14 +17,11 @@ namespace eShop.Application.System.Users
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly RoleManager<AppRole> _roleManager;
         private readonly IConfiguration _configuration;
-        public UserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<AppRole> roleManager,
-            IConfiguration configuration)
+        public UserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IConfiguration configuration)
         {
             _userManager = userManager;   
             _signInManager = signInManager;
-            _roleManager = roleManager;
             _configuration = configuration;
         }
 
@@ -145,20 +143,21 @@ namespace eShop.Application.System.Users
             var user = await _userManager.FindByIdAsync(Id.ToString());
             if (user == null)
             {
-                return new ApiErrorResult<UserVm>("Id người dùng không tồn tại trong hệ thống");
+                return new ApiErrorResult<UserVm>("Người dùng không tồn tại trong hệ thống");
             }
-            else
+
+            var roles = await _userManager.GetRolesAsync(user);
+            return new ApiSuccessResult<UserVm>(new UserVm()
             {
-                return new ApiSuccessResult<UserVm>(new UserVm() {
-                    Id = user.Id,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Dob = user.Dob,
-                    Email = user.Email,
-                    PhoneNumber = user.PhoneNumber,
-                    UserName = user.UserName,
-                });
-            }
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Dob = user.Dob,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                UserName = user.UserName,
+                Roles = (List<string>)roles
+            });
         }
 
         public async Task<ApiResult<bool>> Delete(Guid Id)
@@ -166,20 +165,43 @@ namespace eShop.Application.System.Users
             var user = await _userManager.FindByIdAsync(Id.ToString());
             if (user == null)
             {
-                return new ApiErrorResult<bool>("Id người dùng không tồn tại trong hệ thống");
+                return new ApiErrorResult<bool>("Người dùng không tồn tại trong hệ thống");
+            }
+
+            IdentityResult result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                return new ApiSuccessResult<bool>();
             }
             else
             {
-                IdentityResult result = await _userManager.DeleteAsync(user);
-                if (result.Succeeded)
-                {
-                    return new ApiSuccessResult<bool>();
-                }
-                else
-                {
-                    return new ApiErrorResult<bool>("Có lỗi trong quá trình xóa người dùng");
-                }
+                return new ApiErrorResult<bool>("Có lỗi trong quá trình xóa người dùng");
             }
+        }
+
+        public async Task<ApiResult<bool>> RoleAssign(Guid Id, RoleAssignRequest request)
+        {
+            var user = await _userManager.FindByIdAsync(Id.ToString());
+            if (user == null)
+            {
+                return new ApiErrorResult<bool>("Người dùng không tồn tại trong hệ thống");
+            }
+
+            var remove = request.Roles.Where(x => !x.Selected).Select(x => x.Name).ToList();
+            foreach (string roleName in remove)
+            {
+                bool exists = await _userManager.IsInRoleAsync(user, roleName);
+                if (exists) await _userManager.RemoveFromRoleAsync(user, roleName);
+            }
+
+            var added = request.Roles.Where(x => x.Selected).Select(x => x.Name).ToList();
+            foreach (string roleName in added)
+            {
+                bool exists = await _userManager.IsInRoleAsync(user, roleName);
+                if (!exists) await _userManager.AddToRoleAsync(user, roleName);
+            }
+
+            return new ApiSuccessResult<bool>();
         }
     }
 }
