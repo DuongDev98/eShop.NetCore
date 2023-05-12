@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using eShop.ViewModels.Common;
+using eShop.ViewModels.System.Roles;
+using System.ComponentModel.DataAnnotations;
 
 namespace eShop.ViewModels.System.Users
 {
@@ -18,5 +20,7 @@ namespace eShop.ViewModels.System.Users
         public string UserName { set; get; }
         [Display(Name = "Email")]
         public string Email { set; get; }
+
+        public List<string> Roles { set; get; }
     }
 }

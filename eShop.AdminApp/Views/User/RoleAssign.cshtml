@@ -1,0 +1,47 @@
+﻿@model eShop.ViewModels.System.Roles.RoleAssignRequest
+
+@{
+    ViewData["Title"] = "Phân quyền";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Phân quyền</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Phân quyền</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <a class="btn btn-success" asp-action="Index">Về danh sách</a>
+        </div>
+        <div class="card-body">
+            <form asp-action="RoleAssign">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                @for (var i = 0; i < Model.Roles.Count; i++)
+                {
+                    <div class="row">
+                        <div class="form-check">
+                            <label>
+                                @Model.Roles[i].Name
+                                <input type="checkbox" asp-for="Roles[i].Selected" />
+                                <input type="hidden" asp-for="Roles[i].Id" />
+                                <input type="hidden" asp-for="Roles[i].Name" />
+                                <input type="hidden" asp-for="Roles[i].Description" />
+                            </label>
+                        </div>
+                    </div>
+                }
+
+                <hr />
+
+                <div class="row">
+                    <div>
+                        <button type="submit" class="btn btn-info">Lưu dữ liệu</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

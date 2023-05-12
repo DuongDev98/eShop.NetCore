@@ -1,5 +1,6 @@
 using eShop.Application.Catalog.Products;
 using eShop.Application.Common;
+using eShop.Application.System.Roles;
 using eShop.Application.System.Users;
 using eShop.Data.EF;
 using eShop.Data.Entities;
@@ -27,12 +28,13 @@ builder.Services.AddIdentity<AppUser, AppRole>()
                 .AddDefaultTokenProviders();
 
 //declare DI
-builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<IStorageService, FileStorageService>();
+builder.Services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
 builder.Services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
 builder.Services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
-builder.Services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
+builder.Services.AddTransient<IRoleService, RoleService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IProductService, ProductService>();
 
 //validator cach 1
 //builder.Services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();

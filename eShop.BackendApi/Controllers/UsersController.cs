@@ -1,5 +1,6 @@
 ﻿using eShop.Application.System.Users;
 using eShop.ViewModels.Catalog.Products.Dtos;
+using eShop.ViewModels.System.Roles;
 using eShop.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -78,6 +79,18 @@ namespace eShop.BackendApi.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var result = await _userService.Delete(id);
+
+            if (!result.success) return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [HttpPut("{id}/roles")]
+        public async Task<IActionResult> RoleAssign(Guid id, [FromBody]RoleAssignRequest request)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var result = await _userService.RoleAssign(id, request);
 
             if (!result.success) return BadRequest(result);
 

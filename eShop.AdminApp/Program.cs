@@ -1,4 +1,5 @@
-using eShop.AdminApp.Service;
+using eShop.AdminApp.Service.Role;
+using eShop.AdminApp.Service.User;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -22,7 +23,8 @@ builder.Services.AddSession(options =>
 
 //declare DI
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-builder.Services.AddTransient<IUserClientApi, UserClientApi>();
+builder.Services.AddTransient<IRoleApiClient, RoleApiClient>();
+builder.Services.AddTransient<IUserApiClient, UserApiClient>();
 
 var app = builder.Build();
 
