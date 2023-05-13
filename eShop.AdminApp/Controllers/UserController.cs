@@ -1,5 +1,6 @@
 ﻿using eShop.AdminApp.Service.Role;
 using eShop.AdminApp.Service.User;
+using eShop.Utilities.Contants;
 using eShop.ViewModels.Common;
 using eShop.ViewModels.System.Roles;
 using eShop.ViewModels.System.Users;
@@ -75,7 +76,8 @@ namespace eShop.AdminApp.Controllers
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal, authProperties);
 
-            HttpContext.Session.SetString("Token", result.data);
+            HttpContext.Session.SetString(SystemConstants.AppSettings.Token, result.data);
+            HttpContext.Session.SetString(SystemConstants.AppSettings.DefaultLanguageId, "vi-VN");
 
             return RedirectToAction("Index", "Home");
         }
@@ -84,7 +86,7 @@ namespace eShop.AdminApp.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            HttpContext.Session.Remove("Token");
+            HttpContext.Session.Remove(SystemConstants.AppSettings.Token);
             return RedirectToAction("Login", "User");
         }
 

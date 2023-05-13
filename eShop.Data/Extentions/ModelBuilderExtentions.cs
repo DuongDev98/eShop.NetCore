@@ -1,12 +1,8 @@
 ﻿using eShop.Data.Entities;
 using eShop.Data.Enum;
+using eShop.Utilities.Contants;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace eShop.Data.Extentions
 {
@@ -21,8 +17,8 @@ namespace eShop.Data.Extentions
                 );
 
             modelBuilder.Entity<Language>().HasData(
-                new Language() { Id = "vi-VN", Name = "Tiếng Việt", IsDefault = true },
-                new Language() { Id = "en-EN", Name = "English" }
+                new Language() { Id = SystemConstants.viVN, Name = "Tiếng Việt", IsDefault = true },
+                new Language() { Id = SystemConstants.enEn, Name = "English" }
                 );
 
             modelBuilder.Entity<Category>().HasData(

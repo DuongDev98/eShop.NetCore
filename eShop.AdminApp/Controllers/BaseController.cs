@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using eShop.Utilities.Contants;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -12,7 +13,7 @@ namespace eShop.AdminApp.Controllers
             var actionName = ((ControllerActionDescriptor)context.ActionDescriptor).ActionName;
             if (!(controllerName == "User" && (actionName == "Login" || actionName == "Register")))
             {
-                var token = context.HttpContext.Session.GetString("Token");
+                var token = context.HttpContext.Session.GetString(SystemConstants.AppSettings.Token);
                 if (token == null)
                 {
                     context.Result = new RedirectToActionResult("Login", "User", null);

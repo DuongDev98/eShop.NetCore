@@ -15,7 +15,7 @@ namespace eShop.Data.EF
                 .Build();
 
             DbContextOptionsBuilder<EShopDbContext> optionsBuilder = new DbContextOptionsBuilder<EShopDbContext>();
-            optionsBuilder.UseSqlServer(root.GetConnectionString(SystemContants.MainConnectionString));
+            optionsBuilder.UseSqlServer(root.GetConnectionString(SystemConstants.MainConnectionString));
 
             return new EShopDbContext(optionsBuilder.Options);
         }
