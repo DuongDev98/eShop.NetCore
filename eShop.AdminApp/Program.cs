@@ -1,3 +1,4 @@
+using eShop.AdminApp.Service.Language;
 using eShop.AdminApp.Service.Role;
 using eShop.AdminApp.Service.User;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -25,6 +26,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient<IRoleApiClient, RoleApiClient>();
 builder.Services.AddTransient<IUserApiClient, UserApiClient>();
+builder.Services.AddTransient<ILanguageApiClient, LanguageApiClient>();
 
 var app = builder.Build();
 

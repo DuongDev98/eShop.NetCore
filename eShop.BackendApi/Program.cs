@@ -19,7 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<EShopDbContext>(
-    options => options.UseSqlServer(builder.Configuration.GetConnectionString(SystemContants.MainConnectionString))
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString(SystemConstants.MainConnectionString))
 );
 
 // For Identity  
@@ -32,7 +32,7 @@ builder.Services.AddTransient<IStorageService, FileStorageService>();
 builder.Services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
 builder.Services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
 builder.Services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
-builder.Services.AddTransient<IRoleService, RoleService>();
+builder.Services.AddTransient<ILanguageService, LanguageService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IProductService, ProductService>();
 

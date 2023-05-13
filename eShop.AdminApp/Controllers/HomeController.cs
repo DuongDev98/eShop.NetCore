@@ -1,4 +1,5 @@
 ﻿using eShop.AdminApp.Models;
+using eShop.Utilities.Contants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -20,9 +21,13 @@ namespace eShop.AdminApp.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult Language(NavigationViewModel viewModel)
         {
-            return View();
+            HttpContext.Session.SetString(SystemConstants.AppSettings.DefaultLanguageId,
+                viewModel.CurrentLanguageId);
+
+            return Redirect(viewModel.ReturnUrl);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
