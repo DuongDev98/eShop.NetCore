@@ -1,6 +1,6 @@
 ﻿namespace eShop.ViewModels.Catalog.ProductImage
 {
-    public class ProductImageViewModel
+    public class ProductImageVm
     {
         public int Id { set; get; }
         public int ProductId { set; get; }

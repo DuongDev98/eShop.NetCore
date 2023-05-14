@@ -2,7 +2,7 @@
 
 namespace eShop.ViewModels.System.Users
 {
-    public class GetUsersPagingRequest : PagingRequestBase
+    public class GetUsersRequest : PagingRequestBase
     {
         public string? keyword { set; get; }
     }

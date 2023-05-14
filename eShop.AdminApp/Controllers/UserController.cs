@@ -29,13 +29,13 @@ namespace eShop.AdminApp.Controllers
 
         public async Task<IActionResult> Index(string keyword = "", int pageIndex = 1, int pageSize = 20)
         {
-            GetUsersPagingRequest request = new GetUsersPagingRequest()
+            GetUsersRequest request = new GetUsersRequest()
             {
                 keyword = keyword,
                 pageIndex = pageIndex,
                 pageSize = pageSize
             };
-            var result = await _userClientApi.GetUsersPaging(request);
+            var result = await _userClientApi.GetAll(request);
 
             ViewData["keyword"] = keyword;
             if (TempData["successMessage"] != null)

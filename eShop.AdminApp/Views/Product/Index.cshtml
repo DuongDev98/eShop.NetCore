@@ -1,0 +1,125 @@
+﻿@using eShop.ViewModels.Catalog.Products.Dtos
+@using eShop.ViewModels.Common
+@model PagedResult<ProductVm>
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+            setTimeout(() => {
+                $('#alertMessage').fadeOut("slow");
+            }, 2000);
+        });
+    </script>
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Danh sách sản phẩm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-6">
+                    <a class="btn btn-success" asp-action="Create">Thêm mới sản phẩm</a>
+                </div>
+
+                <form asp-action="Index" method="get" class="col-6">
+                    <div class="row justify-content-end">
+                        <div class="col-4">
+                            <input class="form-control" type="text" placeholder="Nhập dữ liệu tìm kiếm" name="keyword" value="@ViewData["keyword"]">
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-info">Tìm kiếm</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card-body">
+
+            @{
+                if (ViewData["successMessage"] != null)
+                {
+                    <div id="alertMessage" class="alert alert-success" role="alert">
+                        @ViewData["successMessage"]
+                    </div>
+                }
+            }
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Tên hàng
+                        </th>
+                        <th>
+                            Giá nhập
+                        </th>
+                        <th>
+                            Giá bán
+                        </th>
+                        <th>
+                            Số lượng tồn
+                        </th>
+                        <th>
+                            Seo title
+                        </th>
+                        <th>
+                            Seo Alias
+                        </th>
+                        <th>
+                            Thời gian tạo
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OriginalPrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Stock)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SeoTitle)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SeoAlias)
+                                </td>
+                                4
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateCreated)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Chỉnh sửa", "Edit", new {  id=item.Id }) |
+                                    @Html.ActionLink("Chi tiết", "Details", new {  id=item.Id }) |
+                                    @Html.ActionLink("Xóa", "Delete", new {  id=item.Id }) |
+                                    @Html.ActionLink("Xóa", "Delete", new {  id=item.Id })
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+            @await Component.InvokeAsync("Pager", Model)
+        </div>
+    </div>
+</div>

@@ -6,22 +6,22 @@ namespace eShop.Application.Catalog.Products
 {
     public interface IProductService
     {
-        Task<ProductViewModel> GetById(int productId, string languageId);
-        Task<int> Create(ProductCreateRequest request);
-        Task<int> Update(ProductUpdateRequest request);
-        Task<int> Delete(int productId);
+        Task<ApiResult<ProductVm>> GetById(int productId, string languageId);
+        Task<ApiResult<int>> Create(ProductCreateRequest request);
+        Task<ApiResult<int>> Update(ProductUpdateRequest request);
+        Task<ApiResult<int>> Delete(int productId);
 
-        Task<int> AddViewCount(int productId);
-        Task<int> UpdateStock(int productId, int addedQuantity);
-        Task<int> UpdatePrice(int productId, decimal newPrice);
+        Task<ApiResult<int>> AddViewCount(int productId);
+        Task<ApiResult<int>> UpdateStock(int productId, int addedQuantity);
+        Task<ApiResult<int>> UpdatePrice(int productId, decimal newPrice);
 
-        Task<int> AddImage(int productId, ProductImageCreateRequest request);
-        Task<int> RemoveImage(int imageId);
-        Task<int> UpdateImage(int imageId, ProductImageCreateRequest request);
-        Task<List<ProductImageViewModel>> GetListImages(int productId);
-        Task<ProductImageViewModel> GetImageById(int imageId);
+        Task<ApiResult<int>> AddImage(int productId, ProductImageCreateRequest request);
+        Task<ApiResult<int>> RemoveImage(int imageId);
+        Task<ApiResult<int>> UpdateImage(int imageId, ProductImageCreateRequest request);
+        Task<ApiResult<List<ProductImageVm>>> GetListImages(int productId);
+        Task<ApiResult<ProductImageVm>> GetImageById(int imageId);
 
-        Task<PagedResult<ProductViewModel>> getAllPaging(string languageId, GetProductPagingRequest request);
-        Task<PagedResult<ProductViewModel>> GetAllByCategoryId(string langguageId, GetProductPagingRequest request);
+        Task<ApiResult<PagedResult<ProductVm>>> GetAll(GetProductRequest request);
+        Task<ApiResult<PagedResult<ProductVm>>> GetByCategoryId(GetProductRequest request);
     }
 }
