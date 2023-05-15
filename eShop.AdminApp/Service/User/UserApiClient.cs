@@ -20,9 +20,9 @@ namespace eShop.AdminApp.Service.User
             return await PostAsync<string>("users/authenticate", request);
         }
 
-        public async Task<ApiResult<PagedResult<UserVm>>> GetUsersPaging(GetUsersPagingRequest request)
+        public async Task<ApiResult<PagedResult<UserVm>>> GetAll(GetUsersRequest request)
         {
-            return await GetAsync<PagedResult<UserVm>>($"users/paging?pageIndex={request.pageIndex}&pageSize={request.pageSize}&keyword={request.keyword}");
+            return await GetAsync<PagedResult<UserVm>>($"users?pageIndex={request.pageIndex}&pageSize={request.pageSize}&keyword={request.keyword}");
         }
 
         public async Task<ApiResult<bool>> RegisterUser(RegisterRequest request)

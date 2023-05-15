@@ -41,10 +41,10 @@ namespace eShop.BackendApi.Controllers
             return Ok(result);
         }
 
-        [HttpGet("paging")]
-        public async Task<IActionResult> GetAllPaging([FromQuery] GetUsersPagingRequest request)
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] GetUsersRequest request)
         {
-            var result = await _userService.GetUsersPaging(request);
+            var result = await _userService.GetAll(request);
             return Ok(result);
         }
 

@@ -241,6 +241,54 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\user-content\\392858fb-1fd6-4059-a056-52e6271e190b.png",
+      "PackagePath": "staticwebassets\\user-content\\392858fb-1fd6-4059-a056-52e6271e190b.png"
+    },
+    {
+      "Id": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\user-content\\67fbfe7f-4fc7-41be-87d6-90b06b552e1f.png",
+      "PackagePath": "staticwebassets\\user-content\\67fbfe7f-4fc7-41be-87d6-90b06b552e1f.png"
+    },
+    {
+      "Id": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\user-content\\695af8a5-7428-4ceb-97e9-f4c9e27ffa42.png",
+      "PackagePath": "staticwebassets\\user-content\\695af8a5-7428-4ceb-97e9-f4c9e27ffa42.png"
+    },
+    {
+      "Id": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\user-content\\6eaee382-9e4b-408b-9e5d-a58d21e56f05.png",
+      "PackagePath": "staticwebassets\\user-content\\6eaee382-9e4b-408b-9e5d-a58d21e56f05.png"
+    },
+    {
+      "Id": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\user-content\\7650ca7f-778d-40de-b5fd-4b51d9465cc8.png",
+      "PackagePath": "staticwebassets\\user-content\\7650ca7f-778d-40de-b5fd-4b51d9465cc8.png"
+    },
+    {
+      "Id": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\user-content\\85016a5c-c271-412b-80b1-213e91379b45.png",
+      "PackagePath": "staticwebassets\\user-content\\85016a5c-c271-412b-80b1-213e91379b45.png"
+    },
+    {
+      "Id": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\user-content\\8c5447c8-9476-4168-9db4-212b2dd5902e.png",
+      "PackagePath": "staticwebassets\\user-content\\8c5447c8-9476-4168-9db4-212b2dd5902e.png"
+    },
+    {
+      "Id": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\user-content\\9fe54f6b-de4d-4385-b255-488593d7a7b6.png",
+      "PackagePath": "staticwebassets\\user-content\\9fe54f6b-de4d-4385-b255-488593d7a7b6.png"
+    },
+    {
+      "Id": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\user-content\\ba2f9d77-4f50-4843-a20f-c78d583b0f5e.png",
+      "PackagePath": "staticwebassets\\user-content\\ba2f9d77-4f50-4843-a20f-c78d583b0f5e.png"
+    },
+    {
+      "Id": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\user-content\\d105f5ae-0e69-4e93-bef7-a062430a492a.png",
+      "PackagePath": "staticwebassets\\user-content\\d105f5ae-0e69-4e93-bef7-a062430a492a.png"
+    },
+    {
+      "Id": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\user-content\\e4c85a77-3d45-4556-839c-b56e0f729dc0.png",
+      "PackagePath": "staticwebassets\\user-content\\e4c85a77-3d45-4556-839c-b56e0f729dc0.png"
+    },
+    {
+      "Id": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\user-content\\ebc6d5f7-9d80-42e6-a678-e28c6323f97b.png",
+      "PackagePath": "staticwebassets\\user-content\\ebc6d5f7-9d80-42e6-a678-e28c6323f97b.png"
+    },
+    {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.eShop.BackendApi.props",
       "PackagePath": "build\\eShop.BackendApi.props"
     },

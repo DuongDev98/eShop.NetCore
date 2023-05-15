@@ -1,7 +1,6 @@
 ﻿using eShop.Application.Common;
 using eShop.Data.EF;
 using eShop.Data.Entities;
-using eShop.Utilities.Exceptions;
 using eShop.ViewModels.Catalog.ProductImage;
 using eShop.ViewModels.Catalog.Products.Dtos;
 using eShop.ViewModels.Common;
@@ -22,13 +21,14 @@ namespace eShop.Application.Catalog.Products
             _storageService = storageService;
         }
 
-        public async Task<ProductViewModel> GetById(int productId, string languageId)
+        public async Task<ApiResult<ProductVm>> GetById(int productId, string languageId)
         {
             var product = await _dbContext.Products.FindAsync(productId);
-            if (product == null) throw new EShopException($"Can not find product: {productId}");
+            if (product == null) return new ApiErrorResult<ProductVm>($"Can not find product: {productId}");
             var productTranlation = await _dbContext.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == productId && x.LanguageId == languageId);
-            var rs = new ProductViewModel()
+            var rs = new ProductVm()
             {
+                Id = product.Id,
                 DateCreated = product.DateCreated,
                 Description = productTranlation?.Description,
                 Details = productTranlation?.Details,
@@ -41,10 +41,10 @@ namespace eShop.Application.Catalog.Products
                 Stock = product.Stock,
                 ViewCount = product.ViewCount,
             };
-            return rs;
+            return new ApiSuccessResult<ProductVm>(rs);
         }
 
-        public async Task<int> Create(ProductCreateRequest request)
+        public async Task<ApiResult<int>> Create(ProductCreateRequest request)
         {
             var product = new Product()
             {
@@ -64,6 +64,13 @@ namespace eShop.Application.Catalog.Products
                         SeoTitle = request.SeoTitle,
                         SeoAlias = request.SeoAlias,
                         LanguageId = request.LanguageId,
+                    }
+                },
+                ProductInCategories = new List<ProductInCategory>()
+                {
+                    new ProductInCategory()
+                    {
+                        CategoryId = request.CategoryId
                     }
                 }
             };
@@ -87,16 +94,16 @@ namespace eShop.Application.Catalog.Products
 
             _dbContext.Products.Add(product);
             await _dbContext.SaveChangesAsync();
-            return product.Id;
+            return new ApiSuccessResult<int>(product.Id);
         }
 
-        public async Task<int> Update(ProductUpdateRequest request)
+        public async Task<ApiResult<int>> Update(ProductUpdateRequest request)
         {
             var product = await _dbContext.Products.FindAsync(request.Id);
             var productTranlation = await _dbContext.ProductTranslations
                 .Where(x => x.ProductId == request.Id && x.LanguageId == request.LanguageId)
                 .FirstOrDefaultAsync();
-            if (product == null || productTranlation == null) throw new EShopException($"Can not find product: {request.Id}");
+            if (product == null || productTranlation == null) return new ApiErrorResult<int>($"Can not find product: {request.Id}");
             else
             {
                 productTranlation.Name = request.Name;
@@ -118,14 +125,14 @@ namespace eShop.Application.Catalog.Products
                     }
                 }
 
-                return await _dbContext.SaveChangesAsync();
+                return new ApiSuccessResult<int>(await _dbContext.SaveChangesAsync());
             }
         }
 
-        public async Task<int> Delete(int productId)
+        public async Task<ApiResult<int>> Delete(int productId)
         {
             var product = await _dbContext.Products.FindAsync(productId);
-            if (product == null) throw new EShopException($"Can not find product: {productId}");
+            if (product == null) return new ApiErrorResult<int>($"Can not find product: {productId}");
             else
             {
                 var images = _dbContext.ProductImages.Where(i => i.ProductId == productId);
@@ -135,57 +142,55 @@ namespace eShop.Application.Catalog.Products
                 }
 
                 _dbContext.Products.Remove(product);
-                return await _dbContext.SaveChangesAsync();
+                return new ApiSuccessResult<int>(await _dbContext.SaveChangesAsync());
             }
         }
 
-        public async Task<int> AddViewCount(int productId)
+        public async Task<ApiResult<int>> AddViewCount(int productId)
         {
             var product = await _dbContext.Products.FindAsync(productId);
-            if (product == null) throw new EShopException($"Can not find product: {productId}");
+            if (product == null) return new ApiErrorResult<int>($"Can not find product: {productId}");
             else
             {
                 product.ViewCount++;
-                return await _dbContext.SaveChangesAsync();
+                return new ApiSuccessResult<int>(await _dbContext.SaveChangesAsync());
             }
         }
 
-        public async Task<int> UpdateStock(int productId, int addedQuantity)
+        public async Task<ApiResult<int>> UpdateStock(int productId, int addedQuantity)
         {
             var product = await _dbContext.Products.FindAsync(productId);
-            if (product == null) throw new EShopException($"Can not find product: {productId}");
+            if (product == null) return new ApiErrorResult<int>($"Can not find product: {productId}");
             else
             {
                 product.Stock += addedQuantity;
-                return await _dbContext.SaveChangesAsync();
+                return new ApiSuccessResult<int>(await _dbContext.SaveChangesAsync());
             }
         }
 
-        public async Task<int> UpdatePrice(int productId, decimal newPrice)
+        public async Task<ApiResult<int>> UpdatePrice(int productId, decimal newPrice)
         {
             var product = await _dbContext.Products.FindAsync(productId);
-            if (product == null) throw new EShopException($"Can not find product: {productId}");
+            if (product == null) return new ApiErrorResult<int>($"Can not find product: {productId}");
             else
             {
                 product.Price = newPrice;
-                return await _dbContext.SaveChangesAsync();
+                return new ApiSuccessResult<int>(await _dbContext.SaveChangesAsync());
             }
         }
 
         public async Task<string> SaveFile(IFormFile file)
         {
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
             string originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
             return fileName;
         }
 
-        public async Task<int> AddImage(int productId, ProductImageCreateRequest request)
+        public async Task<ApiResult<int>> AddImage(int productId, ProductImageCreateRequest request)
         {
             var p = await _dbContext.Products.FindAsync(productId);
-            if (p == null) throw new EShopException($"Can not find product: {productId}");
+            if (p == null) return new ApiErrorResult<int>($"Can not find product: {productId}");
 
             var pi = new ProductImage()
             {
@@ -205,13 +210,13 @@ namespace eShop.Application.Catalog.Products
             _dbContext.ProductImages.Add(pi);
             await _dbContext.SaveChangesAsync();
 
-            return pi.Id;
+            return new ApiSuccessResult<int>(pi.Id);
         }
 
-        public async Task<int> UpdateImage(int imageId, ProductImageCreateRequest request)
+        public async Task<ApiResult<int>> UpdateImage(int imageId, ProductImageCreateRequest request)
         {
             var p = await _dbContext.ProductImages.FirstOrDefaultAsync(x => x.Id == imageId);
-            if (p == null) throw new EShopException($"Can not find product image: {imageId}");
+            if (p == null) return new ApiErrorResult<int>($"Can not find product image: {imageId}");
 
             p.Caption = request.Caption;
             p.IsDefault = request.IsDefault;
@@ -226,27 +231,27 @@ namespace eShop.Application.Catalog.Products
 
             _dbContext.ProductImages.Update(p);
 
-            return await _dbContext.SaveChangesAsync();
+            return new ApiSuccessResult<int>(await _dbContext.SaveChangesAsync());
         }
 
-        public async Task<int> RemoveImage(int imageId)
+        public async Task<ApiResult<int>> RemoveImage(int imageId)
         {
             var p = await _dbContext.ProductImages.FirstOrDefaultAsync(x => x.Id == imageId);
-            if (p == null) throw new EShopException($"Can not find product image: {imageId}");
+            if (p == null) return new ApiErrorResult<int>($"Can not find product image: {imageId}");
 
             await _storageService.DeleteFileAsync(p.ImagePath);
             _dbContext.ProductImages.Remove(p);
 
-            return await _dbContext.SaveChangesAsync();
+            return new ApiSuccessResult<int>(await _dbContext.SaveChangesAsync());
         }
 
-        public async Task<List<ProductImageViewModel>> GetListImages(int productId)
+        public async Task<ApiResult<List<ProductImageVm>>> GetListImages(int productId)
         {
             var p = await _dbContext.Products.FindAsync(productId);
-            if (p == null) throw new EShopException($"Can not find product: {productId}");
+            if (p == null) return new ApiErrorResult<List<ProductImageVm>> ($"Can not find product: {productId}");
 
-            return p.ProductImages.Select(x =>
-            new ProductImageViewModel()
+            var lst = p.ProductImages.Select(x =>
+            new ProductImageVm()
             {
                 Id = x.Id,
                 ProductId = x.ProductId,
@@ -257,14 +262,15 @@ namespace eShop.Application.Catalog.Products
                 ImagePath = x.ImagePath,
                 SortOrder = x.SortOrder
             }).ToList();
+            return new ApiSuccessResult<List<ProductImageVm>>(lst);
         }
 
-        public async Task<ProductImageViewModel> GetImageById(int imageId)
+        public async Task<ApiResult<ProductImageVm>> GetImageById(int imageId)
         {
             var x = await _dbContext.ProductImages.FirstOrDefaultAsync(x => x.Id == imageId);
-            if (x == null) throw new EShopException($"Can not find product image: {imageId}");
+            if (x == null) return new ApiErrorResult<ProductImageVm>($"Can not find product image: {imageId}");
 
-            var viewModel = new ProductImageViewModel()
+            var viewModel = new ProductImageVm()
             {
                 Id = x.Id,
                 ProductId = x.ProductId,
@@ -275,16 +281,16 @@ namespace eShop.Application.Catalog.Products
                 ImagePath = x.ImagePath,
                 SortOrder = x.SortOrder
             };
-            return viewModel;
+            return new ApiSuccessResult<ProductImageVm>(viewModel);
         }
 
-        public async Task<PagedResult<ProductViewModel>> getAllPaging(string languageId, GetProductPagingRequest request)
+        public async Task<ApiResult<PagedResult<ProductVm>>> GetAll(GetProductRequest request)
         {
             //select
             var query = from p in _dbContext.Products
                         join pic in _dbContext.ProductInCategories on p.Id equals pic.ProductId
                         join pt in _dbContext.ProductTranslations on p.Id equals pt.ProductId
-                        where pt.LanguageId == languageId
+                        where pt.LanguageId == request.languageId
                         select new { p, pt, pic };
             //filter
             if (!string.IsNullOrEmpty(request.keyword))
@@ -297,12 +303,18 @@ namespace eShop.Application.Catalog.Products
                 query = query.Where(x => request.categoryIds.Contains(x.pic.CategoryId));
             }
 
+            if (request.categoryId != null)
+            {
+                query = query.Where(x => x.pic.CategoryId == request.categoryId);
+            }
+
             int totalCount = await query.CountAsync();
 
             //paging
             var data = await query.Skip((request.pageIndex - 1) * request.pageSize).Take(request.pageSize)
-                .Select(x => new ProductViewModel()
+                .Select(x => new ProductVm()
                 {
+                    Id = x.p.Id,
                     DateCreated = x.p.DateCreated,
                     Description = x.pt.Description,
                     Details = x.pt.Description,
@@ -316,16 +328,18 @@ namespace eShop.Application.Catalog.Products
                     ViewCount = x.p.ViewCount,
                 })
                 .ToListAsync();
-            return new PagedResult<ProductViewModel>() { Items = data, TotalRecords = totalCount };
+
+            var result = new PagedResult<ProductVm>() { Items = data, TotalRecords = totalCount };
+            return new ApiSuccessResult<PagedResult<ProductVm>>(result);
         }
 
-        public async Task<PagedResult<ProductViewModel>> GetAllByCategoryId(string languageId, GetProductPagingRequest request)
+        public async Task<ApiResult<PagedResult<ProductVm>>> GetByCategoryId(GetProductRequest request)
         {
             //select
             var query = from p in _dbContext.Products
                         join pic in _dbContext.ProductInCategories on p.Id equals pic.ProductId
                         join pt in _dbContext.ProductTranslations on p.Id equals pt.ProductId
-                        where pt.LanguageId == languageId
+                        where pt.LanguageId == request.languageId
                         select new { p, pt, pic };
             //filter
             if (request.categoryId > 0)
@@ -337,8 +351,9 @@ namespace eShop.Application.Catalog.Products
 
             //paging
             var data = await query.Skip((request.pageIndex - 1) * request.pageSize).Take(request.pageSize)
-                .Select(x => new ProductViewModel()
+                .Select(x => new ProductVm()
                 {
+                    Id = x.p.Id,
                     DateCreated = x.p.DateCreated,
                     Description = x.pt.Description,
                     Details = x.pt.Description,
@@ -352,7 +367,9 @@ namespace eShop.Application.Catalog.Products
                     ViewCount = x.p.ViewCount,
                 })
                 .ToListAsync();
-            return new PagedResult<ProductViewModel>() { Items = data, TotalRecords = totalCount };
+
+            var result = new PagedResult<ProductVm>() { Items = data, TotalRecords = totalCount };
+            return new ApiSuccessResult<PagedResult<ProductVm>>(result);
         }
     }
 }

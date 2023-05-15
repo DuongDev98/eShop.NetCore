@@ -60,7 +60,7 @@ namespace eShop.Application.System.Users
             return new ApiSuccessResult<string>(tokenString);
         }
 
-        public async Task<ApiResult<PagedResult<UserVm>>> GetUsersPaging(GetUsersPagingRequest request)
+        public async Task<ApiResult<PagedResult<UserVm>>> GetAll(GetUsersRequest request)
         {
             var query = _userManager.Users;
             if (!string.IsNullOrEmpty(request.keyword))

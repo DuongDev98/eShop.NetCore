@@ -1,13 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Tạo mới người dùng";
+    ViewData["Title"] = @ViewData["Title"];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Danh sách người dùng</h1>
+    <h1 class="mt-4">@ViewData["Title"]</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-        <li class="breadcrumb-item active">Tạo mới người dùng</li>
+        <li class="breadcrumb-item active">@ViewData["Title"]</li>
     </ol>
     <div class="card mb-4">
         <div class="card-header">

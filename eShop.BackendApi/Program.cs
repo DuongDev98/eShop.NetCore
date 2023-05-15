@@ -1,3 +1,4 @@
+using eShop.Application.Catalog.Categories;
 using eShop.Application.Catalog.Products;
 using eShop.Application.Common;
 using eShop.Application.System.Roles;
@@ -35,6 +36,7 @@ builder.Services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
 builder.Services.AddTransient<ILanguageService, LanguageService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IProductService, ProductService>();
+builder.Services.AddTransient<ICategoryService, CategoryService>();
 
 //validator cach 1
 //builder.Services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
