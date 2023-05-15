@@ -65,6 +65,13 @@ namespace eShop.Application.Catalog.Products
                         SeoAlias = request.SeoAlias,
                         LanguageId = request.LanguageId,
                     }
+                },
+                ProductInCategories = new List<ProductInCategory>()
+                {
+                    new ProductInCategory()
+                    {
+                        CategoryId = request.CategoryId
+                    }
                 }
             };
 
@@ -174,9 +181,7 @@ namespace eShop.Application.Catalog.Products
 
         public async Task<string> SaveFile(IFormFile file)
         {
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
             string originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
             return fileName;
@@ -296,6 +301,11 @@ namespace eShop.Application.Catalog.Products
             if (request.categoryIds != null && request.categoryIds.Count > 0)
             {
                 query = query.Where(x => request.categoryIds.Contains(x.pic.CategoryId));
+            }
+
+            if (request.categoryId != null)
+            {
+                query = query.Where(x => x.pic.CategoryId == request.categoryId);
             }
 
             int totalCount = await query.CountAsync();

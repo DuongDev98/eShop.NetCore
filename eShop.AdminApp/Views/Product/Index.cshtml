@@ -2,7 +2,7 @@
 @using eShop.ViewModels.Common
 @model PagedResult<ProductVm>
 @{
-    ViewData["Title"] = "Danh sách sản phẩm";
+    ViewData["Title"] = @ViewData["Title"];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -18,26 +18,25 @@
 }
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Danh sách sản phẩm</h1>
+    <h1 class="mt-4">@ViewData["Title"]</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-        <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+        <li class="breadcrumb-item active">@ViewData["Title"]</li>
     </ol>
     <div class="card mb-4">
         <div class="card-header">
             <div class="row">
-                <div class="col-6">
+                <div class="col-4">
                     <a class="btn btn-success" asp-action="Create">Thêm mới sản phẩm</a>
                 </div>
 
-                <form asp-action="Index" method="get" class="col-6">
+                <form action="/Product/Index" method="get" class="col-8">
                     <div class="row justify-content-end">
-                        <div class="col-4">
-                            <input class="form-control" type="text" placeholder="Nhập dữ liệu tìm kiếm" name="keyword" value="@ViewData["keyword"]">
-                        </div>
-                        <div class="col-2">
-                            <button type="submit" class="btn btn-info">Tìm kiếm</button>
-                        </div>
+                        <input type="number" name="pageIndex" value="@ViewData["pageIndex"]" hidden />
+                        <input type="number" name="pageSize" value="@ViewData["pageSize"]" hidden />
+                        <div class="col-4"><select class="form-control ms-auto ms-md-0 me-3 me-lg-4" name="categoryId" asp-items="@ViewData["CategoriesSelectList"] as SelectList" onchange="this.form.submit()"></select></div>
+                        <div class="col-4"><input class="form-control" type="text" placeholder="Nhập dữ liệu tìm kiếm" name="keyword" value="@ViewData["keyword"]"></div>
+                        <div class="col-2"><button type="submit" class="btn btn-info">Tìm kiếm</button></div>
                     </div>
                 </form>
             </div>
@@ -103,14 +102,12 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.SeoAlias)
                                 </td>
-                                4
                                 <td>
                                     @Html.DisplayFor(modelItem => item.DateCreated)
                                 </td>
                                 <td>
                                     @Html.ActionLink("Chỉnh sửa", "Edit", new {  id=item.Id }) |
                                     @Html.ActionLink("Chi tiết", "Details", new {  id=item.Id }) |
-                                    @Html.ActionLink("Xóa", "Delete", new {  id=item.Id }) |
                                     @Html.ActionLink("Xóa", "Delete", new {  id=item.Id })
                                 </td>
                             </tr>

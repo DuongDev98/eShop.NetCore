@@ -29,6 +29,7 @@ namespace eShop.AdminApp.Controllers
 
         public async Task<IActionResult> Index(string keyword = "", int pageIndex = 1, int pageSize = 20)
         {
+            ViewData["Title"] = "Danh sách người dùng";
             GetUsersRequest request = new GetUsersRequest()
             {
                 keyword = keyword,
@@ -57,7 +58,7 @@ namespace eShop.AdminApp.Controllers
         public async Task<IActionResult> Login(LoginRequest request)
         {
             if (!ModelState.IsValid)
-                return View(ModelState);
+                return View();
 
             var result = await _userClientApi.Authenticate(request);
 
@@ -93,12 +94,14 @@ namespace eShop.AdminApp.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            ViewData["Title"] = "Thêm mới người dùng";
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(RegisterRequest request)
         {
+            ViewData["Title"] = "Thêm mới người dùng";
             if (!ModelState.IsValid) return View();
 
             var result = await _userClientApi.RegisterUser(request);
@@ -117,6 +120,7 @@ namespace eShop.AdminApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
+            ViewData["Title"] = "Chỉnh sửa người dùng";
             var result = await _userClientApi.GetUserById(id);
             if (!result.success)
             {
@@ -138,6 +142,7 @@ namespace eShop.AdminApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(UserUpdateRequest request)
         {
+            ViewData["Title"] = "Chỉnh sửa người dùng";
             if (!ModelState.IsValid) return View();
 
             var result = await _userClientApi.UpdateUser(request);
@@ -156,6 +161,7 @@ namespace eShop.AdminApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {
+            ViewData["Title"] = "Chi tiết người dùng";
             var result = await _userClientApi.GetUserById(id);
             if (!result.success)
             {
@@ -167,6 +173,7 @@ namespace eShop.AdminApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(Guid id)
         {
+            ViewData["Title"] = "Xóa người dùng";
             var result = await _userClientApi.GetUserById(id);
             if (!result.success)
             {
@@ -178,6 +185,7 @@ namespace eShop.AdminApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(UserDeleteRequest request)
         {
+            ViewData["Title"] = "Xóa người dùng";
             if (!ModelState.IsValid) return View();
 
             var result = await _userClientApi.DeleteUser(request.Id);
@@ -203,7 +211,7 @@ namespace eShop.AdminApp.Controllers
         [HttpPost]
         public async Task<IActionResult> RoleAssign(RoleAssignRequest request)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid) return View();
 
             var result = await _userClientApi.RoleAssign(request.Id, request);
 

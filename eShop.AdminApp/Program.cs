@@ -1,9 +1,9 @@
+using eShop.AdminApp.Service.Category;
 using eShop.AdminApp.Service.Language;
 using eShop.AdminApp.Service.Product;
 using eShop.AdminApp.Service.Role;
 using eShop.AdminApp.Service.User;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +29,7 @@ builder.Services.AddTransient<IRoleApiClient, RoleApiClient>();
 builder.Services.AddTransient<IUserApiClient, UserApiClient>();
 builder.Services.AddTransient<ILanguageApiClient, LanguageApiClient>();
 builder.Services.AddTransient<IProductApiClient, ProductApiClient>();
+builder.Services.AddTransient<ICategoryApiClient, CategoryApiClient>();
 
 var app = builder.Build();
 

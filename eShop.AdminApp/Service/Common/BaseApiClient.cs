@@ -21,25 +21,25 @@ namespace eShop.AdminApp.Service.Common
 
         protected async Task<ApiResult<T>> GetAsync<T>(string url)
         {
-            return await SendDataAsync<T>(url, null, HttpMethods.Get);
+            return await RequestDataAsync<T>(url, null, HttpMethods.Get);
         }
 
         protected async Task<ApiResult<T>> PostAsync<T>(string url, object data)
         {
-            return await SendDataAsync<T>(url, data, HttpMethods.Post);
+            return await RequestDataAsync<T>(url, data, HttpMethods.Post);
         }
 
         protected async Task<ApiResult<T>> PutAsync<T>(string url, object data)
         {
-            return await SendDataAsync<T>(url, data, HttpMethods.Put);
+            return await RequestDataAsync<T>(url, data, HttpMethods.Put);
         }
 
         protected async Task<ApiResult<T>> DeleteAsync<T>(string url)
         {
-            return await SendDataAsync<T>(url, null, HttpMethods.Delete);
+            return await RequestDataAsync<T>(url, null, HttpMethods.Delete);
         }
 
-        protected async Task<ApiResult<TResponse>> SendDataAsync<TResponse>(string url, object data, string method)
+        protected async Task<ApiResult<TResponse>> RequestDataAsync<TResponse>(string url, object data, string method)
         {
             HttpClient httpClient = GetHttpClient(_configuration, _httpClientFactory, _httpContextAccessor);
 
@@ -62,7 +62,7 @@ namespace eShop.AdminApp.Service.Common
             return JsonConvert.DeserializeObject<ApiErrorResult<TResponse>>(result);
         }
 
-        private HttpClient GetHttpClient(IConfiguration _configuration, IHttpClientFactory _httpClientFactory,
+        protected HttpClient GetHttpClient(IConfiguration _configuration, IHttpClientFactory _httpClientFactory,
             IHttpContextAccessor _httpContextAccessor)
         {
             string baseUrl = _configuration.GetValue<string>(SystemConstants.AppSettings.BaseAddress);

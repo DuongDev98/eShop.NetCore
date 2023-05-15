@@ -1,15 +1,15 @@
 ﻿@model eShop.ViewModels.System.Users.UserVm
 
 @{
-    ViewData["Title"] = "Thông tin người dùng";
+    ViewData["Title"] = @ViewData["Title"];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Chi tiết</h1>
+    <h1 class="mt-4">@ViewData["Title"]</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-        <li class="breadcrumb-item active">Thông tin người dùng</li>
+        <li class="breadcrumb-item active">@ViewData["Title"]</li>
     </ol>
     <div class="card mb-4">
         <div class="card-header">
