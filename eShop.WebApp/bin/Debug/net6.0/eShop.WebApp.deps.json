@@ -34,6 +34,8 @@
     ".NETCoreApp,Version=v6.0": {
       "eShop.WebApp/1.0.0": {
         "dependencies": {
+          "LazZiya.ExpressLocalization": "4.0.4",
+          "LazZiya.TagHelpers": "6.0.2",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "6.0.16",
           "Microsoft.AspNetCore.Antiforgery": "6.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "6.0.0.0",
@@ -327,8 +329,38 @@
         "runtime": {
           "eShop.WebApp.dll": {}
         },
+        "resources": {
+          "en/eShop.WebApp.resources.dll": {
+            "locale": "en"
+          },
+          "vi/eShop.WebApp.resources.dll": {
+            "locale": "vi"
+          }
+        },
         "compile": {
           "eShop.WebApp.dll": {}
+        }
+      },
+      "LazZiya.ExpressLocalization/4.0.4": {
+        "runtime": {
+          "lib/netcoreapp3.1/LazZiya.ExpressLocalization.dll": {
+            "assemblyVersion": "4.0.4.0",
+            "fileVersion": "4.0.4.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/LazZiya.ExpressLocalization.dll": {}
+        }
+      },
+      "LazZiya.TagHelpers/6.0.2": {
+        "runtime": {
+          "lib/net6.0/LazZiya.TagHelpers.dll": {
+            "assemblyVersion": "6.0.2.0",
+            "fileVersion": "6.0.2.0"
+          }
+        },
+        "compile": {
+          "lib/net6.0/LazZiya.TagHelpers.dll": {}
         }
       },
       "Microsoft.AspNetCore.Mvc.Razor.Extensions/6.0.16": {
@@ -2283,6 +2315,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "LazZiya.ExpressLocalization/4.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qA4iHvWtRajnAGYUHzm493RbqAYPgk7xVqn2WHupd0gLeKMdXsV2PoSMCceCVb1BOhjbJLmBdAkR3UfzHIvpZQ==",
+      "path": "lazziya.expresslocalization/4.0.4",
+      "hashPath": "lazziya.expresslocalization.4.0.4.nupkg.sha512"
+    },
+    "LazZiya.TagHelpers/6.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qYWVS9Mx61jmYrI+iNhw6vyH5u4W/VsAy0aTeKplNDU63K2WVSI7RdvWKSXuti0kZn+iQGkwpHz820ukCTTpPQ==",
+      "path": "lazziya.taghelpers/6.0.2",
+      "hashPath": "lazziya.taghelpers.6.0.2.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Mvc.Razor.Extensions/6.0.16": {
       "type": "package",

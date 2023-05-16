@@ -1,5 +1,5 @@
 ﻿using eShop.AdminApp.Models;
-using eShop.AdminApp.Service.Language;
+using eShop.ApiIntegration.Language;
 using eShop.Utilities.Contants;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;

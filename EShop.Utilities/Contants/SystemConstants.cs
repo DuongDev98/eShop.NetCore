@@ -3,8 +3,8 @@
     public class SystemConstants
     {
         public const string MainConnectionString = "eShopDatabase";
-        public const string viVN = "vi-VN";
-        public const string enEn = "en-EN";
+        public const string vi = "vi";
+        public const string en = "en";
 
         public class AppSettings
         {

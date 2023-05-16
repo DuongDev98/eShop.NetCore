@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="LazZiya.ExpressLocalization" Version="4.0.4" />
+    <PackageReference Include="LazZiya.TagHelpers" Version="6.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\themes\less\oregional\" />
   </ItemGroup>
 
 </Project>

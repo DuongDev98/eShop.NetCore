@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "SeIEaQOD4rNK9Fxdj4GpLOUJeI6GRa3Uv01x5KOFV1Oq7bzv6YebH/5PNlG5kn8/nQ5r0gciwMNWcVk3QQ+3vA==",
+  "dgSpecHash": "ppNjUeA68zBa1JyyXAgfLmPSexi/4bphYjdSdcZvMXjjOsdyV+tMQ3iQO6zEFseHuS4DFNMukOZOa3bauDx4ag==",
   "success": true,
   "projectFilePath": "H:\\NET.CORE\\eShopSolution\\eShop.WebApp\\eShop.WebApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\DuongNN\\.nuget\\packages\\lazziya.expresslocalization\\4.0.4\\lazziya.expresslocalization.4.0.4.nupkg.sha512",
+    "C:\\Users\\DuongNN\\.nuget\\packages\\lazziya.taghelpers\\6.0.2\\lazziya.taghelpers.6.0.2.nupkg.sha512",
     "C:\\Users\\DuongNN\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.16\\microsoft.aspnetcore.mvc.razor.extensions.6.0.16.nupkg.sha512",
     "C:\\Users\\DuongNN\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\6.0.16\\microsoft.aspnetcore.mvc.razor.runtimecompilation.6.0.16.nupkg.sha512",
     "C:\\Users\\DuongNN\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.16\\microsoft.aspnetcore.razor.language.6.0.16.nupkg.sha512",

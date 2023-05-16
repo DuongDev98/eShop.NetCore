@@ -587,3 +587,5 @@ H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\refint\eShop.AdminApp.
 H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.pdb
 H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.genruntimeconfig.cache
 H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\ref\eShop.AdminApp.dll
+H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.ApiIntegration.dll
+H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.ApiIntegration.pdb

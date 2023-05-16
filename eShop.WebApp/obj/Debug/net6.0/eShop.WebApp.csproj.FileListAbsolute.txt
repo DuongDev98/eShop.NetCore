@@ -352,3 +352,14 @@ H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\refint\eShop.WebApp.dll
 H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\eShop.WebApp.pdb
 H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\eShop.WebApp.genruntimeconfig.cache
 H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\ref\eShop.WebApp.dll
+H:\NET.CORE\eShopSolution\eShop.WebApp\bin\Debug\net6.0\en\eShop.WebApp.resources.dll
+H:\NET.CORE\eShopSolution\eShop.WebApp\bin\Debug\net6.0\vi\eShop.WebApp.resources.dll
+H:\NET.CORE\eShopSolution\eShop.WebApp\bin\Debug\net6.0\LazZiya.ExpressLocalization.dll
+H:\NET.CORE\eShopSolution\eShop.WebApp\bin\Debug\net6.0\LazZiya.TagHelpers.dll
+H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\eShop.WebApp.LocalizationResources.ExpressLocalizationResource.en.resources
+H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\eShop.WebApp.LocalizationResources.ExpressLocalizationResource.vi.resources
+H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\eShop.WebApp.LocalizationResources.ViewLocalizationResource.en.resources
+H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\eShop.WebApp.LocalizationResources.ViewLocalizationResource.vi.resources
+H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\eShop.WebApp.csproj.GenerateResource.cache
+H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\en\eShop.WebApp.resources.dll
+H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\vi\eShop.WebApp.resources.dll

@@ -1,11 +1,8 @@
-﻿using eShop.AdminApp.Service.Category;
-using eShop.AdminApp.Service.Product;
-using eShop.AdminApp.Service.Role;
-using eShop.AdminApp.Service.User;
+﻿using eShop.ApiIntegration.Category;
+using eShop.ApiIntegration.Product;
 using eShop.Utilities.Contants;
 using eShop.ViewModels.Catalog.Categories;
 using eShop.ViewModels.Catalog.Products.Dtos;
-using eShop.ViewModels.System.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

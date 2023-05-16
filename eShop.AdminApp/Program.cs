@@ -1,8 +1,8 @@
-using eShop.AdminApp.Service.Category;
-using eShop.AdminApp.Service.Language;
-using eShop.AdminApp.Service.Product;
-using eShop.AdminApp.Service.Role;
-using eShop.AdminApp.Service.User;
+using eShop.ApiIntegration.Category;
+using eShop.ApiIntegration.Language;
+using eShop.ApiIntegration.Product;
+using eShop.ApiIntegration.Role;
+using eShop.ApiIntegration.User;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
