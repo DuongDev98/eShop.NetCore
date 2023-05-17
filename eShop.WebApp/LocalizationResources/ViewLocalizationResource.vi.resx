@@ -117,6 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add to" xml:space="preserve">
+    <value>Thêm vào</value>
+    <comment>home/index</comment>
+  </data>
+  <data name="CategoryUrl" xml:space="preserve">
+    <value>danh-muc</value>
+    <comment>home/index</comment>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Liên hệ</value>
     <comment>header</comment>
@@ -129,9 +137,21 @@
     <value>Tiếng Anh</value>
     <comment>header</comment>
   </data>
+  <data name="Featured Products" xml:space="preserve">
+    <value>Sản phẩm nổi bật</value>
+    <comment>home/index</comment>
+  </data>
+  <data name="Latest Products" xml:space="preserve">
+    <value>Sản phẩm mới</value>
+    <comment>home/index</comment>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Đăng nhập</value>
     <comment>header</comment>
+  </data>
+  <data name="ProductUrl" xml:space="preserve">
+    <value>san-pham</value>
+    <comment>home/index</comment>
   </data>
   <data name="Specials Offer" xml:space="preserve">
     <value>Khuyến mại</value>
@@ -140,6 +160,10 @@
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
     <comment>header</comment>
+  </data>
+  <data name="VIEW" xml:space="preserve">
+    <value>Chi tiết</value>
+    <comment>home/index</comment>
   </data>
   <data name="Welcome!" xml:space="preserve">
     <value>Xin chào!</value>

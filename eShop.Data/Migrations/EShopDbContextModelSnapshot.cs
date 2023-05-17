@@ -183,7 +183,7 @@ namespace eShop.Data.Migrations
                         new
                         {
                             Id = new Guid("f611bbfd-a34d-4f71-bdaf-1d373f8cb891"),
-                            ConcurrencyStamp = "cfee47a5-2e00-4cc2-82df-46c086455b22",
+                            ConcurrencyStamp = "7e3a40c6-af7f-4725-ac41-8b2829628aec",
                             Name = "admin",
                             NormalizedName = "admin"
                         });
@@ -257,7 +257,7 @@ namespace eShop.Data.Migrations
                         {
                             Id = new Guid("f41f21f2-fe66-4df9-a2bc-cfe970f45479"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cc8dd676-92c2-4d10-b61e-bb88e9780606",
+                            ConcurrencyStamp = "6539e8a3-1678-4cb6-8377-5a49f268a5b1",
                             Dob = new DateTime(1998, 2, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "duongdev98@gmail.com",
                             EmailConfirmed = true,
@@ -266,7 +266,7 @@ namespace eShop.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "duongdev98@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP0Wgkg5Bh1tApXGZxs5PcsmGIJJq4E0mVQkkkdUffI3DgLX1G9Mj+CTqjA1tsKeag==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENUHWI0HxHrYT8c/IUiltWeo9hyiylBSvv9goYLKYM7QyUaXSBu/sBmC/eD8l8N6dg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -599,6 +599,9 @@ namespace eShop.Data.Migrations
                         .HasColumnType("int")
                         .HasDefaultValue(0);
 
+                    b.Property<bool>("isFeatured")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Products", (string)null);
@@ -607,11 +610,12 @@ namespace eShop.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 5, 16, 19, 18, 16, 260, DateTimeKind.Local).AddTicks(1339),
+                            DateCreated = new DateTime(2023, 5, 17, 0, 1, 6, 966, DateTimeKind.Local).AddTicks(7043),
                             OriginalPrice = 150000m,
                             Price = 200000m,
                             Stock = 0,
-                            ViewCount = 0
+                            ViewCount = 0,
+                            isFeatured = false
                         });
                 });
 
@@ -795,6 +799,85 @@ namespace eShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Promotions", (string)null);
+                });
+
+            modelBuilder.Entity("eShop.Data.Entities.Slide", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Slides", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+                            Image = "/themes/images/carousel/1.png",
+                            Name = "Second Thumbnail label",
+                            Url = "#"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+                            Image = "/themes/images/carousel/2.png",
+                            Name = "Second Thumbnail label",
+                            Url = "#"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+                            Image = "/themes/images/carousel/3.png",
+                            Name = "Second Thumbnail label",
+                            Url = "#"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+                            Image = "/themes/images/carousel/4.png",
+                            Name = "Second Thumbnail label",
+                            Url = "#"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+                            Image = "/themes/images/carousel/5.png",
+                            Name = "Second Thumbnail label",
+                            Url = "#"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+                            Image = "/themes/images/carousel/6.png",
+                            Name = "Second Thumbnail label",
+                            Url = "#"
+                        });
                 });
 
             modelBuilder.Entity("eShop.Data.Entities.Transaction", b =>

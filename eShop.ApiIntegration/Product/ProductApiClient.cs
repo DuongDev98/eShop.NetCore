@@ -42,5 +42,15 @@ namespace eShop.ApiIntegration.Product
         {
             return await GetAsync<PagedResult<ProductVm>>($"products?languageId={request.languageId}&pageIndex={request.pageIndex}&pageSize={request.pageSize}&keyword={request.keyword}&categoryId={request.categoryId}");
         }
+
+        public async Task<ApiResult<List<ProductVm>>> GetListFeature(string languageId, int take)
+        {
+            return await GetAsync<List<ProductVm>>($"products/feature/{languageId}/{take}");
+        }
+
+        public async Task<ApiResult<List<ProductVm>>> GetListLatest(string languageId, int take)
+        {
+            return await GetAsync<List<ProductVm>>($"products/latest/{languageId}/{take}");
+        }
     }
 }

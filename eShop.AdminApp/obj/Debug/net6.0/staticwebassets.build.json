@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vww8L5jgdeDW5rV9rnqdM/HoabqSexJGsGfe2d2NV88=",
+  "Hash": "1JjDNSt1jfWcp5dCmUk/W23MVx23hZNcOeqvavLtMzs=",
   "Source": "eShop.AdminApp",
   "BasePath": "_content/eShop.AdminApp",
   "Mode": "Default",
@@ -8993,6 +8993,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\user-content\\ba2f9d77-4f50-4843-a20f-c78d583b0f5e.png"
+    },
+    {
+      "Identity": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\user-content\\cae3d7e4-a801-4fd8-8f0d-a7f42d578535.png",
+      "SourceId": "eShop.BackendApi",
+      "SourceType": "Project",
+      "ContentRoot": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\",
+      "BasePath": "_content/eShop.BackendApi",
+      "RelativePath": "user-content/cae3d7e4-a801-4fd8-8f0d-a7f42d578535.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user-content\\cae3d7e4-a801-4fd8-8f0d-a7f42d578535.png"
     },
     {
       "Identity": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\wwwroot\\user-content\\d105f5ae-0e69-4e93-bef7-a062430a492a.png",

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-
-namespace eShop.Data.Entities
+﻿namespace eShop.Data.Entities
 {
     public class Product
     {
@@ -13,6 +8,7 @@ namespace eShop.Data.Entities
         public int Stock { set; get; }
         public int ViewCount { set; get; }
         public DateTime DateCreated { set; get; }
+        public bool IsFeatured { set; get; }
 
         public List<ProductInCategory> ProductInCategories { get; set; }
 

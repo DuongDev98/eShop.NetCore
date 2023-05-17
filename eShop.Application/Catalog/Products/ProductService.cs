@@ -1,6 +1,7 @@
 ﻿using eShop.Application.Common;
 using eShop.Data.EF;
 using eShop.Data.Entities;
+using eShop.Utilities.Contants;
 using eShop.ViewModels.Catalog.ProductImage;
 using eShop.ViewModels.Catalog.Products.Dtos;
 using eShop.ViewModels.Common;
@@ -40,6 +41,7 @@ namespace eShop.Application.Catalog.Products
                 SeoTitle = productTranlation?.SeoTitle,
                 Stock = product.Stock,
                 ViewCount = product.ViewCount,
+                IsFeatured = product.IsFeatured,
             };
             return new ApiSuccessResult<ProductVm>(rs);
         }
@@ -53,6 +55,7 @@ namespace eShop.Application.Catalog.Products
                 Stock = request.Stock,
                 ViewCount = 0,
                 DateCreated = DateTime.Now,
+                IsFeatured = request.IsFeatured,
                 ProductTranslations = new List<ProductTranslation>()
                 {
                     new ProductTranslation()
@@ -284,6 +287,46 @@ namespace eShop.Application.Catalog.Products
             return new ApiSuccessResult<ProductImageVm>(viewModel);
         }
 
+        public async Task<ApiResult<PagedResult<ProductVm>>> GetByCategoryId(GetProductRequest request)
+        {
+            //select
+            var query = from p in _dbContext.Products
+                        join pic in _dbContext.ProductInCategories on p.Id equals pic.ProductId
+                        join pt in _dbContext.ProductTranslations on p.Id equals pt.ProductId
+                        where pt.LanguageId == request.languageId
+                        select new { p, pt, pic };
+            //filter
+            if (request.categoryId > 0)
+            {
+                query = query.Where(x => x.pic.CategoryId == request.categoryId);
+            }
+
+            int totalCount = await query.CountAsync();
+
+            //paging
+            var data = await query.Skip((request.pageIndex - 1) * request.pageSize).Take(request.pageSize)
+                .Select(x => new ProductVm()
+                {
+                    Id = x.p.Id,
+                    DateCreated = x.p.DateCreated,
+                    Description = x.pt.Description,
+                    Details = x.pt.Description,
+                    Name = x.pt.Name,
+                    OriginalPrice = x.p.OriginalPrice,
+                    Price = x.p.Price,
+                    SeoAlias = x.pt.SeoAlias,
+                    SeoDescription = x.pt.SeoDescription,
+                    SeoTitle = x.pt.SeoTitle,
+                    Stock = x.p.Stock,
+                    ViewCount = x.p.ViewCount,
+                    IsFeatured = x.p.IsFeatured,
+                })
+                .ToListAsync();
+
+            var result = new PagedResult<ProductVm>() { Items = data, TotalRecords = totalCount };
+            return new ApiSuccessResult<PagedResult<ProductVm>>(result);
+        }
+
         public async Task<ApiResult<PagedResult<ProductVm>>> GetAll(GetProductRequest request)
         {
             //select
@@ -326,6 +369,7 @@ namespace eShop.Application.Catalog.Products
                     SeoTitle = x.pt.SeoTitle,
                     Stock = x.p.Stock,
                     ViewCount = x.p.ViewCount,
+                    IsFeatured = x.p.IsFeatured,
                 })
                 .ToListAsync();
 
@@ -333,7 +377,7 @@ namespace eShop.Application.Catalog.Products
             return new ApiSuccessResult<PagedResult<ProductVm>>(result);
         }
 
-        public async Task<ApiResult<PagedResult<ProductVm>>> GetByCategoryId(GetProductRequest request)
+        public async Task<ApiResult<List<ProductVm>>> GetListFeature(GetProductRequest request)
         {
             //select
             var query = from p in _dbContext.Products
@@ -342,7 +386,17 @@ namespace eShop.Application.Catalog.Products
                         where pt.LanguageId == request.languageId
                         select new { p, pt, pic };
             //filter
-            if (request.categoryId > 0)
+            if (!string.IsNullOrEmpty(request.keyword))
+            {
+                query = query.Where(x => x.pt.Name.ToLower().Contains(request.keyword.ToLower()));
+            }
+
+            if (request.categoryIds != null && request.categoryIds.Count > 0)
+            {
+                query = query.Where(x => request.categoryIds.Contains(x.pic.CategoryId));
+            }
+
+            if (request.categoryId != null)
             {
                 query = query.Where(x => x.pic.CategoryId == request.categoryId);
             }
@@ -350,7 +404,7 @@ namespace eShop.Application.Catalog.Products
             int totalCount = await query.CountAsync();
 
             //paging
-            var data = await query.Skip((request.pageIndex - 1) * request.pageSize).Take(request.pageSize)
+            var data = await query.OrderBy(x=>x.pt.Name).Skip((request.pageIndex - 1) * request.pageSize).Take(request.pageSize)
                 .Select(x => new ProductVm()
                 {
                     Id = x.p.Id,
@@ -365,11 +419,78 @@ namespace eShop.Application.Catalog.Products
                     SeoTitle = x.pt.SeoTitle,
                     Stock = x.p.Stock,
                     ViewCount = x.p.ViewCount,
+                    IsFeatured = x.p.IsFeatured,
                 })
                 .ToListAsync();
+            return new ApiSuccessResult<List<ProductVm>>(data);
+        }
 
-            var result = new PagedResult<ProductVm>() { Items = data, TotalRecords = totalCount };
-            return new ApiSuccessResult<PagedResult<ProductVm>>(result);
+        public async Task<ApiResult<List<ProductVm>>> GetListFeature(string languageId, int take)
+        {
+            //select
+            var query = from p in _dbContext.Products
+                        join pic in _dbContext.ProductInCategories on p.Id equals pic.ProductId
+                        join pt in _dbContext.ProductTranslations on p.Id equals pt.ProductId
+                        join pi in _dbContext.ProductImages.Where(x => x.IsDefault) on p.Id equals pi.ProductId into piResult
+                        from pi in piResult.DefaultIfEmpty()
+                        where pt.LanguageId == languageId && p.IsFeatured
+                        select new { p, pt, pic, pi };
+
+            //to list
+            var data = await query.OrderBy(x=>x.pt.Name).Take(take)
+                .Select(x => new ProductVm()
+                {
+                    Id = x.p.Id,
+                    DateCreated = x.p.DateCreated,
+                    Description = x.pt.Description,
+                    Details = x.pt.Description,
+                    Name = x.pt.Name,
+                    OriginalPrice = x.p.OriginalPrice,
+                    Price = x.p.Price,
+                    SeoAlias = x.pt.SeoAlias,
+                    SeoDescription = x.pt.SeoDescription,
+                    SeoTitle = x.pt.SeoTitle,
+                    Stock = x.p.Stock,
+                    ViewCount = x.p.ViewCount,
+                    IsFeatured = x.p.IsFeatured,
+                    ThumbnailImage = SystemConstants.AppSettings.ImagePath + x.pi.ImagePath
+                })
+                .ToListAsync();
+            return new ApiSuccessResult<List<ProductVm>>(data);
+        }
+
+        public async Task<ApiResult<List<ProductVm>>> GetListLatest(string languageId, int take)
+        {
+            //select
+            var query = from p in _dbContext.Products
+                        join pic in _dbContext.ProductInCategories on p.Id equals pic.ProductId
+                        join pt in _dbContext.ProductTranslations on p.Id equals pt.ProductId
+                        join pi in _dbContext.ProductImages.Where(x => x.IsDefault) on p.Id equals pi.ProductId into piResult
+                        from pi in piResult .DefaultIfEmpty()
+                        where pt.LanguageId == languageId
+                        select new { p, pt, pic, pi };
+
+            //to list
+            var data = await query.OrderByDescending(x => x.p.DateCreated).Take(take)
+                .Select(x => new ProductVm()
+                {
+                    Id = x.p.Id,
+                    DateCreated = x.p.DateCreated,
+                    Description = x.pt.Description,
+                    Details = x.pt.Description,
+                    Name = x.pt.Name,
+                    OriginalPrice = x.p.OriginalPrice,
+                    Price = x.p.Price,
+                    SeoAlias = x.pt.SeoAlias,
+                    SeoDescription = x.pt.SeoDescription,
+                    SeoTitle = x.pt.SeoTitle,
+                    Stock = x.p.Stock,
+                    ViewCount = x.p.ViewCount,
+                    IsFeatured = x.p.IsFeatured,
+                    ThumbnailImage = SystemConstants.AppSettings.ImagePath + x.pi.ImagePath
+                })
+                .ToListAsync();
+            return new ApiSuccessResult<List<ProductVm>>(data);
         }
     }
 }

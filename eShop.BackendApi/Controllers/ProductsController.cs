@@ -126,7 +126,7 @@ namespace eShop.BackendApi.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var pi = _productService.GetImageById(imageId);
+            var pi = await _productService.GetImageById(imageId);
             if (pi == null) return BadRequest();
 
             var affectedResult = await _productService.UpdateImage(imageId, request);
@@ -139,12 +139,26 @@ namespace eShop.BackendApi.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var pi = _productService.GetImageById(imageId);
+            var pi = await _productService.GetImageById(imageId);
             if (pi == null) return BadRequest();
 
             var affectedResult = await _productService.RemoveImage(imageId);
             if (affectedResult.data == 0) return BadRequest();
             return Ok();
+        }
+
+        [HttpGet("feature/{languageId}/{take}")]
+        [AllowAnonymous]
+        public async Task<ApiResult<List<ProductVm>>> GetListFeature(string languageId, int take)
+        {
+            return await _productService.GetListFeature(languageId, take);
+        }
+
+        [HttpGet("latest/{languageId}/{take}")]
+        [AllowAnonymous]
+        public async Task<ApiResult<List<ProductVm>>> GetListLatest(string languageId, int take)
+        {
+            return await _productService.GetListLatest(languageId, take);
         }
     }
 }

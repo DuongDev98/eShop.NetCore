@@ -117,6 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add to" xml:space="preserve">
+    <value>Add to</value>
+    <comment>home/index</comment>
+  </data>
+  <data name="CategoryUrl" xml:space="preserve">
+    <value>categories</value>
+    <comment>home/index</comment>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
     <comment>header</comment>
@@ -129,9 +137,21 @@
     <value>English</value>
     <comment>header</comment>
   </data>
+  <data name="Featured Products" xml:space="preserve">
+    <value>Featured Products</value>
+    <comment>home/index</comment>
+  </data>
+  <data name="Latest Products" xml:space="preserve">
+    <value>Latest Products</value>
+    <comment>home/index</comment>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
     <comment>header</comment>
+  </data>
+  <data name="ProductUrl" xml:space="preserve">
+    <value>products</value>
+    <comment>home/index</comment>
   </data>
   <data name="Specials Offer" xml:space="preserve">
     <value>Specials Offer</value>
@@ -140,6 +160,10 @@
   <data name="Vietnamese" xml:space="preserve">
     <value>Vietnamese</value>
     <comment>header</comment>
+  </data>
+  <data name="VIEW" xml:space="preserve">
+    <value>VIEW</value>
+    <comment>home/index</comment>
   </data>
   <data name="Welcome!" xml:space="preserve">
     <value>Welcome!</value>

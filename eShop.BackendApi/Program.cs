@@ -3,6 +3,7 @@ using eShop.Application.Catalog.Products;
 using eShop.Application.Common;
 using eShop.Application.System.Roles;
 using eShop.Application.System.Users;
+using eShop.Application.Utilities.Slides;
 using eShop.Data.EF;
 using eShop.Data.Entities;
 using eShop.Utilities.Contants;
@@ -37,6 +38,7 @@ builder.Services.AddTransient<ILanguageService, LanguageService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
+builder.Services.AddTransient<ISlideService, SlideService>();
 
 //validator cach 1
 //builder.Services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();

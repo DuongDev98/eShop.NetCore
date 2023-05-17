@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.AdminApp", "eShop.AdminApp\eShop.AdminApp.csproj", "{EA44C50E-EE9A-4BC5-9945-08E82D6AC068}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop.ApiIntegration", "eShop.ApiIntegration\eShop.ApiIntegration.csproj", "{BAC6BDD7-52EF-40EF-858A-5BB5A0437939}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.ApiIntegration", "eShop.ApiIntegration\eShop.ApiIntegration.csproj", "{BAC6BDD7-52EF-40EF-858A-5BB5A0437939}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

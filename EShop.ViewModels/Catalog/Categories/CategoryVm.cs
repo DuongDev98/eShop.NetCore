@@ -8,5 +8,6 @@
         public string SeoTitle { get; set; }
         public string SeoAlias { get; set; }
         public bool IsShowOnHome { get; set; }
+        public int? ParentId { get; set; }
     }
 }

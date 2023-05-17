@@ -11,6 +11,7 @@
             public const string Token = "Token";
             public const string BaseAddress = "BaseAddress";
             public const string DefaultLanguageId = "DefaultLanguageId";
+            public const string ImagePath = "/user-content/";
         }
     }
 }

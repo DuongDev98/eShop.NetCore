@@ -1,0 +1,58 @@
+﻿@using LazZiya.ExpressLocalization
+@inject ISharedCultureLocalizer _loc
+@using eShop.ViewModels.Catalog.Categories
+@{
+    string culture = CultureInfo.CurrentCulture.Name;
+}
+@model List<CategoryVm>
+<div id="sidebar" class="span3">
+    <div class="well well-small"><a id="myCart" href="product_summary.html"><img src="/themes/images/ico-cart.png" alt="cart">3 Items in your cart  <span class="badge badge-warning pull-right">$155.00</span></a></div>
+    <ul id="sideManu" class="nav nav-tabs nav-stacked">
+        @{
+            //lấy ra danh sách ko parentId
+            var parents = Model.Where(x => x.ParentId == null).ToList();
+            foreach (var itemParent in parents)
+            {
+                //childs
+                var childs = Model.Where(x => x.ParentId == itemParent.Id);
+                if (childs.Any())
+                {
+                    <li class="subMenu open">
+                        <a>@itemParent.Name</a>
+                        <ul>
+                            @foreach (var item in childs)
+                            {
+                                <li><a class="active" href="/@culture/@_loc.GetLocalizedString("CategoryUrl")/@item.Id"><i class="icon-chevron-right"></i>@item.Name</a></li>
+                            }
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li><a href="/@culture/@_loc.GetLocalizedString("CategoryUrl")/@itemParent.Id">@itemParent.Name</a></li>
+                }
+            }
+        }
+    </ul>
+    <br />
+    @*<div class="thumbnail">
+        <img src="/themes/images/products/panasonic.jpg" alt="Bootshop panasonoc New camera" />
+        <div class="caption">
+            <h5>Panasonic</h5>
+            <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+        </div>
+    </div><br />
+    <div class="thumbnail">
+        <img src="/themes/images/products/kindle.png" title="Bootshop New Kindel" alt="Bootshop Kindel">
+        <div class="caption">
+            <h5>Kindle</h5>
+            <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+        </div>
+    </div><br />
+    <div class="thumbnail">
+        <img src="/themes/images/payment_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
+        <div class="caption">
+            <h5>Payment Methods</h5>
+        </div>
+    </div>*@
+</div>

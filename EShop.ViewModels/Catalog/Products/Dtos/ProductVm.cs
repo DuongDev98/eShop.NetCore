@@ -15,5 +15,7 @@
         public string SeoDescription { set; get; }
         public string SeoTitle { set; get; }
         public string SeoAlias { get; set; }
+        public string ThumbnailImage { get; set; }
+        public bool IsFeatured { get; set; }
     }
 }

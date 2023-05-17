@@ -1,30 +1,42 @@
-﻿using eShop.WebApp.Models;
-using LazZiya.ExpressLocalization;
+﻿using eShop.ApiIntegration.Product;
+using eShop.ApiIntegration.Slide;
+using eShop.Utilities.Contants;
+using eShop.ViewModels.Utilities;
+using eShop.WebApp.Models;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace eShop.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly ISharedCultureLocalizer _loc;
-        public HomeController(ILogger<HomeController> logger, ISharedCultureLocalizer loc)
+        private readonly IConfiguration _configuration;
+        private readonly ISlideApiClient _slideApiClient;
+        private readonly IProductApiClient _productApiClient;
+        public HomeController(IConfiguration configuration ,ISlideApiClient slideApiClient, IProductApiClient productApiClient)
         {
-            _logger = logger;
-            _loc = loc;
+            _configuration = configuration;
+            _slideApiClient = slideApiClient;
+            _productApiClient = productApiClient;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            string a = _loc.GetLocalizedString("vi", "Login");
-            return View();
-        }
+            string baseUrl = _configuration.GetValue<string>(SystemConstants.AppSettings.BaseAddress);
+            ViewData["baseUrl"] = baseUrl;
 
-        public IActionResult Privacy()
-        {
-            return View();
+            var culture = CultureInfo.CurrentCulture.Name;
+            var slideResult = await _slideApiClient.GetAll();
+            var featureResult = await _productApiClient.GetListFeature(culture, 10);
+            var latestResult = await _productApiClient.GetListLatest(culture, 20);
+            var viewModel = new HomePageVm() {
+                Slides = slideResult?.data,
+                Features = featureResult?.data,
+                Latests = latestResult?.data,
+            };
+            return View(viewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

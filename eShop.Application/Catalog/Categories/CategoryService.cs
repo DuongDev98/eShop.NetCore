@@ -25,6 +25,8 @@ namespace eShop.Application.Catalog.Categories
                 SeoTitle = x.ct.SeoTitle,
                 SeoDescription = x.ct.SeoDescription,
                 SeoAlias = x.ct.SeoAlias,
+                IsShowOnHome = x.c.IsShowOnHome,
+                ParentId = x.c.ParentId
             }).ToListAsync();
             return new ApiSuccessResult<List<CategoryVm>>(categories);
         }
