@@ -141,6 +141,10 @@
     <value>Featured Products</value>
     <comment>home/index</comment>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+    <comment>Trang chủ</comment>
+  </data>
   <data name="Latest Products" xml:space="preserve">
     <value>Latest Products</value>
     <comment>home/index</comment>
@@ -148,6 +152,10 @@
   <data name="Login" xml:space="preserve">
     <value>Login</value>
     <comment>header</comment>
+  </data>
+  <data name="Products Name" xml:space="preserve">
+    <value>Products Name</value>
+    <comment>Danh sách sản phẩm</comment>
   </data>
   <data name="ProductUrl" xml:space="preserve">
     <value>products</value>

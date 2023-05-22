@@ -15,6 +15,7 @@ using System.Text;
 
 namespace eShop.AdminApp.Controllers
 {
+    //[Authorize]
     public class UserController : BaseController
     {
         private IConfiguration _configuration;

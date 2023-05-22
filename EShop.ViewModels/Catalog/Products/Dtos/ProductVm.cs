@@ -17,5 +17,6 @@
         public string SeoAlias { get; set; }
         public string ThumbnailImage { get; set; }
         public bool IsFeatured { get; set; }
+        public int CategoryId { get; set; }
     }
 }

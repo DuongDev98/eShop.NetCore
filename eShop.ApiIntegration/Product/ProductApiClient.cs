@@ -17,6 +17,27 @@ namespace eShop.ApiIntegration.Product
             HttpClient httpClient = GetHttpClient(_configuration, _httpClientFactory, _httpContextAccessor);
 
             //form data
+            var content = ProductRequestToFormData(request);
+
+            var response = await httpClient.PostAsync("products", content);
+            if (!response.IsSuccessStatusCode) return new ApiErrorResult<bool>(response.Content.ReadAsStringAsync().Result);
+            return new ApiSuccessResult<bool>(true);
+        }
+
+        public async Task<ApiResult<bool>> Update(ProductUpdateRequest request)
+        {
+            HttpClient httpClient = GetHttpClient(_configuration, _httpClientFactory, _httpContextAccessor);
+
+            //form data
+            var content = ProductRequestToFormData(request);
+
+            var response = await httpClient.PutAsync("products", content);
+            if (!response.IsSuccessStatusCode) return new ApiErrorResult<bool>(response.Content.ReadAsStringAsync().Result);
+            return new ApiSuccessResult<bool>(true);
+        }
+
+        private MultipartFormDataContent ProductRequestToFormData(object request)
+        {
             var content = new MultipartFormDataContent();
             foreach (var prop in request.GetType().GetProperties())
             {
@@ -29,16 +50,13 @@ namespace eShop.ApiIntegration.Product
                 }
                 else
                 {
-                    content.Add(new StringContent(value.ToString()), prop.Name);
+                    if (value != null) content.Add(new StringContent(value.ToString()), prop.Name);
                 }
             }
-
-            var response = await httpClient.PostAsync("products", content);
-            if (!response.IsSuccessStatusCode) return new ApiErrorResult<bool>(response.Content.ReadAsStringAsync().Result);
-            return new ApiSuccessResult<bool>(true);
+            return content;
         }
 
-        public async Task<ApiResult<PagedResult<ProductVm>>> GetPaging(GetProductRequest request)
+        public async Task<ApiResult<PagedResult<ProductVm>>> GetAll(GetProductRequest request)
         {
             return await GetAsync<PagedResult<ProductVm>>($"products?languageId={request.languageId}&pageIndex={request.pageIndex}&pageSize={request.pageSize}&keyword={request.keyword}&categoryId={request.categoryId}");
         }
@@ -51,6 +69,16 @@ namespace eShop.ApiIntegration.Product
         public async Task<ApiResult<List<ProductVm>>> GetListLatest(string languageId, int take)
         {
             return await GetAsync<List<ProductVm>>($"products/latest/{languageId}/{take}");
+        }
+
+        public async Task<ApiResult<bool>> Delete(ProductDeleteRequest request)
+        {
+            return await DeleteAsync<bool>("products/" + request.Id.ToString());
+        }
+
+        public async Task<ApiResult<ProductVm>> GetById(int productId, string languageId)
+        {
+            return await GetAsync<ProductVm>($"products/{productId}/{languageId}");
         }
     }
 }

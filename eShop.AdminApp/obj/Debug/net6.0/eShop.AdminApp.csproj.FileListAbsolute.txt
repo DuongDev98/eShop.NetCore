@@ -552,11 +552,13 @@ H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\runtimes\win\lib\netst
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.ApiIntegration.dll
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.Application.dll
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.BackendApi.dll
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.Data.dll
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.Utilities.dll
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.ViewModels.dll
+H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.ApiIntegration.pdb
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.BackendApi.pdb
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.ViewModels.pdb
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.Application.pdb
@@ -587,5 +589,3 @@ H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\refint\eShop.AdminApp.
 H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.pdb
 H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.genruntimeconfig.cache
 H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\ref\eShop.AdminApp.dll
-H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.ApiIntegration.dll
-H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.ApiIntegration.pdb

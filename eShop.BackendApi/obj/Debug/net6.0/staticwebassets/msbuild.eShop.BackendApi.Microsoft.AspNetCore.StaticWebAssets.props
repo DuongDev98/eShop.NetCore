@@ -1104,22 +1104,6 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\user-content\ba2f9d77-4f50-4843-a20f-c78d583b0f5e.png))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\user-content\cae3d7e4-a801-4fd8-8f0d-a7f42d578535.png))">
-      <SourceType>Package</SourceType>
-      <SourceId>eShop.BackendApi</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/eShop.BackendApi</BasePath>
-      <RelativePath>user-content/cae3d7e4-a801-4fd8-8f0d-a7f42d578535.png</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\user-content\cae3d7e4-a801-4fd8-8f0d-a7f42d578535.png))</OriginalItemSpec>
-    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\user-content\d105f5ae-0e69-4e93-bef7-a062430a492a.png))">
       <SourceType>Package</SourceType>
       <SourceId>eShop.BackendApi</SourceId>
