@@ -77,12 +77,17 @@
                             <input asp-for="SeoDescription" class="form-control" />
                             <span asp-validation-for="SeoDescription" class="text-danger"></span>
                         </div>
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="IsFeatured" /> @Html.DisplayNameFor(model => model.IsFeatured)
+                            </label>
+                        </div>
                         <div class="form-group">
                             <label asp-for="ThumbnailImage" class="control-label"></label>
                             <input asp-for="ThumbnailImage" class="form-control" />
                             <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
                         </div>
-                        <hr/>
+                        <hr />
                         <div class="form-group">
                             <input type="submit" value="Lưu dữ liệu" class="btn btn-primary" />
                         </div>

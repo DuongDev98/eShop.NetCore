@@ -4192,6 +4192,21 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
+      "eShop.ApiIntegration/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3",
+          "eShop.Utilities": "1.0.0",
+          "eShop.ViewModels": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/eShop.ApiIntegration.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/eShop.ApiIntegration.dll": {}
+        }
+      },
       "eShop.Application/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -11822,6 +11837,11 @@
         "system.xml.xdocument.nuspec"
       ]
     },
+    "eShop.ApiIntegration/1.0.0": {
+      "type": "project",
+      "path": "../eShop.ApiIntegration/eShop.ApiIntegration.csproj",
+      "msbuildProject": "../eShop.ApiIntegration/eShop.ApiIntegration.csproj"
+    },
     "eShop.Application/1.0.0": {
       "type": "project",
       "path": "../eShop.Application/eShop.Application.csproj",
@@ -11854,6 +11874,7 @@
       "Microsoft.AspNetCore.Session >= 2.2.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.13",
       "Newtonsoft.Json >= 13.0.3",
+      "eShop.ApiIntegration >= 1.0.0",
       "eShop.BackendApi >= 1.0.0",
       "eShop.ViewModels >= 1.0.0"
     ]
@@ -11885,6 +11906,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "H:\\NET.CORE\\eShopSolution\\eShop.ApiIntegration\\eShop.ApiIntegration.csproj": {
+              "projectPath": "H:\\NET.CORE\\eShopSolution\\eShop.ApiIntegration\\eShop.ApiIntegration.csproj"
+            },
             "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\eShop.BackendApi.csproj": {
               "projectPath": "H:\\NET.CORE\\eShopSolution\\eShop.BackendApi\\eShop.BackendApi.csproj"
             },

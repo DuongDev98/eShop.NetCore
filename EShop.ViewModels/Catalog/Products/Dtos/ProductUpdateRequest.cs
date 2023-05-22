@@ -11,8 +11,9 @@ namespace eShop.ViewModels.Catalog.Products.Dtos
         public string SeoDescription { set; get; }
         public string SeoTitle { set; get; }
         public string SeoAlias { get; set; }
-        public string LanguageId { set; get; }
-
-        public IFormFile ThumbnailImage { set; get; }
+        public string? LanguageId { set; get; }
+        public int CategoryId { set; get; }
+        public bool IsFeatured { set; get; }
+        public IFormFile? ThumbnailImage { set; get; }
     }
 }

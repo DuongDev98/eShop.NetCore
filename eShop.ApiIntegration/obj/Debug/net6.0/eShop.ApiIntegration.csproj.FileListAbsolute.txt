@@ -1,0 +1,17 @@
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\bin\Debug\net6.0\eShop.ApiIntegration.deps.json
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\bin\Debug\net6.0\eShop.ApiIntegration.dll
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\bin\Debug\net6.0\eShop.ApiIntegration.pdb
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\bin\Debug\net6.0\eShop.Utilities.dll
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\bin\Debug\net6.0\eShop.ViewModels.dll
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\bin\Debug\net6.0\eShop.Utilities.pdb
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\bin\Debug\net6.0\eShop.ViewModels.pdb
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\obj\Debug\net6.0\eShop.ApiIntegration.csproj.AssemblyReference.cache
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\obj\Debug\net6.0\eShop.ApiIntegration.GeneratedMSBuildEditorConfig.editorconfig
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\obj\Debug\net6.0\eShop.ApiIntegration.AssemblyInfoInputs.cache
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\obj\Debug\net6.0\eShop.ApiIntegration.AssemblyInfo.cs
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\obj\Debug\net6.0\eShop.ApiIntegration.csproj.CoreCompileInputs.cache
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\obj\Debug\net6.0\eShop.ApiIntegration.csproj.CopyComplete
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\obj\Debug\net6.0\eShop.ApiIntegration.dll
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\obj\Debug\net6.0\refint\eShop.ApiIntegration.dll
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\obj\Debug\net6.0\eShop.ApiIntegration.pdb
+H:\NET.CORE\eShopSolution\eShop.ApiIntegration\obj\Debug\net6.0\ref\eShop.ApiIntegration.dll

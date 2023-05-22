@@ -1,6 +1,8 @@
 ﻿using eShop.Application.Common;
+using eShop.Application.System.Roles;
 using eShop.Data.EF;
 using eShop.Data.Entities;
+using eShop.Utilities.Contants;
 using eShop.ViewModels.Catalog.ProductImage;
 using eShop.ViewModels.Catalog.Products.Dtos;
 using eShop.ViewModels.Common;
@@ -14,11 +16,12 @@ namespace eShop.Application.Catalog.Products
     {
         private readonly IStorageService _storageService;
         private readonly EShopDbContext _dbContext;
-
-        public ProductService(EShopDbContext dbContext, IStorageService storageService)
+        private readonly ILanguageService _languageService;
+        public ProductService(EShopDbContext dbContext, IStorageService storageService, ILanguageService languageService)
         {
             _dbContext = dbContext;
             _storageService = storageService;
+            _languageService = languageService;
         }
 
         public async Task<ApiResult<ProductVm>> GetById(int productId, string languageId)
@@ -26,6 +29,7 @@ namespace eShop.Application.Catalog.Products
             var product = await _dbContext.Products.FindAsync(productId);
             if (product == null) return new ApiErrorResult<ProductVm>($"Can not find product: {productId}");
             var productTranlation = await _dbContext.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == productId && x.LanguageId == languageId);
+            var productInCategory = await _dbContext.ProductInCategories.FirstOrDefaultAsync(x => x.ProductId == productId);
             var rs = new ProductVm()
             {
                 Id = product.Id,
@@ -40,22 +44,21 @@ namespace eShop.Application.Catalog.Products
                 SeoTitle = productTranlation?.SeoTitle,
                 Stock = product.Stock,
                 ViewCount = product.ViewCount,
+                IsFeatured = product.IsFeatured,
+                CategoryId = productInCategory?.CategoryId ?? 0
             };
             return new ApiSuccessResult<ProductVm>(rs);
         }
 
         public async Task<ApiResult<int>> Create(ProductCreateRequest request)
         {
-            var product = new Product()
+            var productTranslation = new List<ProductTranslation>();
+            var languageResult = await _languageService.GetAll();
+            foreach (var lnItem in languageResult.data)
             {
-                Price = request.Price,
-                OriginalPrice = request.OriginalPrice,
-                Stock = request.Stock,
-                ViewCount = 0,
-                DateCreated = DateTime.Now,
-                ProductTranslations = new List<ProductTranslation>()
+                if (lnItem.Id == request.LanguageId)
                 {
-                    new ProductTranslation()
+                    productTranslation.Add(new ProductTranslation()
                     {
                         Name = request.Name,
                         Description = request.Description,
@@ -64,8 +67,31 @@ namespace eShop.Application.Catalog.Products
                         SeoTitle = request.SeoTitle,
                         SeoAlias = request.SeoAlias,
                         LanguageId = request.LanguageId,
-                    }
-                },
+                    });
+                }
+                else
+                {
+                    productTranslation.Add(new ProductTranslation()
+                    {
+                        Name = "N/A",
+                        Description = "N/A",
+                        Details = "N/A",
+                        SeoDescription = "N/A",
+                        SeoTitle = "N/A",
+                        SeoAlias = "N/A",
+                        LanguageId = lnItem.Id
+                    });
+                }
+            }
+            var product = new Product()
+            {
+                Price = request.Price,
+                OriginalPrice = request.OriginalPrice,
+                Stock = request.Stock,
+                ViewCount = 0,
+                DateCreated = DateTime.Now,
+                IsFeatured = request.IsFeatured,
+                ProductTranslations = productTranslation,
                 ProductInCategories = new List<ProductInCategory>()
                 {
                     new ProductInCategory()
@@ -103,9 +129,25 @@ namespace eShop.Application.Catalog.Products
             var productTranlation = await _dbContext.ProductTranslations
                 .Where(x => x.ProductId == request.Id && x.LanguageId == request.LanguageId)
                 .FirstOrDefaultAsync();
+
             if (product == null || productTranlation == null) return new ApiErrorResult<int>($"Can not find product: {request.Id}");
             else
             {
+                product.IsFeatured = request.IsFeatured;
+                //Save Category
+                var productCategory = await _dbContext.ProductInCategories.Where(x => x.ProductId == request.Id).ToListAsync();
+                if (productCategory != null)
+                {
+                    _dbContext.RemoveRange(productCategory);
+                    _dbContext.SaveChanges();
+                }
+                _dbContext.ProductInCategories.Add(new ProductInCategory()
+                {
+                    CategoryId = request.CategoryId,
+                    ProductId = request.Id
+                });
+                _dbContext.SaveChanges();
+
                 productTranlation.Name = request.Name;
                 productTranlation.SeoAlias = request.SeoAlias;
                 productTranlation.Description = request.Description;
@@ -248,7 +290,7 @@ namespace eShop.Application.Catalog.Products
         public async Task<ApiResult<List<ProductImageVm>>> GetListImages(int productId)
         {
             var p = await _dbContext.Products.FindAsync(productId);
-            if (p == null) return new ApiErrorResult<List<ProductImageVm>> ($"Can not find product: {productId}");
+            if (p == null) return new ApiErrorResult<List<ProductImageVm>>($"Can not find product: {productId}");
 
             var lst = p.ProductImages.Select(x =>
             new ProductImageVm()
@@ -289,9 +331,11 @@ namespace eShop.Application.Catalog.Products
             //select
             var query = from p in _dbContext.Products
                         join pic in _dbContext.ProductInCategories on p.Id equals pic.ProductId
-                        join pt in _dbContext.ProductTranslations on p.Id equals pt.ProductId
+                        join pt in _dbContext.ProductTranslations on p.Id equals pt.ProductId into ptResult
+                        from pt in ptResult.DefaultIfEmpty()
                         where pt.LanguageId == request.languageId
                         select new { p, pt, pic };
+
             //filter
             if (!string.IsNullOrEmpty(request.keyword))
             {
@@ -326,6 +370,7 @@ namespace eShop.Application.Catalog.Products
                     SeoTitle = x.pt.SeoTitle,
                     Stock = x.p.Stock,
                     ViewCount = x.p.ViewCount,
+                    IsFeatured = x.p.IsFeatured,
                 })
                 .ToListAsync();
 
@@ -333,7 +378,7 @@ namespace eShop.Application.Catalog.Products
             return new ApiSuccessResult<PagedResult<ProductVm>>(result);
         }
 
-        public async Task<ApiResult<PagedResult<ProductVm>>> GetByCategoryId(GetProductRequest request)
+        public async Task<ApiResult<List<ProductVm>>> GetListFeature(GetProductRequest request)
         {
             //select
             var query = from p in _dbContext.Products
@@ -342,7 +387,17 @@ namespace eShop.Application.Catalog.Products
                         where pt.LanguageId == request.languageId
                         select new { p, pt, pic };
             //filter
-            if (request.categoryId > 0)
+            if (!string.IsNullOrEmpty(request.keyword))
+            {
+                query = query.Where(x => x.pt.Name.ToLower().Contains(request.keyword.ToLower()));
+            }
+
+            if (request.categoryIds != null && request.categoryIds.Count > 0)
+            {
+                query = query.Where(x => request.categoryIds.Contains(x.pic.CategoryId));
+            }
+
+            if (request.categoryId != null)
             {
                 query = query.Where(x => x.pic.CategoryId == request.categoryId);
             }
@@ -350,7 +405,7 @@ namespace eShop.Application.Catalog.Products
             int totalCount = await query.CountAsync();
 
             //paging
-            var data = await query.Skip((request.pageIndex - 1) * request.pageSize).Take(request.pageSize)
+            var data = await query.OrderBy(x => x.pt.Name).Skip((request.pageIndex - 1) * request.pageSize).Take(request.pageSize)
                 .Select(x => new ProductVm()
                 {
                     Id = x.p.Id,
@@ -365,11 +420,78 @@ namespace eShop.Application.Catalog.Products
                     SeoTitle = x.pt.SeoTitle,
                     Stock = x.p.Stock,
                     ViewCount = x.p.ViewCount,
+                    IsFeatured = x.p.IsFeatured,
                 })
                 .ToListAsync();
+            return new ApiSuccessResult<List<ProductVm>>(data);
+        }
 
-            var result = new PagedResult<ProductVm>() { Items = data, TotalRecords = totalCount };
-            return new ApiSuccessResult<PagedResult<ProductVm>>(result);
+        public async Task<ApiResult<List<ProductVm>>> GetListFeature(string languageId, int take)
+        {
+            //select
+            var query = from p in _dbContext.Products
+                        join pic in _dbContext.ProductInCategories on p.Id equals pic.ProductId
+                        join pt in _dbContext.ProductTranslations on p.Id equals pt.ProductId
+                        join pi in _dbContext.ProductImages.Where(x => x.IsDefault) on p.Id equals pi.ProductId into piResult
+                        from pi in piResult.DefaultIfEmpty()
+                        where pt.LanguageId == languageId && p.IsFeatured
+                        select new { p, pt, pic, pi };
+
+            //to list
+            var data = await query.OrderBy(x => x.pt.Name).Take(take)
+                .Select(x => new ProductVm()
+                {
+                    Id = x.p.Id,
+                    DateCreated = x.p.DateCreated,
+                    Description = x.pt.Description,
+                    Details = x.pt.Description,
+                    Name = x.pt.Name,
+                    OriginalPrice = x.p.OriginalPrice,
+                    Price = x.p.Price,
+                    SeoAlias = x.pt.SeoAlias,
+                    SeoDescription = x.pt.SeoDescription,
+                    SeoTitle = x.pt.SeoTitle,
+                    Stock = x.p.Stock,
+                    ViewCount = x.p.ViewCount,
+                    IsFeatured = x.p.IsFeatured,
+                    ThumbnailImage = SystemConstants.AppSettings.ImagePath + x.pi.ImagePath
+                })
+                .ToListAsync();
+            return new ApiSuccessResult<List<ProductVm>>(data);
+        }
+
+        public async Task<ApiResult<List<ProductVm>>> GetListLatest(string languageId, int take)
+        {
+            //select
+            var query = from p in _dbContext.Products
+                        join pic in _dbContext.ProductInCategories on p.Id equals pic.ProductId
+                        join pt in _dbContext.ProductTranslations on p.Id equals pt.ProductId
+                        join pi in _dbContext.ProductImages.Where(x => x.IsDefault) on p.Id equals pi.ProductId into piResult
+                        from pi in piResult.DefaultIfEmpty()
+                        where pt.LanguageId == languageId
+                        select new { p, pt, pic, pi };
+
+            //to list
+            var data = await query.OrderByDescending(x => x.p.DateCreated).Take(take)
+                .Select(x => new ProductVm()
+                {
+                    Id = x.p.Id,
+                    DateCreated = x.p.DateCreated,
+                    Description = x.pt.Description,
+                    Details = x.pt.Description,
+                    Name = x.pt.Name,
+                    OriginalPrice = x.p.OriginalPrice,
+                    Price = x.p.Price,
+                    SeoAlias = x.pt.SeoAlias,
+                    SeoDescription = x.pt.SeoDescription,
+                    SeoTitle = x.pt.SeoTitle,
+                    Stock = x.p.Stock,
+                    ViewCount = x.p.ViewCount,
+                    IsFeatured = x.p.IsFeatured,
+                    ThumbnailImage = SystemConstants.AppSettings.ImagePath + x.pi.ImagePath
+                })
+                .ToListAsync();
+            return new ApiSuccessResult<List<ProductVm>>(data);
         }
     }
 }

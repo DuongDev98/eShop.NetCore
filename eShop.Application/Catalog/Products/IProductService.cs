@@ -22,6 +22,7 @@ namespace eShop.Application.Catalog.Products
         Task<ApiResult<ProductImageVm>> GetImageById(int imageId);
 
         Task<ApiResult<PagedResult<ProductVm>>> GetAll(GetProductRequest request);
-        Task<ApiResult<PagedResult<ProductVm>>> GetByCategoryId(GetProductRequest request);
+        Task<ApiResult<List<ProductVm>>> GetListFeature(string languageId, int take);
+        Task<ApiResult<List<ProductVm>>> GetListLatest(string languageId, int take);
     }
 }

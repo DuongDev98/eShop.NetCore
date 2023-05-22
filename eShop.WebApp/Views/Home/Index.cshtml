@@ -1,8 +1,98 @@
-﻿@{
+﻿@using LazZiya.ExpressLocalization
+@using eShop.ViewModels.Utilities
+@using eShop.ViewModels.Catalog.Products.Dtos
+@inject ISharedCultureLocalizer _loc
+@model HomePageVm
+@{
     ViewData["Title"] = "Home Page";
+    string culture = CultureInfo.CurrentCulture.Name;
+    string baseUrl = ViewData["baseUrl"].ToString();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section slides {
+    <div id="carouselBlk">
+        <div id="myCarousel" class="carousel slide">
+            <div class="carousel-inner">
+                @foreach (var slide in Model.Slides)
+                {
+                    <div class="item @(Model.Slides.IndexOf(slide) == 0 ? "active" : "")">
+                        <div class="container">
+                            <a href="@slide.Url"><img style="width:100%" src="@slide.Image" alt="@slide.Name" /></a>
+                            <div class="carousel-caption">
+                                <h4>@slide.Name</h4>
+                                <p>@slide.Description</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+        </div>
+    </div>
+}
+
+<div class="well well-small">
+    <h4><localize>Featured Products</localize><small class="pull-right">200+ featured products</small></h4>
+    <div class="row-fluid">
+        <div id="featured" class="carousel slide">
+            <div class="carousel-inner">
+                @{
+                    List<List<ProductVm>> features = new List<List<ProductVm>>();
+                    List<ProductVm> tmp = new List<ProductVm>();
+                    for (int i = 1; i <= Model.Features.Count; i++)
+                    {
+                        var item = Model.Features[i - 1];
+                        tmp.Add(item);
+                        if (i % 4 == 0 || i == Model.Features.Count)
+                        {
+                            features.Add(tmp);
+                            tmp = new List<ProductVm>();
+                        }
+                    }
+                }
+
+                @foreach (var lst in features)
+                {
+                    <div class="item @(features.IndexOf(lst) == 0 ? "active" : "")">
+                        <ul class="thumbnails">
+                            @foreach (var item in lst)
+                            {
+                                <li class="span3">
+                                    <div class="thumbnail">
+                                        <i class="tag"></i>
+                                        <a href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"><img src="@(baseUrl + item.ThumbnailImage)" alt=""></a>
+                                        <div class="caption">
+                                            <h5>@item.Name</h5>
+                                            <h4><a class="btn" href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"><localize>VIEW</localize></a> <span class="pull-right">@item.Price.ToString("n0")</span></h4>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+            <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
+            <a class="right carousel-control" href="#featured" data-slide="next">›</a>
+        </div>
+    </div>
 </div>
+<h4><localize>Latest Products</localize></h4>
+<ul class="thumbnails">
+    @foreach (var item in Model.Latests)
+    {
+        <li class="span3">
+            <div class="thumbnail">
+                <a href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"><img src="@(baseUrl + item.ThumbnailImage)" alt="" /></a>
+                <div class="caption">
+                    <h5>@item.Name</h5>
+                    <div>
+                        @Html.Raw(@item.Description)
+                    </div>
+                    <h4 style="text-align:center"><a class="btn" href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#"><localize>Add to</localize><i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@item.Price.ToString("n0")</a></h4>
+                </div>
+            </div>
+        </li>
+    }
+</ul>

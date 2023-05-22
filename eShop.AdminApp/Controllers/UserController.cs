@@ -1,5 +1,5 @@
-﻿using eShop.AdminApp.Service.Role;
-using eShop.AdminApp.Service.User;
+﻿using eShop.ApiIntegration.Role;
+using eShop.ApiIntegration.User;
 using eShop.Utilities.Contants;
 using eShop.ViewModels.Common;
 using eShop.ViewModels.System.Roles;
@@ -15,6 +15,7 @@ using System.Text;
 
 namespace eShop.AdminApp.Controllers
 {
+    //[Authorize]
     public class UserController : BaseController
     {
         private IConfiguration _configuration;
@@ -78,7 +79,7 @@ namespace eShop.AdminApp.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal, authProperties);
 
             HttpContext.Session.SetString(SystemConstants.AppSettings.Token, result.data);
-            HttpContext.Session.SetString(SystemConstants.AppSettings.DefaultLanguageId, "vi-VN");
+            HttpContext.Session.SetString(SystemConstants.AppSettings.DefaultLanguageId, _configuration.GetValue<string>(SystemConstants.AppSettings.DefaultLanguageId));
 
             return RedirectToAction("Index", "Home");
         }

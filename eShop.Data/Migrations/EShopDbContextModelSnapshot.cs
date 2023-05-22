@@ -183,7 +183,7 @@ namespace eShop.Data.Migrations
                         new
                         {
                             Id = new Guid("f611bbfd-a34d-4f71-bdaf-1d373f8cb891"),
-                            ConcurrencyStamp = "51d7dcea-65a3-4b40-9601-2f989d03eb1a",
+                            ConcurrencyStamp = "7e3a40c6-af7f-4725-ac41-8b2829628aec",
                             Name = "admin",
                             NormalizedName = "admin"
                         });
@@ -257,7 +257,7 @@ namespace eShop.Data.Migrations
                         {
                             Id = new Guid("f41f21f2-fe66-4df9-a2bc-cfe970f45479"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bcc3928d-6b8a-4d25-97d9-8518eb7efc9b",
+                            ConcurrencyStamp = "6539e8a3-1678-4cb6-8377-5a49f268a5b1",
                             Dob = new DateTime(1998, 2, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "duongdev98@gmail.com",
                             EmailConfirmed = true,
@@ -266,7 +266,7 @@ namespace eShop.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "duongdev98@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOonOe49QuG11qhsEF+viaFbRj33dUw31uf0ee8CLxxGZf/IgiXxsOHQr56ZEBvsMA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENUHWI0HxHrYT8c/IUiltWeo9hyiylBSvv9goYLKYM7QyUaXSBu/sBmC/eD8l8N6dg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -399,7 +399,7 @@ namespace eShop.Data.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            LanguageId = "vi-VN",
+                            LanguageId = "vi",
                             Name = "Áo nam",
                             SeoAlias = "ao-nam",
                             SeoDescription = "Sản phẩm áo thời trang nam",
@@ -409,7 +409,7 @@ namespace eShop.Data.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            LanguageId = "vi-VN",
+                            LanguageId = "en",
                             Name = "Men shirt",
                             SeoAlias = "men-shirt",
                             SeoDescription = "The shirt products for men",
@@ -419,7 +419,7 @@ namespace eShop.Data.Migrations
                         {
                             Id = 3,
                             CategoryId = 2,
-                            LanguageId = "vi-VN",
+                            LanguageId = "vi",
                             Name = "Áo nữ",
                             SeoAlias = "ao-nu",
                             SeoDescription = "Sản phẩm áo thời trang nữ",
@@ -429,7 +429,7 @@ namespace eShop.Data.Migrations
                         {
                             Id = 4,
                             CategoryId = 2,
-                            LanguageId = "vi-VN",
+                            LanguageId = "en",
                             Name = "Women shirt",
                             SeoAlias = "women-shirt",
                             SeoDescription = "The shirt products for women",
@@ -494,13 +494,13 @@ namespace eShop.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "vi-VN",
+                            Id = "vi",
                             IsDefault = true,
                             Name = "Tiếng Việt"
                         },
                         new
                         {
-                            Id = "en-EN",
+                            Id = "en",
                             IsDefault = false,
                             Name = "English"
                         });
@@ -599,6 +599,9 @@ namespace eShop.Data.Migrations
                         .HasColumnType("int")
                         .HasDefaultValue(0);
 
+                    b.Property<bool>("isFeatured")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Products", (string)null);
@@ -607,11 +610,12 @@ namespace eShop.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 4, 23, 15, 12, 47, 329, DateTimeKind.Local).AddTicks(8585),
+                            DateCreated = new DateTime(2023, 5, 17, 0, 1, 6, 966, DateTimeKind.Local).AddTicks(7043),
                             OriginalPrice = 150000m,
                             Price = 200000m,
                             Stock = 0,
-                            ViewCount = 0
+                            ViewCount = 0,
+                            isFeatured = false
                         });
                 });
 
@@ -733,7 +737,7 @@ namespace eShop.Data.Migrations
                             Id = 1,
                             Description = "",
                             Details = "Áo sơ mi nam trắng Việt Tiến",
-                            LanguageId = "vi-VN",
+                            LanguageId = "vi",
                             Name = "Áo sơ mi nam trắng Việt Tiến",
                             ProductId = 1,
                             SeoAlias = "ao-so-mi-nam-trang-viet-tien",
@@ -745,7 +749,7 @@ namespace eShop.Data.Migrations
                             Id = 2,
                             Description = "",
                             Details = "Viet Tien Men T-Shirt",
-                            LanguageId = "vi-VN",
+                            LanguageId = "en",
                             Name = "Viet Tien Men T-Shirt",
                             ProductId = 1,
                             SeoAlias = "viet-tien-men-t-shirt",
@@ -795,6 +799,85 @@ namespace eShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Promotions", (string)null);
+                });
+
+            modelBuilder.Entity("eShop.Data.Entities.Slide", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Slides", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+                            Image = "/themes/images/carousel/1.png",
+                            Name = "Second Thumbnail label",
+                            Url = "#"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+                            Image = "/themes/images/carousel/2.png",
+                            Name = "Second Thumbnail label",
+                            Url = "#"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+                            Image = "/themes/images/carousel/3.png",
+                            Name = "Second Thumbnail label",
+                            Url = "#"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+                            Image = "/themes/images/carousel/4.png",
+                            Name = "Second Thumbnail label",
+                            Url = "#"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+                            Image = "/themes/images/carousel/5.png",
+                            Name = "Second Thumbnail label",
+                            Url = "#"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+                            Image = "/themes/images/carousel/6.png",
+                            Name = "Second Thumbnail label",
+                            Url = "#"
+                        });
                 });
 
             modelBuilder.Entity("eShop.Data.Entities.Transaction", b =>

@@ -20,20 +20,15 @@ namespace eShop.BackendApi.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAll([FromQuery] GetProductRequest request)
         {
             var result = await _productService.GetAll(request);
             return Ok(result);
         }
 
-        [HttpGet("{categoryId}")]
-        public async Task<IActionResult> GetByCategoryId([FromQuery] GetProductRequest request)
-        {
-            var result = await _productService.GetByCategoryId(request);
-            return Ok(result);
-        }
-
         [HttpGet("{productId}/{languageId}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetById(int productId, string languageId)
         {
             var result = await _productService.GetById(productId, languageId);
@@ -59,40 +54,40 @@ namespace eShop.BackendApi.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var affectedResult = await _productService.Update(request);
-            if (affectedResult.data == 0) return BadRequest();
-            return Ok();
+            if (!affectedResult.success) return BadRequest();
+            return Ok(affectedResult);
         }
 
         [HttpDelete("{productId}")]
         public async Task<IActionResult> Delete(int productId)
         {
             var affectedResult = await _productService.Delete(productId);
-            if (affectedResult.data == 0) return BadRequest();
-            return Ok();
+            if (!affectedResult.success) return BadRequest();
+            return Ok(affectedResult);
         }
 
         [HttpPatch("View/{productId}")]
         public async Task<IActionResult> AddViewCount(int productId)
         {
             var affectedResult = await _productService.AddViewCount(productId);
-            if (affectedResult.data == 0) return BadRequest();
-            return Ok();
+            if (!affectedResult.success) return BadRequest();
+            return Ok(affectedResult);
         }
 
         [HttpPatch("Stock/{productId}/{addedQuantity}")]
         public async Task<IActionResult> UpdateStock(int productId, int addedQuantity)
         {
             var affectedResult = await _productService.UpdateStock(productId, addedQuantity);
-            if (affectedResult.data == 0) return BadRequest();
-            return Ok();
+            if (!affectedResult.success) return BadRequest();
+            return Ok(affectedResult);
         }
 
         [HttpPatch("Price/{productId}/{newPrice}")]
         public async Task<IActionResult> UpdatePrice(int productId, decimal newPrice)
         {
             var affectedResult = await _productService.UpdatePrice(productId, newPrice);
-            if (affectedResult.data == 0) return BadRequest();
-            return Ok();
+            if (!affectedResult.success) return BadRequest();
+            return Ok(affectedResult);
         }
 
         //Images
@@ -126,11 +121,11 @@ namespace eShop.BackendApi.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var pi = _productService.GetImageById(imageId);
+            var pi = await _productService.GetImageById(imageId);
             if (pi == null) return BadRequest();
 
             var affectedResult = await _productService.UpdateImage(imageId, request);
-            if (affectedResult.data == 0) return BadRequest();
+            if (!affectedResult.success) return BadRequest();
             return Ok();
         }
 
@@ -139,12 +134,26 @@ namespace eShop.BackendApi.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var pi = _productService.GetImageById(imageId);
+            var pi = await _productService.GetImageById(imageId);
             if (pi == null) return BadRequest();
 
             var affectedResult = await _productService.RemoveImage(imageId);
-            if (affectedResult.data == 0) return BadRequest();
+            if (!affectedResult.success) return BadRequest();
             return Ok();
+        }
+
+        [HttpGet("feature/{languageId}/{take}")]
+        [AllowAnonymous]
+        public async Task<ApiResult<List<ProductVm>>> GetListFeature(string languageId, int take)
+        {
+            return await _productService.GetListFeature(languageId, take);
+        }
+
+        [HttpGet("latest/{languageId}/{take}")]
+        [AllowAnonymous]
+        public async Task<ApiResult<List<ProductVm>>> GetListLatest(string languageId, int take)
+        {
+            return await _productService.GetListLatest(languageId, take);
         }
     }
 }
