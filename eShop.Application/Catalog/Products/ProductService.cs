@@ -4,7 +4,7 @@ using eShop.Data.EF;
 using eShop.Data.Entities;
 using eShop.Utilities.Contants;
 using eShop.ViewModels.Catalog.ProductImage;
-using eShop.ViewModels.Catalog.Products.Dtos;
+using eShop.ViewModels.Catalog.Products;
 using eShop.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +30,7 @@ namespace eShop.Application.Catalog.Products
             if (product == null) return new ApiErrorResult<ProductVm>($"Can not find product: {productId}");
             var productTranlation = await _dbContext.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == productId && x.LanguageId == languageId);
             var productInCategory = await _dbContext.ProductInCategories.FirstOrDefaultAsync(x => x.ProductId == productId);
+            var productImages = await _dbContext.ProductImages.FirstOrDefaultAsync(x => x.ProductId == productId && x.IsDefault);
             var rs = new ProductVm()
             {
                 Id = product.Id,
@@ -45,7 +46,8 @@ namespace eShop.Application.Catalog.Products
                 Stock = product.Stock,
                 ViewCount = product.ViewCount,
                 IsFeatured = product.IsFeatured,
-                CategoryId = productInCategory?.CategoryId ?? 0
+                CategoryId = productInCategory?.CategoryId ?? 0,
+                ThumbnailImage = SystemConstants.AppSettings.ImagePath + productImages?.ImagePath
             };
             return new ApiSuccessResult<ProductVm>(rs);
         }
@@ -333,8 +335,10 @@ namespace eShop.Application.Catalog.Products
                         join pic in _dbContext.ProductInCategories on p.Id equals pic.ProductId
                         join pt in _dbContext.ProductTranslations on p.Id equals pt.ProductId into ptResult
                         from pt in ptResult.DefaultIfEmpty()
+                        join pi in _dbContext.ProductImages on p.Id equals pi.ProductId into piResult
+                        from pi in piResult.DefaultIfEmpty()
                         where pt.LanguageId == request.languageId
-                        select new { p, pt, pic };
+                        select new { p, pt, pic, pi };
 
             //filter
             if (!string.IsNullOrEmpty(request.keyword))
@@ -371,59 +375,12 @@ namespace eShop.Application.Catalog.Products
                     Stock = x.p.Stock,
                     ViewCount = x.p.ViewCount,
                     IsFeatured = x.p.IsFeatured,
+                    ThumbnailImage = SystemConstants.AppSettings.ImagePath + x.pi.ImagePath
                 })
                 .ToListAsync();
 
-            var result = new PagedResult<ProductVm>() { Items = data, TotalRecords = totalCount };
+            var result = new PagedResult<ProductVm>() { Items = data, TotalRecords = totalCount, PageIndex = request.pageIndex, PageSize = request.pageSize };
             return new ApiSuccessResult<PagedResult<ProductVm>>(result);
-        }
-
-        public async Task<ApiResult<List<ProductVm>>> GetListFeature(GetProductRequest request)
-        {
-            //select
-            var query = from p in _dbContext.Products
-                        join pic in _dbContext.ProductInCategories on p.Id equals pic.ProductId
-                        join pt in _dbContext.ProductTranslations on p.Id equals pt.ProductId
-                        where pt.LanguageId == request.languageId
-                        select new { p, pt, pic };
-            //filter
-            if (!string.IsNullOrEmpty(request.keyword))
-            {
-                query = query.Where(x => x.pt.Name.ToLower().Contains(request.keyword.ToLower()));
-            }
-
-            if (request.categoryIds != null && request.categoryIds.Count > 0)
-            {
-                query = query.Where(x => request.categoryIds.Contains(x.pic.CategoryId));
-            }
-
-            if (request.categoryId != null)
-            {
-                query = query.Where(x => x.pic.CategoryId == request.categoryId);
-            }
-
-            int totalCount = await query.CountAsync();
-
-            //paging
-            var data = await query.OrderBy(x => x.pt.Name).Skip((request.pageIndex - 1) * request.pageSize).Take(request.pageSize)
-                .Select(x => new ProductVm()
-                {
-                    Id = x.p.Id,
-                    DateCreated = x.p.DateCreated,
-                    Description = x.pt.Description,
-                    Details = x.pt.Description,
-                    Name = x.pt.Name,
-                    OriginalPrice = x.p.OriginalPrice,
-                    Price = x.p.Price,
-                    SeoAlias = x.pt.SeoAlias,
-                    SeoDescription = x.pt.SeoDescription,
-                    SeoTitle = x.pt.SeoTitle,
-                    Stock = x.p.Stock,
-                    ViewCount = x.p.ViewCount,
-                    IsFeatured = x.p.IsFeatured,
-                })
-                .ToListAsync();
-            return new ApiSuccessResult<List<ProductVm>>(data);
         }
 
         public async Task<ApiResult<List<ProductVm>>> GetListFeature(string languageId, int take)
@@ -492,6 +449,79 @@ namespace eShop.Application.Catalog.Products
                 })
                 .ToListAsync();
             return new ApiSuccessResult<List<ProductVm>>(data);
+        }
+
+        public async Task<ApiResult<bool>> Fake()
+        {
+            for (int i = 1; i < 50;i ++)
+            {
+                //Thêm mặt hàng
+                var p = new Product()
+                {
+                    DateCreated = DateTime.Now,
+                    OriginalPrice = 150000,
+                    Price = 200000,
+                    Stock = 0,
+                    ViewCount = 0
+                };
+                _dbContext.Products.Add(p);
+                await _dbContext.SaveChangesAsync();
+
+                var pt1 = new ProductTranslation()
+                {
+                    ProductId = 1,
+                    Name = "Áo sơ mi nam trắng Việt Tiến",
+                    LanguageId = SystemConstants.vi,
+                    SeoAlias = "ao-so-mi-nam-trang-viet-tien",
+                    SeoTitle = "Áo sơ mi nam trắng Việt Tiến",
+                    SeoDescription = "Áo sơ mi nam trắng Việt Tiến",
+                    Details = "Áo sơ mi nam trắng Việt Tiến",
+                    Description = ""
+                };
+                _dbContext.ProductTranslations.Add(pt1);
+                await _dbContext.SaveChangesAsync();
+
+                var pt2 = new ProductTranslation()
+                {
+                    ProductId = i,
+                    Name = "Viet Tien Men T-Shirt",
+                    LanguageId = SystemConstants.en,
+                    SeoAlias = "viet-tien-men-t-shirt",
+                    SeoTitle = "Viet Tien Men T-Shirt",
+                    SeoDescription = "Viet Tien Men T-Shirt",
+                    Details = "Viet Tien Men T-Shirt",
+                    Description = ""
+                };
+                _dbContext.ProductTranslations.Add(pt2);
+                await _dbContext.SaveChangesAsync();
+
+                var pic = new ProductInCategory() { CategoryId = i % 2 == 0 ? 2 : 1, ProductId = i };
+                _dbContext.ProductInCategories.Add(pic);
+                await _dbContext.SaveChangesAsync();
+
+                var pi = new ProductImage()
+                {
+                    ProductId = i,
+                    DateCreated = DateTime.Now,
+                    Caption = "",
+                    ImagePath = Guid.NewGuid().ToString() + ".png",
+                    FileSize = 1111,
+                    IsDefault = true,
+                    SortOrder = 1,
+                };
+                _dbContext.ProductImages.Add(pi);
+                await _dbContext.SaveChangesAsync();
+
+                //copy image
+                var lstImg = await _dbContext.ProductImages.ToListAsync();
+                foreach (var tmp in lstImg)
+                {
+                    var filePath = _storageService.GetFilePath("tmp.png");
+                    StreamReader stream = new StreamReader(filePath);
+                    await _storageService.SaveFileAsync(stream.BaseStream, tmp.ImagePath);
+                }
+            }
+            return new ApiSuccessResult<bool>(true);
         }
     }
 }

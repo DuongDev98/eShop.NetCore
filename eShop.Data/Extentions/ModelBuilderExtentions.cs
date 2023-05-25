@@ -82,48 +82,48 @@ namespace eShop.Data.Extentions
                     SeoDescription = "The shirt products for women",
                 });
 
-            modelBuilder.Entity<Product>().HasData(
-                new Product()
-                {
-                    Id = 1,
-                    DateCreated = DateTime.Now,
-                    OriginalPrice = 150000,
-                    Price = 200000,
-                    Stock = 0,
-                    ViewCount = 0
-                }
-                );
+            //modelBuilder.Entity<Product>().HasData(
+            //     new Product()
+            //     {
+            //         Id = 1,
+            //         DateCreated = DateTime.Now,
+            //         OriginalPrice = 150000,
+            //         Price = 200000,
+            //         Stock = 0,
+            //         ViewCount = 0
+            //     }
+            //     );
 
-            modelBuilder.Entity<ProductTranslation>().HasData(
-                new ProductTranslation()
-                {
-                    Id = 1,
-                    ProductId = 1,
-                    Name = "Áo sơ mi nam trắng Việt Tiến",
-                    LanguageId = SystemConstants.vi,
-                    SeoAlias = "ao-so-mi-nam-trang-viet-tien",
-                    SeoTitle = "Áo sơ mi nam trắng Việt Tiến",
-                    SeoDescription = "Áo sơ mi nam trắng Việt Tiến",
-                    Details = "Áo sơ mi nam trắng Việt Tiến",
-                    Description = ""
-                },
-                new ProductTranslation()
-                {
-                    Id = 2,
-                    ProductId = 1,
-                    Name = "Viet Tien Men T-Shirt",
-                    LanguageId = SystemConstants.en,
-                    SeoAlias = "viet-tien-men-t-shirt",
-                    SeoTitle = "Viet Tien Men T-Shirt",
-                    SeoDescription = "Viet Tien Men T-Shirt",
-                    Details = "Viet Tien Men T-Shirt",
-                    Description = ""
-                }
-                );
+            //modelBuilder.Entity<ProductTranslation>().HasData(
+            //new ProductTranslation()
+            //{
+            //    Id = 1,
+            //    ProductId = 1,
+            //    Name = "Áo sơ mi nam trắng Việt Tiến",
+            //    LanguageId = SystemConstants.vi,
+            //    SeoAlias = "ao-so-mi-nam-trang-viet-tien",
+            //    SeoTitle = "Áo sơ mi nam trắng Việt Tiến",
+            //    SeoDescription = "Áo sơ mi nam trắng Việt Tiến",
+            //    Details = "Áo sơ mi nam trắng Việt Tiến",
+            //    Description = ""
+            //},
+            //new ProductTranslation()
+            //{
+            //    Id = 2,
+            //    ProductId = 1,
+            //    Name = "Viet Tien Men T-Shirt",
+            //    LanguageId = SystemConstants.en,
+            //    SeoAlias = "viet-tien-men-t-shirt",
+            //    SeoTitle = "Viet Tien Men T-Shirt",
+            //    SeoDescription = "Viet Tien Men T-Shirt",
+            //    Details = "Viet Tien Men T-Shirt",
+            //    Description = ""
+            //}
+            //);
 
-            modelBuilder.Entity<ProductInCategory>().HasData(
-                new ProductInCategory() { CategoryId = 1, ProductId = 1 }
-                );
+            //modelBuilder.Entity<ProductInCategory>().HasData(
+            //    new ProductInCategory() { CategoryId = 1, ProductId = 1 }
+            //    );
 
             //seed admin user
             var roleId = new Guid("F611BBFD-A34D-4F71-BDAF-1D373F8CB891");

@@ -1,3 +1,11 @@
+H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.csproj.AssemblyReference.cache
+H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.GeneratedMSBuildEditorConfig.editorconfig
+H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.AssemblyInfoInputs.cache
+H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.AssemblyInfo.cs
+H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.csproj.CoreCompileInputs.cache
+H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.MvcApplicationPartsAssemblyInfo.cache
+H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.RazorAssemblyInfo.cache
+H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.RazorAssemblyInfo.cs
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.BackendApi.deps.json
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.BackendApi.runtimeconfig.json
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.BackendApi.staticwebassets.runtime.json
@@ -564,15 +572,7 @@ H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.ViewModels.pdb
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.Application.pdb
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.Data.pdb
 H:\NET.CORE\eShopSolution\eShop.AdminApp\bin\Debug\net6.0\eShop.Utilities.pdb
-H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.csproj.AssemblyReference.cache
-H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.GeneratedMSBuildEditorConfig.editorconfig
-H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.AssemblyInfoInputs.cache
-H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.AssemblyInfo.cs
-H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.csproj.CoreCompileInputs.cache
 H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.MvcApplicationPartsAssemblyInfo.cs
-H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.MvcApplicationPartsAssemblyInfo.cache
-H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.RazorAssemblyInfo.cache
-H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\eShop.AdminApp.RazorAssemblyInfo.cs
 H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\staticwebassets\msbuild.eShop.AdminApp.Microsoft.AspNetCore.StaticWebAssets.props
 H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\staticwebassets\msbuild.build.eShop.AdminApp.props
 H:\NET.CORE\eShopSolution\eShop.AdminApp\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.eShop.AdminApp.props

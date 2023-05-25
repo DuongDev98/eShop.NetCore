@@ -1,4 +1,4 @@
-﻿using eShop.ViewModels.Catalog.Products.Dtos;
+﻿using eShop.ViewModels.Catalog.Products;
 using eShop.ViewModels.Common;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,5 +13,6 @@ namespace eShop.ApiIntegration.Product
         Task<ApiResult<bool>> Delete(ProductDeleteRequest request);
         Task<ApiResult<List<ProductVm>>> GetListFeature(string languageId, int take);
         Task<ApiResult<List<ProductVm>>> GetListLatest(string languageId, int take);
+        Task<ApiResult<bool>> Fake();
     }
 }

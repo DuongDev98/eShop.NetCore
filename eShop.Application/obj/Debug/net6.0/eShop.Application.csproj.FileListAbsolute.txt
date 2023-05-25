@@ -1,3 +1,8 @@
+H:\NET.CORE\eShopSolution\eShop.Application\obj\Debug\net6.0\eShop.Application.csproj.AssemblyReference.cache
+H:\NET.CORE\eShopSolution\eShop.Application\obj\Debug\net6.0\eShop.Application.GeneratedMSBuildEditorConfig.editorconfig
+H:\NET.CORE\eShopSolution\eShop.Application\obj\Debug\net6.0\eShop.Application.AssemblyInfoInputs.cache
+H:\NET.CORE\eShopSolution\eShop.Application\obj\Debug\net6.0\eShop.Application.AssemblyInfo.cs
+H:\NET.CORE\eShopSolution\eShop.Application\obj\Debug\net6.0\eShop.Application.csproj.CoreCompileInputs.cache
 H:\NET.CORE\eShopSolution\eShop.Application\bin\Debug\net6.0\eShop.Application.deps.json
 H:\NET.CORE\eShopSolution\eShop.Application\bin\Debug\net6.0\eShop.Application.dll
 H:\NET.CORE\eShopSolution\eShop.Application\bin\Debug\net6.0\eShop.Application.pdb
@@ -7,11 +12,6 @@ H:\NET.CORE\eShopSolution\eShop.Application\bin\Debug\net6.0\eShop.ViewModels.dl
 H:\NET.CORE\eShopSolution\eShop.Application\bin\Debug\net6.0\eShop.Data.pdb
 H:\NET.CORE\eShopSolution\eShop.Application\bin\Debug\net6.0\eShop.Utilities.pdb
 H:\NET.CORE\eShopSolution\eShop.Application\bin\Debug\net6.0\eShop.ViewModels.pdb
-H:\NET.CORE\eShopSolution\eShop.Application\obj\Debug\net6.0\eShop.Application.csproj.AssemblyReference.cache
-H:\NET.CORE\eShopSolution\eShop.Application\obj\Debug\net6.0\eShop.Application.GeneratedMSBuildEditorConfig.editorconfig
-H:\NET.CORE\eShopSolution\eShop.Application\obj\Debug\net6.0\eShop.Application.AssemblyInfoInputs.cache
-H:\NET.CORE\eShopSolution\eShop.Application\obj\Debug\net6.0\eShop.Application.AssemblyInfo.cs
-H:\NET.CORE\eShopSolution\eShop.Application\obj\Debug\net6.0\eShop.Application.csproj.CoreCompileInputs.cache
 H:\NET.CORE\eShopSolution\eShop.Application\obj\Debug\net6.0\eShop.Application.csproj.CopyComplete
 H:\NET.CORE\eShopSolution\eShop.Application\obj\Debug\net6.0\eShop.Application.dll
 H:\NET.CORE\eShopSolution\eShop.Application\obj\Debug\net6.0\refint\eShop.Application.dll

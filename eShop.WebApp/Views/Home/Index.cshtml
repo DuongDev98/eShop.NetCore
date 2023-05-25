@@ -1,12 +1,11 @@
 ﻿@using LazZiya.ExpressLocalization
 @using eShop.ViewModels.Utilities
-@using eShop.ViewModels.Catalog.Products.Dtos
+@using eShop.ViewModels.Catalog.Products
 @inject ISharedCultureLocalizer _loc
 @model HomePageVm
 @{
     ViewData["Title"] = "Home Page";
     string culture = CultureInfo.CurrentCulture.Name;
-    string baseUrl = ViewData["baseUrl"].ToString();
 }
 
 @section slides {
@@ -61,7 +60,7 @@
                                 <li class="span3">
                                     <div class="thumbnail">
                                         <i class="tag"></i>
-                                        <a href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"><img src="@(baseUrl + item.ThumbnailImage)" alt=""></a>
+                                        <a href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"><img src="@(ViewData["baseUrl"] + item.ThumbnailImage)" alt=""></a>
                                         <div class="caption">
                                             <h5>@item.Name</h5>
                                             <h4><a class="btn" href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"><localize>VIEW</localize></a> <span class="pull-right">@item.Price.ToString("n0")</span></h4>
@@ -84,7 +83,7 @@
     {
         <li class="span3">
             <div class="thumbnail">
-                <a href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"><img src="@(baseUrl + item.ThumbnailImage)" alt="" /></a>
+                <a href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"><img src="@(ViewData["baseUrl"] + item.ThumbnailImage)" alt="" /></a>
                 <div class="caption">
                     <h5>@item.Name</h5>
                     <div>

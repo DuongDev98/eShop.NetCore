@@ -1,6 +1,6 @@
 ﻿using eShop.Application.Catalog.Products;
 using eShop.ViewModels.Catalog.ProductImage;
-using eShop.ViewModels.Catalog.Products.Dtos;
+using eShop.ViewModels.Catalog.Products;
 using eShop.ViewModels.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -154,6 +154,13 @@ namespace eShop.BackendApi.Controllers
         public async Task<ApiResult<List<ProductVm>>> GetListLatest(string languageId, int take)
         {
             return await _productService.GetListLatest(languageId, take);
+        }
+
+        [HttpGet("fake")]
+        [AllowAnonymous]
+        public async Task<ApiResult<bool>> Fake()
+        {
+            return await _productService.Fake();
         }
     }
 }

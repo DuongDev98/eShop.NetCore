@@ -153,6 +153,14 @@
     <value>Login</value>
     <comment>header</comment>
   </data>
+  <data name="Product Details" xml:space="preserve">
+    <value>Product Details</value>
+    <comment>product/detail</comment>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
+    <comment>product/detail</comment>
+  </data>
   <data name="Products Name" xml:space="preserve">
     <value>Products Name</value>
     <comment>Danh sách sản phẩm</comment>
@@ -172,6 +180,10 @@
   <data name="VIEW" xml:space="preserve">
     <value>VIEW</value>
     <comment>home/index</comment>
+  </data>
+  <data name="View Details" xml:space="preserve">
+    <value>View Details</value>
+    <comment>product/index</comment>
   </data>
   <data name="Welcome!" xml:space="preserve">
     <value>Welcome!</value>

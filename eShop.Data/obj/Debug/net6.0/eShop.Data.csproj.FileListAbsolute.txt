@@ -1,7 +1,6 @@
+H:\NET.CORE\eShopSolution\eShop.Data\bin\Debug\net6.0\eShop.Data.dll
 H:\NET.CORE\eShopSolution\eShop.Data\bin\Debug\net6.0\eShop.Data.deps.json
 H:\NET.CORE\eShopSolution\eShop.Data\bin\Debug\net6.0\eShop.Data.runtimeconfig.json
-H:\NET.CORE\eShopSolution\eShop.Data\bin\Debug\net6.0\eShop.Data.dll
-H:\NET.CORE\eShopSolution\eShop.Data\bin\Debug\net6.0\eShop.Data.pdb
 H:\NET.CORE\eShopSolution\eShop.Data\bin\Debug\net6.0\eShop.Utilities.dll
 H:\NET.CORE\eShopSolution\eShop.Data\bin\Debug\net6.0\eShop.Utilities.pdb
 H:\NET.CORE\eShopSolution\eShop.Data\obj\Debug\net6.0\eShop.Data.csproj.AssemblyReference.cache
@@ -14,4 +13,5 @@ H:\NET.CORE\eShopSolution\eShop.Data\obj\Debug\net6.0\eShop.Data.dll
 H:\NET.CORE\eShopSolution\eShop.Data\obj\Debug\net6.0\refint\eShop.Data.dll
 H:\NET.CORE\eShopSolution\eShop.Data\obj\Debug\net6.0\eShop.Data.pdb
 H:\NET.CORE\eShopSolution\eShop.Data\obj\Debug\net6.0\eShop.Data.genruntimeconfig.cache
+H:\NET.CORE\eShopSolution\eShop.Data\bin\Debug\net6.0\eShop.Data.pdb
 H:\NET.CORE\eShopSolution\eShop.Data\obj\Debug\net6.0\ref\eShop.Data.dll
