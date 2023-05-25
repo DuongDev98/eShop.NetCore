@@ -1,4 +1,4 @@
-﻿using eShop.ViewModels.Catalog.Products.Dtos;
+﻿using eShop.ViewModels.Catalog.Products;
 
 namespace eShop.ViewModels.Utilities
 {

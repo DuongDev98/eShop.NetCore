@@ -194,7 +194,8 @@ namespace eShop.Data.Migrations
                     OriginalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Stock = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
                     ViewCount = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsFeatured = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -220,6 +221,22 @@ namespace eShop.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Promotions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Slides",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Slides", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -453,7 +470,7 @@ namespace eShop.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AppRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
-                values: new object[] { new Guid("f611bbfd-a34d-4f71-bdaf-1d373f8cb891"), "cfee47a5-2e00-4cc2-82df-46c086455b22", null, "admin", "admin" });
+                values: new object[] { new Guid("f611bbfd-a34d-4f71-bdaf-1d373f8cb891"), "dbe43697-1c6d-4088-9a51-9fad9dc3b453", null, "admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AppUserRoles",
@@ -463,7 +480,7 @@ namespace eShop.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AppUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Dob", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("f41f21f2-fe66-4df9-a2bc-cfe970f45479"), 0, "cc8dd676-92c2-4d10-b61e-bb88e9780606", new DateTime(1998, 2, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "duongdev98@gmail.com", true, "Duong", "Nguyen", false, null, "duongdev98@gmail.com", "admin", "AQAAAAEAACcQAAAAEP0Wgkg5Bh1tApXGZxs5PcsmGIJJq4E0mVQkkkdUffI3DgLX1G9Mj+CTqjA1tsKeag==", null, false, "", false, "admin" });
+                values: new object[] { new Guid("f41f21f2-fe66-4df9-a2bc-cfe970f45479"), 0, "108fae33-27e3-4cee-85e0-9d8e967b319f", new DateTime(1998, 2, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "duongdev98@gmail.com", true, "Duong", "Nguyen", false, null, "duongdev98@gmail.com", "admin", "AQAAAAEAACcQAAAAEGfgiz2djeDlXxpPXQBCqQ1oTqZXd8fco8uv/YByOlYim/+czvzxgr9ORPh++Ygr0g==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -484,9 +501,17 @@ namespace eShop.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Products",
-                columns: new[] { "Id", "DateCreated", "OriginalPrice", "Price" },
-                values: new object[] { 1, new DateTime(2023, 5, 16, 19, 18, 16, 260, DateTimeKind.Local).AddTicks(1339), 150000m, 200000m });
+                table: "Slides",
+                columns: new[] { "Id", "Description", "Image", "Name", "Url" },
+                values: new object[,]
+                {
+                    { 1, "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.", "/themes/images/carousel/1.png", "Second Thumbnail label", "#" },
+                    { 2, "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.", "/themes/images/carousel/2.png", "Second Thumbnail label", "#" },
+                    { 3, "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.", "/themes/images/carousel/3.png", "Second Thumbnail label", "#" },
+                    { 4, "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.", "/themes/images/carousel/4.png", "Second Thumbnail label", "#" },
+                    { 5, "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.", "/themes/images/carousel/5.png", "Second Thumbnail label", "#" },
+                    { 6, "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.", "/themes/images/carousel/6.png", "Second Thumbnail label", "#" }
+                });
 
             migrationBuilder.InsertData(
                 table: "CategoryTranslations",
@@ -497,20 +522,6 @@ namespace eShop.Data.Migrations
                     { 2, 1, "en", "Men shirt", "men-shirt", "The shirt products for men", "The shirt products for men" },
                     { 3, 2, "vi", "Áo nữ", "ao-nu", "Sản phẩm áo thời trang nữ", "Sản phẩm áo thời trang nữ" },
                     { 4, 2, "en", "Women shirt", "women-shirt", "The shirt products for women", "The shirt products for women" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "ProductInCategories",
-                columns: new[] { "CategoryId", "ProductId" },
-                values: new object[] { 1, 1 });
-
-            migrationBuilder.InsertData(
-                table: "ProductTranslations",
-                columns: new[] { "Id", "Description", "Details", "LanguageId", "Name", "ProductId", "SeoAlias", "SeoDescription", "SeoTitle" },
-                values: new object[,]
-                {
-                    { 1, "", "Áo sơ mi nam trắng Việt Tiến", "vi", "Áo sơ mi nam trắng Việt Tiến", 1, "ao-so-mi-nam-trang-viet-tien", "Áo sơ mi nam trắng Việt Tiến", "Áo sơ mi nam trắng Việt Tiến" },
-                    { 2, "", "Viet Tien Men T-Shirt", "en", "Viet Tien Men T-Shirt", 1, "viet-tien-men-t-shirt", "Viet Tien Men T-Shirt", "Viet Tien Men T-Shirt" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -616,6 +627,9 @@ namespace eShop.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Promotions");
+
+            migrationBuilder.DropTable(
+                name: "Slides");
 
             migrationBuilder.DropTable(
                 name: "Transactions");

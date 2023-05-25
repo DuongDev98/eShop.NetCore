@@ -1,3 +1,9 @@
+H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\eShop.BackendApi.csproj.AssemblyReference.cache
+H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\eShop.BackendApi.GeneratedMSBuildEditorConfig.editorconfig
+H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\eShop.BackendApi.AssemblyInfoInputs.cache
+H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\eShop.BackendApi.AssemblyInfo.cs
+H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\eShop.BackendApi.csproj.CoreCompileInputs.cache
+H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\eShop.BackendApi.MvcApplicationPartsAssemblyInfo.cache
 H:\NET.CORE\eShopSolution\eShop.BackendApi\bin\Debug\net6.0\appsettings.Development.json
 H:\NET.CORE\eShopSolution\eShop.BackendApi\bin\Debug\net6.0\appsettings.json
 H:\NET.CORE\eShopSolution\eShop.BackendApi\bin\Debug\net6.0\eShop.BackendApi.staticwebassets.runtime.json
@@ -83,13 +89,7 @@ H:\NET.CORE\eShopSolution\eShop.BackendApi\bin\Debug\net6.0\eShop.Application.pd
 H:\NET.CORE\eShopSolution\eShop.BackendApi\bin\Debug\net6.0\eShop.Data.pdb
 H:\NET.CORE\eShopSolution\eShop.BackendApi\bin\Debug\net6.0\eShop.Utilities.pdb
 H:\NET.CORE\eShopSolution\eShop.BackendApi\bin\Debug\net6.0\eShop.ViewModels.pdb
-H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\eShop.BackendApi.csproj.AssemblyReference.cache
-H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\eShop.BackendApi.GeneratedMSBuildEditorConfig.editorconfig
-H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\eShop.BackendApi.AssemblyInfoInputs.cache
-H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\eShop.BackendApi.AssemblyInfo.cs
-H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\eShop.BackendApi.csproj.CoreCompileInputs.cache
 H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\eShop.BackendApi.MvcApplicationPartsAssemblyInfo.cs
-H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\eShop.BackendApi.MvcApplicationPartsAssemblyInfo.cache
 H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\staticwebassets\msbuild.eShop.BackendApi.Microsoft.AspNetCore.StaticWebAssets.props
 H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\staticwebassets\msbuild.build.eShop.BackendApi.props
 H:\NET.CORE\eShopSolution\eShop.BackendApi\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.eShop.BackendApi.props

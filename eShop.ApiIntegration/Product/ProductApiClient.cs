@@ -1,5 +1,5 @@
 ﻿using eShop.ApiIntegration.Common;
-using eShop.ViewModels.Catalog.Products.Dtos;
+using eShop.ViewModels.Catalog.Products;
 using eShop.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -79,6 +79,11 @@ namespace eShop.ApiIntegration.Product
         public async Task<ApiResult<ProductVm>> GetById(int productId, string languageId)
         {
             return await GetAsync<ProductVm>($"products/{productId}/{languageId}");
+        }
+
+        public async Task<ApiResult<bool>> Fake()
+        {
+            return await GetAsync<bool>($"products/fake");
         }
     }
 }

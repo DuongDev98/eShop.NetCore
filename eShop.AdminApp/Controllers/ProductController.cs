@@ -1,13 +1,10 @@
-﻿using Azure.Core;
-using eShop.ApiIntegration.Category;
+﻿using eShop.ApiIntegration.Category;
 using eShop.ApiIntegration.Product;
 using eShop.Utilities.Contants;
 using eShop.ViewModels.Catalog.Categories;
-using eShop.ViewModels.Catalog.Products.Dtos;
-using eShop.ViewModels.System.Users;
+using eShop.ViewModels.Catalog.Products;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Globalization;
 
 namespace eShop.AdminApp.Controllers
 {
@@ -167,6 +164,12 @@ namespace eShop.AdminApp.Controllers
             ModelState.AddModelError("", result.message);
 
             return View();
+        }
+
+        public async Task<IActionResult> Fake()
+        {
+            await _productApiClient.Fake();
+            return Content("ok");
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using eShop.ViewModels.Common;
 
-namespace eShop.ViewModels.Catalog.Products.Dtos
+namespace eShop.ViewModels.Catalog.Products
 {
     public class GetProductRequest : PagingRequestBase
     {

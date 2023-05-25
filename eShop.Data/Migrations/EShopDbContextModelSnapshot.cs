@@ -183,7 +183,7 @@ namespace eShop.Data.Migrations
                         new
                         {
                             Id = new Guid("f611bbfd-a34d-4f71-bdaf-1d373f8cb891"),
-                            ConcurrencyStamp = "7e3a40c6-af7f-4725-ac41-8b2829628aec",
+                            ConcurrencyStamp = "dbe43697-1c6d-4088-9a51-9fad9dc3b453",
                             Name = "admin",
                             NormalizedName = "admin"
                         });
@@ -257,7 +257,7 @@ namespace eShop.Data.Migrations
                         {
                             Id = new Guid("f41f21f2-fe66-4df9-a2bc-cfe970f45479"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6539e8a3-1678-4cb6-8377-5a49f268a5b1",
+                            ConcurrencyStamp = "108fae33-27e3-4cee-85e0-9d8e967b319f",
                             Dob = new DateTime(1998, 2, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "duongdev98@gmail.com",
                             EmailConfirmed = true,
@@ -266,7 +266,7 @@ namespace eShop.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "duongdev98@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAENUHWI0HxHrYT8c/IUiltWeo9hyiylBSvv9goYLKYM7QyUaXSBu/sBmC/eD8l8N6dg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGfgiz2djeDlXxpPXQBCqQ1oTqZXd8fco8uv/YByOlYim/+czvzxgr9ORPh++Ygr0g==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -583,6 +583,9 @@ namespace eShop.Data.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsFeatured")
+                        .HasColumnType("bit");
+
                     b.Property<decimal>("OriginalPrice")
                         .HasColumnType("decimal(18,2)");
 
@@ -599,24 +602,9 @@ namespace eShop.Data.Migrations
                         .HasColumnType("int")
                         .HasDefaultValue(0);
 
-                    b.Property<bool>("isFeatured")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
 
                     b.ToTable("Products", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateCreated = new DateTime(2023, 5, 17, 0, 1, 6, 966, DateTimeKind.Local).AddTicks(7043),
-                            OriginalPrice = 150000m,
-                            Price = 200000m,
-                            Stock = 0,
-                            ViewCount = 0,
-                            isFeatured = false
-                        });
                 });
 
             modelBuilder.Entity("eShop.Data.Entities.ProductImage", b =>
@@ -670,13 +658,6 @@ namespace eShop.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductInCategories", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            CategoryId = 1,
-                            ProductId = 1
-                        });
                 });
 
             modelBuilder.Entity("eShop.Data.Entities.ProductTranslation", b =>
@@ -730,32 +711,6 @@ namespace eShop.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductTranslations", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "",
-                            Details = "Áo sơ mi nam trắng Việt Tiến",
-                            LanguageId = "vi",
-                            Name = "Áo sơ mi nam trắng Việt Tiến",
-                            ProductId = 1,
-                            SeoAlias = "ao-so-mi-nam-trang-viet-tien",
-                            SeoDescription = "Áo sơ mi nam trắng Việt Tiến",
-                            SeoTitle = "Áo sơ mi nam trắng Việt Tiến"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "",
-                            Details = "Viet Tien Men T-Shirt",
-                            LanguageId = "en",
-                            Name = "Viet Tien Men T-Shirt",
-                            ProductId = 1,
-                            SeoAlias = "viet-tien-men-t-shirt",
-                            SeoDescription = "Viet Tien Men T-Shirt",
-                            SeoTitle = "Viet Tien Men T-Shirt"
-                        });
                 });
 
             modelBuilder.Entity("eShop.Data.Entities.Promotion", b =>

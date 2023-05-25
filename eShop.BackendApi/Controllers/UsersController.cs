@@ -1,5 +1,5 @@
 ﻿using eShop.Application.System.Users;
-using eShop.ViewModels.Catalog.Products.Dtos;
+using eShop.ViewModels.Catalog.Products;
 using eShop.ViewModels.System.Roles;
 using eShop.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authorization;

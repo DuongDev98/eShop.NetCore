@@ -13,7 +13,12 @@ namespace eShop.ApiIntegration.Category
 
         public async Task<ApiResult<List<CategoryVm>>> GetAll(string languageId)
         {
-            return await GetAsync<List<CategoryVm>>("categories/" + languageId.ToString());
+            return await GetAsync<List<CategoryVm>>("categories/" + languageId);
+        }
+
+        public async Task<ApiResult<CategoryVm>> GetById(int id, string languageId)
+        {
+            return await GetAsync<CategoryVm>("categories/" + id + "/" + languageId);
         }
     }
 }

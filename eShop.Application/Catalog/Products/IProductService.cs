@@ -1,5 +1,5 @@
 ﻿using eShop.ViewModels.Catalog.ProductImage;
-using eShop.ViewModels.Catalog.Products.Dtos;
+using eShop.ViewModels.Catalog.Products;
 using eShop.ViewModels.Common;
 
 namespace eShop.Application.Catalog.Products
@@ -24,5 +24,7 @@ namespace eShop.Application.Catalog.Products
         Task<ApiResult<PagedResult<ProductVm>>> GetAll(GetProductRequest request);
         Task<ApiResult<List<ProductVm>>> GetListFeature(string languageId, int take);
         Task<ApiResult<List<ProductVm>>> GetListLatest(string languageId, int take);
+
+        Task<ApiResult<bool>> Fake();
     }
 }

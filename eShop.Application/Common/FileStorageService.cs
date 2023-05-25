@@ -4,8 +4,8 @@ namespace eShop.Application.Common
 {
     public class FileStorageService : IStorageService
     {
-        private readonly string _userContentFolder;
-        private const string USER_CONTENT_FOLDER_NAME = "user-content";
+        public readonly string _userContentFolder;
+        public const string USER_CONTENT_FOLDER_NAME = "user-content";
 
         public FileStorageService(IWebHostEnvironment webHostEnvironment)
         {
@@ -15,6 +15,11 @@ namespace eShop.Application.Common
         public string GetFileUrl(string fileName)
         {
             return $"/{USER_CONTENT_FOLDER_NAME}/{fileName}";
+        }
+
+        public string GetFilePath(string fileName)
+        {
+            return Path.Combine(_userContentFolder, fileName);
         }
 
         public async Task SaveFileAsync(Stream mediaBinaryStream, string fileName)
