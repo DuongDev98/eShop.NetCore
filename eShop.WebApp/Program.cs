@@ -1,8 +1,10 @@
 using eShop.ApiIntegration.Category;
 using eShop.ApiIntegration.Product;
 using eShop.ApiIntegration.Slide;
+using eShop.ApiIntegration.User;
 using eShop.WebApp.LocalizationResources;
 using LazZiya.ExpressLocalization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 
@@ -30,7 +32,9 @@ builder.Services.AddControllersWithViews()
     });
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
-//
+//login
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+.AddCookie(options => options.LoginPath = "/vi/Account/Login");
 
 //Session
 builder.Services.AddDistributedMemoryCache();
@@ -45,6 +49,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient<ISlideApiClient, SlideApiClient>();
 builder.Services.AddTransient<ICategoryApiClient, CategoryApiClient>();
+builder.Services.AddTransient<IUserApiClient, UserApiClient>();
 builder.Services.AddTransient<IProductApiClient, ProductApiClient>();
 
 var app = builder.Build();
@@ -55,6 +60,8 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
 }
 app.UseStaticFiles();
+
+app.UseAuthentication();
 
 app.UseRouting();
 

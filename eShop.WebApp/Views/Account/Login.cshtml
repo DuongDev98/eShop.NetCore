@@ -1,0 +1,64 @@
+﻿@model eShop.ViewModels.System.Users.LoginRequest
+@using LazZiya.ExpressLocalization
+@inject ISharedCultureLocalizer _loc
+@{
+	ViewData["Title"] = _loc.GetLocalizedString("Login");
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+	<script>
+		$(document).ready(function () {
+			setTimeout(() => {
+				$('#alertMessage').fadeOut("slow");
+			}, 2000);
+		});
+	</script>
+}
+
+<div class="span9">
+	<ul class="breadcrumb">
+		<li><a href="index.html">Home</a> <span class="divider">/</span></li>
+		<li class="active">@ViewData["Title"]</li>
+	</ul>
+	<h3><localize>Login</localize></h3>
+	<hr class="soft" />
+
+	<div class="row">
+		<div class="span4">
+			<div class="well">
+				<h5><localize>ALREADY REGISTERED</localize> ?</h5>
+
+				@if (TempData["successMessage"] != null)
+				{
+					<div class="alert alert-success" role="alert" id="alertMessage">
+						@TempData["successMessage"]
+					</div>
+				}
+
+				<form asp-action="Login">
+					<div asp-validation-summary="All" class="text-danger"></div>
+					<div class="control-group">
+						<label class="control-label" for="ipUsername"><localize>Username</localize></label>
+						<div class="controls">
+							<input class="span3" type="text" id="ipUsername" placeholder="@_loc.GetLocalizedString("Username")" asp-for="UserName">
+							<span class="text-danger" asp-validation-for="UserName"></span>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="ipPassword"><localize>Password</localize></label>
+						<div class="controls">
+							<input type="password" class="span3" id="ipPassword" placeholder="@_loc.GetLocalizedString("Password")" asp-for="PassWord">
+							<span class="text-danger" asp-validation-for="PassWord"></span>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit" class="btn"><localize>Login</localize></button><a href="/@CultureInfo.CurrentCulture.Name/Account/Register"> <localize>Register</localize>?</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -244,9 +244,21 @@
               "target": "Package",
               "version": "[6.0.16, )"
             },
+            "Microsoft.IdentityModel.Logging": {
+              "target": "Package",
+              "version": "[6.21.0, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.21.0, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.13, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.21.0, )"
             }
           },
           "imports": [

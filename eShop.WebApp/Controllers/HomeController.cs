@@ -47,12 +47,13 @@ namespace eShop.WebApp.Controllers
 
         public IActionResult SetCultureCookie(string cltr, string returnUrl)
         {
+            string culture = CultureInfo.CurrentCulture.Name;
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(cltr)),
                 new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
             );
-            return LocalRedirect(returnUrl);
+            return LocalRedirect(returnUrl.Replace(culture, cltr));
         }
     }
 }
