@@ -30,7 +30,7 @@ namespace eShop.Application.System.Users
             var user = await _userManager.FindByNameAsync(request.UserName);
             if (user == null) return new ApiErrorResult<string>("Tài khoản không tồn tại");
 
-            var result = await _signInManager.PasswordSignInAsync(user, request.PassWord, request.RememberMe, true);
+            var result = await _signInManager.PasswordSignInAsync(user, request.PassWord, request.RememberMe??false, true);
             if (!result.Succeeded)
             {
                 return new ApiErrorResult<string>("Mật khẩu đăng nhập không chính xác");
@@ -95,12 +95,15 @@ namespace eShop.Application.System.Users
 
         public async Task<ApiResult<bool>> Register(RegisterRequest request)
         {
-            var user = await _userManager.FindByNameAsync(request.UserName);
+            if (request.PassWord != request.ConfirmPass) return new ApiErrorResult<bool>("Xác nhận mật khẩu chưa trùng khớp");
+
+			var user = await _userManager.FindByNameAsync(request.UserName);
             if (user != null) return new ApiErrorResult<bool>("Tài khoản đã tồn tại");
 
             user = await _userManager.FindByEmailAsync(request.Email);
             if (user != null) return new ApiErrorResult<bool>("Email đã tồn tại");
 
+			var hasher = new PasswordHasher<AppUser>();
             user = new AppUser()
             {
                 Dob = request.Dob,
@@ -109,6 +112,7 @@ namespace eShop.Application.System.Users
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 UserName = request.UserName,
+                PasswordHash = hasher.HashPassword(null, request.PassWord)
             };
 
             var result = await _userManager.CreateAsync(user);

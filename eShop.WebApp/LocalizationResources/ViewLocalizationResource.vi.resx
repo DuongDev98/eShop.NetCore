@@ -121,6 +121,9 @@
     <value>Thêm vào</value>
     <comment>home/index</comment>
   </data>
+  <data name="ALREADY REGISTERED" xml:space="preserve">
+    <value>ĐÃ CÓ TÀI KHOẢN</value>
+  </data>
   <data name="CategoryUrl" xml:space="preserve">
     <value>danh-muc</value>
     <comment>home/index</comment>
@@ -141,6 +144,9 @@
     <value>Sản phẩm nổi bật</value>
     <comment>home/index</comment>
   </data>
+  <data name="Forget password" xml:space="preserve">
+    <value>Quên mật khẩu</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Trang chủ</value>
     <comment>Trang chủ</comment>
@@ -152,6 +158,12 @@
   <data name="Login" xml:space="preserve">
     <value>Đăng nhập</value>
     <comment>header</comment>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Đăng xuất</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mật khẩu</value>
   </data>
   <data name="Product Details" xml:space="preserve">
     <value>Chi tiết sản phẩm</value>
@@ -169,9 +181,15 @@
     <value>san-pham</value>
     <comment>home/index</comment>
   </data>
+  <data name="Register" xml:space="preserve">
+    <value>Đăng ký</value>
+  </data>
   <data name="Specials Offer" xml:space="preserve">
     <value>Khuyến mại</value>
     <comment>header</comment>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Tài khoản</value>
   </data>
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>

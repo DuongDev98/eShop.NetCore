@@ -29,11 +29,17 @@
     <div id="header">
         <div class="container">
             <div id="welcomeLine" class="row">
-                <div class="span6"><localize>Welcome!</localize><strong> User</strong></div>
+                <div class="span6">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <localize>Welcome!</localize>
+                        <strong> @User.Identity.Name</strong>
+                    }
+                </div>                
                 <div class="span6">
                     <div class="pull-right">
 
-                        <language-nav cookie-handler-url="@Url.Action("SetCultureCookie", "Home", new { area="", cltr="{0}", returnUrl="{1}" })"></language-nav>
+                        <language-nav cookie-handler-url="@Url.Action("SetCultureCookie", "Home", new { area="", cltr="{0}", returnUrl=Context.Request.Path })"></language-nav>
 
                         @*	<a href="product_summary.html"><span class="">Tiếng Việt</span></a>
                         <a href="product_summary.html"><span class="">Tiếng Anh</span></a>*@
@@ -71,32 +77,18 @@
                         <li class=""><a asp-route-culture="@culture" localize-content>Delivery</a></li>
                         <li class=""><a asp-route-culture="@culture" localize-content>Contact</a></li>
                         <li class="">
-                            <a href="#login" role="button" data-toggle="modal" style="padding-right:0">
-                                <span class="btn btn-large btn-success" localize-content>Login</span>
-                            </a>
-                            <div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h3>Login Block</h3>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="form-horizontal loginFrm">
-                                        <div class="control-group">
-                                            <input type="text" id="inputEmail" placeholder="Email">
-                                        </div>
-                                        <div class="control-group">
-                                            <input type="password" id="inputPassword" placeholder="Password">
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="checkbox">
-                                                <input type="checkbox"> Remember me
-                                            </label>
-                                        </div>
-                                    </form>
-                                    <button type="submit" class="btn btn-success">Sign in</button>
-                                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                                </div>
-                            </div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/@culture/Account/Logout" style="padding-right:0">
+                                    <span class="btn btn-large btn-danger" localize-content>Logout</span>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="/@culture/Account/Login" style="padding-right:0">
+                                    <span class="btn btn-large btn-success" localize-content>Login</span>
+                                </a>
+                            }
                         </li>
                     </ul>
                 </div>
@@ -160,6 +152,8 @@
 
     <script src="/themes/js/bootshop.js"></script>
     <script src="/themes/js/jquery.lightbox-0.5.js"></script>
+
+    @RenderSection("Scripts", false);
 
     <!-- Themes switcher section ============================================================================================= -->
     <div id="secectionBox">

@@ -557,3 +557,8 @@ H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\refint\eShop.WebApp.dll
 H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\eShop.WebApp.pdb
 H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\eShop.WebApp.genruntimeconfig.cache
 H:\NET.CORE\eShopSolution\eShop.WebApp\obj\Debug\net6.0\ref\eShop.WebApp.dll
+H:\NET.CORE\eShopSolution\eShop.WebApp\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+H:\NET.CORE\eShopSolution\eShop.WebApp\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+H:\NET.CORE\eShopSolution\eShop.WebApp\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+H:\NET.CORE\eShopSolution\eShop.WebApp\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+H:\NET.CORE\eShopSolution\eShop.WebApp\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

@@ -121,6 +121,9 @@
     <value>Add to</value>
     <comment>home/index</comment>
   </data>
+  <data name="ALREADY REGISTERED" xml:space="preserve">
+    <value>ALREADY REGISTERED</value>
+  </data>
   <data name="CategoryUrl" xml:space="preserve">
     <value>categories</value>
     <comment>home/index</comment>
@@ -141,6 +144,9 @@
     <value>Featured Products</value>
     <comment>home/index</comment>
   </data>
+  <data name="Forget password" xml:space="preserve">
+    <value>Forget password</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
     <comment>Trang chủ</comment>
@@ -152,6 +158,12 @@
   <data name="Login" xml:space="preserve">
     <value>Login</value>
     <comment>header</comment>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
   </data>
   <data name="Product Details" xml:space="preserve">
     <value>Product Details</value>
@@ -169,9 +181,15 @@
     <value>products</value>
     <comment>home/index</comment>
   </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
   <data name="Specials Offer" xml:space="preserve">
     <value>Specials Offer</value>
     <comment>header</comment>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
   </data>
   <data name="Vietnamese" xml:space="preserve">
     <value>Vietnamese</value>
