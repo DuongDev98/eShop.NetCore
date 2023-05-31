@@ -1,4 +1,5 @@
 using eShop.Application.Catalog.Categories;
+using eShop.Application.Catalog.Orders;
 using eShop.Application.Catalog.Products;
 using eShop.Application.Common;
 using eShop.Application.System.Roles;
@@ -39,6 +40,7 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<ISlideService, SlideService>();
+builder.Services.AddTransient<IOrderService, OrderService>();
 
 //validator cach 1
 //builder.Services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();

@@ -13,5 +13,10 @@
             public const string DefaultLanguageId = "DefaultLanguageId";
             public const string ImagePath = "/user-content/";
         }
+
+        public class WebSettings
+        {
+            public const string CartName = "Cart";
+        }
     }
 }

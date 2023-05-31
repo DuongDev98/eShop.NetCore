@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace eShop.Data.Entities
+﻿namespace eShop.Data.Entities
 {
     public class Cart
     {

@@ -124,6 +124,9 @@
   <data name="ALREADY REGISTERED" xml:space="preserve">
     <value>ALREADY REGISTERED</value>
   </data>
+  <data name="Cart" xml:space="preserve">
+    <value>Cart</value>
+  </data>
   <data name="CategoryUrl" xml:space="preserve">
     <value>categories</value>
     <comment>home/index</comment>
@@ -135,6 +138,9 @@
   <data name="Delivery" xml:space="preserve">
     <value>Delivery</value>
     <comment>header</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
@@ -151,6 +157,9 @@
     <value>Home</value>
     <comment>Trang chủ</comment>
   </data>
+  <data name="Items in your cart" xml:space="preserve">
+    <value>Items in your cart</value>
+  </data>
   <data name="Latest Products" xml:space="preserve">
     <value>Latest Products</value>
     <comment>home/index</comment>
@@ -164,6 +173,12 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
   </data>
   <data name="Product Details" xml:space="preserve">
     <value>Product Details</value>
@@ -181,12 +196,18 @@
     <value>products</value>
     <comment>home/index</comment>
   </data>
+  <data name="Quantity/Update" xml:space="preserve">
+    <value>Quantity/Update</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
   <data name="Specials Offer" xml:space="preserve">
     <value>Specials Offer</value>
     <comment>header</comment>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>

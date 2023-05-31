@@ -2,7 +2,24 @@
 @{
     ViewData["Title"] = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string culture = CultureInfo.CurrentCulture.Name;
+    var userId = ViewData["UserId"];
 }
+
+@section Scripts
+    {
+    <script>
+        $('body').on('click', '.btn-add-product-qty', function () {
+            let productId = $(this).closest('.product').attr('data-id');
+            alert(productId);
+            //$.get('/@culture/Cart/Them?userId=@userId&productId=', function (data) {
+
+            //});
+        });
+    </script>
+}
+
 <ul class="breadcrumb">
     <li><a href="/"><localize>Home</localize></a> <span class="divider">/</span></li>
     <li><a href="/"><localize>Products</localize></a> <span class="divider">/</span></li>
@@ -43,19 +60,19 @@
             </div>
         </div>
     </div>
-    <div class="span6">
+    <div class="span6 product" data-id="@Model.Product.Id">
         <h3>@Model.Product.Name</h3>
         <small>@Model.Product.Details</small>
         <hr class="soft" />
-        <form class="form-horizontal qtyFrm">
+        <div class="form-horizontal qtyFrm">
             <div class="control-group">
                 <label class="control-label"><span>@Model.Product.Price.ToString("n0")</span></label>
-                <div class="controls">
+                <div class="controls product" data-id="@Model.Product.Id">
                     <input type="number" class="span1" placeholder="Qty." />
-                    <button type="submit" class="btn btn-large btn-primary pull-right"><localize>Add to</localize><i class=" icon-shopping-cart"></i></button>
+                    <button type="button" class="btn btn-large btn-primary pull-right btn-add-product-sl"><localize>Add to</localize><i class=" icon-shopping-cart"></i></button>
                 </div>
             </div>
-        </form>
+        </div>
 
         <hr class="soft" />
         <h4>@Model.Product.Stock.ToString("n0") items in stock</h4>

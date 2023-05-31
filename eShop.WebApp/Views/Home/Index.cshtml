@@ -1,7 +1,5 @@
-﻿@using LazZiya.ExpressLocalization
-@using eShop.ViewModels.Utilities
+﻿@using eShop.ViewModels.Utilities
 @using eShop.ViewModels.Catalog.Products
-@inject ISharedCultureLocalizer _loc
 @model HomePageVm
 @{
     ViewData["Title"] = "Home Page";
@@ -62,7 +60,7 @@
                                         <i class="tag"></i>
                                         <a href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"><img src="@(ViewData["baseUrl"] + item.ThumbnailImage)" alt=""></a>
                                         <div class="caption">
-                                            <h5>@item.Name</h5>
+                                            <h5>@item.Id: @item.Name</h5>
                                             <h4><a class="btn" href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"><localize>VIEW</localize></a> <span class="pull-right">@item.Price.ToString("n0")</span></h4>
                                         </div>
                                     </div>
@@ -81,15 +79,19 @@
 <ul class="thumbnails">
     @foreach (var item in Model.Latests)
     {
-        <li class="span3">
+        <li class="span3 product" data-id="@item.Id">
             <div class="thumbnail">
                 <a href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"><img src="@(ViewData["baseUrl"] + item.ThumbnailImage)" alt="" /></a>
                 <div class="caption">
-                    <h5>@item.Name</h5>
+                    <h5>@item.Id: @item.Name</h5>
                     <div>
                         @Html.Raw(@item.Description)
                     </div>
-                    <h4 style="text-align:center"><a class="btn" href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#"><localize>Add to</localize><i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@item.Price.ToString("n0")</a></h4>
+                    <div style="text-align:center">
+                        <a class="btn" href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"> <i class="icon-zoom-in"></i></a>
+                        <div class="btn btn-add-product" href="#"><localize>Add to</localize><i class="icon-shopping-cart"></i></div>
+                        <a class="btn btn-primary" href="#">@item.Price.ToString("n0")</a>
+                    </div>
                 </div>
             </div>
         </li>

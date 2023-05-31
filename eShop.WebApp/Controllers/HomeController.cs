@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Globalization;
+using System.Security.Claims;
 
 namespace eShop.WebApp.Controllers
 {
@@ -26,7 +27,6 @@ namespace eShop.WebApp.Controllers
         {
             string baseUrl = _configuration.GetValue<string>(SystemConstants.AppSettings.BaseAddress);
             ViewData["baseUrl"] = baseUrl;
-
             var culture = CultureInfo.CurrentCulture.Name;
             var slideResult = await _slideApiClient.GetAll();
             var featureResult = await _productApiClient.GetListFeature(culture, 10);

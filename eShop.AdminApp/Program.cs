@@ -4,6 +4,8 @@ using eShop.ApiIntegration.Product;
 using eShop.ApiIntegration.Role;
 using eShop.ApiIntegration.User;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,7 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 .AddCookie(options=>options.LoginPath="/User/Login");
+builder.Services.Configure<IdentityOptions>(options => options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

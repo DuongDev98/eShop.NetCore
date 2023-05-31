@@ -2,8 +2,8 @@
 @{
     ViewData["Title"] = "Category";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string culture = CultureInfo.CurrentCulture.Name;
 }
-
 <ul class="breadcrumb">
     <li><a href="index.html"><localize>Home</localize></a> <span class="divider">/</span></li>
     <li class="active"><localize>Products Name</localize></li>
@@ -37,7 +37,7 @@
         {
             foreach (var item in Model.PagedResultProduct.Items)
             {
-                <div class="row">
+                <div class="row product" data-id="@item.Id">
                     <div class="span2">
                         <img src="@(ViewData["baseUrl"] + "/" + item.ThumbnailImage)" alt="" />
                     </div>
@@ -50,17 +50,17 @@
                         <br class="clr" />
                     </div>
                     <div class="span3 alignR">
-                        <form class="form-horizontal qtyFrm">
+                        <div class="form-horizontal qtyFrm">
                             <h3>@item.Price.ToString("n0")</h3>
 
                             @*     <label class="checkbox">
                     <input type="checkbox">  Adds product to compair
                     </label><br />*@
 
-                            <a href="product_details.html" class="btn btn-large btn-primary"><localize>Add to</localize><i class=" icon-shopping-cart"></i></a>
-                            <a href="product_details.html" class="btn btn-large"><i class="icon-zoom-in"></i></a>
+                            <div class="btn btn-large btn-primary btn-add-product"><localize>Add to</localize><i class="icon-shopping-cart"></i></div>
+                            @*<a href="product_details.html" class="btn btn-large"><i class="icon-zoom-in"></i></a>*@
 
-                        </form>
+                        </div>
                     </div>
                 </div>
                 <hr class="soft" />
@@ -75,13 +75,17 @@
             {
                 foreach (var item in Model.PagedResultProduct.Items)
                 {
-                    <li class="span3">
+                    <li class="span3 product" data-id="@item.Id">
                         <div class="thumbnail">
                             <a href="product_details.html"><img src="@(ViewData["baseUrl"] + item.ThumbnailImage)" alt="" /></a>
                             <div class="caption">
-                                <h5>@item.Name</h5>
+                                <h5>@item.Id: @item.Name</h5>
                                 @Html.Raw(item.Details)
-                                <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#"><localize>Add to</localize><i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">@item.Price.ToString("n0")</a></h4>
+                                <div style="text-align:center">
+                                    <a class="btn" href="/@culture/@_loc.GetLocalizedString("ProductUrl")/@item.Id"> <i class="icon-zoom-in"></i></a>
+                                    <div class="btn btn-add-product"><localize>Add to</localize><i class="icon-shopping-cart"></i></div>
+                                    <a class="btn btn-primary" href="#">@item.Price.ToString("n0")</a>
+                                </div>
                             </div>
                         </div>
                     </li>

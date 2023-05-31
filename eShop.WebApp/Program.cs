@@ -1,12 +1,15 @@
 using eShop.ApiIntegration.Category;
+using eShop.ApiIntegration.Order;
 using eShop.ApiIntegration.Product;
 using eShop.ApiIntegration.Slide;
 using eShop.ApiIntegration.User;
 using eShop.WebApp.LocalizationResources;
 using LazZiya.ExpressLocalization;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +38,7 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 //login
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 .AddCookie(options => options.LoginPath = "/vi/Account/Login");
+builder.Services.Configure<IdentityOptions>(options => options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 
 //Session
 builder.Services.AddDistributedMemoryCache();
@@ -51,6 +55,7 @@ builder.Services.AddTransient<ISlideApiClient, SlideApiClient>();
 builder.Services.AddTransient<ICategoryApiClient, CategoryApiClient>();
 builder.Services.AddTransient<IUserApiClient, UserApiClient>();
 builder.Services.AddTransient<IProductApiClient, ProductApiClient>();
+builder.Services.AddTransient<IOrderApiClient, OrderApiClient>();
 
 var app = builder.Build();
 

@@ -1,0 +1,100 @@
+﻿@using eShop.ViewModels.Catalog.Carts
+@model CartPageVm
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            setTimeout(() => {
+                $('#alertMessage').fadeOut("slow");
+            }, 2000);
+        });
+
+        $('body').on("click", '.btnTang', function () {
+            let btnTang = $(this);
+            let userId = '@User.FindFirstValue(ClaimTypes.NameIdentifier)';
+            let productId = btnTang.closest('.product').attr('data-id');
+            $.get('/@(CultureInfo.CurrentCulture.Name)/Cart/Tang?userId=' + userId + '&productId=' + productId, function (data) {
+                if (data == "ok") {
+                    let ipSoLuong = btnTang.closest('.product').find('.ipSoLuong');
+                    let sl = parseInt(ipSoLuong.val()) + 1;
+                    ipSoLuong.val(sl);
+                } else {
+                    alert(data);
+                }
+            });
+        });
+        $('body').on("click", '.btnGiam', function () {
+            let btnGiam = $(this);
+            let userId = '@User.FindFirstValue(ClaimTypes.NameIdentifier)';
+            let productId = btnGiam.closest('.product').attr('data-id');
+            $.get('/@(CultureInfo.CurrentCulture.Name)/Cart/Giam?userId=' + userId + '&productId=' + productId, function (data) {
+                if (data == "ok") {
+                    let ipSoLuong = btnGiam.closest('.product').find('.ipSoLuong');
+                    let sl = parseInt(ipSoLuong.val()) - 1;
+                    if (sl > 0) ipSoLuong.val(sl);
+                } else {
+                    alert(data);
+                }
+            });
+        });
+        $('body').on("click", '.btnXoa', function () {
+            let btnXoa = $(this);
+            let userId = '@User.FindFirstValue(ClaimTypes.NameIdentifier)';
+            let productId = btnXoa.closest('.product').attr('data-id');
+            $.get('/@(CultureInfo.CurrentCulture.Name)/Cart/Xoa?userId=' + userId + '&productId=' + productId, function (data) {
+                if (data == "ok") {
+                    btnXoa.closest('.product').remove();
+                } else {
+                    alert(data);
+                }
+            });
+        });
+    </script>
+}
+
+@{
+    if (ViewData["successMessage"] != null)
+    {
+        <div id="alertMessage" class="alert alert-success" role="alert">
+            @ViewData["successMessage"]
+        </div>
+    }
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th><localize>Product</localize></th>
+            <th><localize>Description</localize>Description</th>
+            <th><localize>Quantity/Update</localize></th>
+            <th><localize>Price</localize></th>
+            <th><localize>Total</localize></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (CartVm item in Model.Carts)
+        {
+            <tr class="product" data-id="@item.ProductId">
+                <td><img width="60" src="@(ViewData["BaseAddress"] + item.ThumbnailImage)" alt="" /></td>
+                <td>@item.ProductId: @item.ProductName</td>
+                <td>
+                    <div class="input-append"><input class="span1 ipSoLuong" style="max-width:34px" placeholder="1" size="16" type="number" min="0" value="@item.Quantity"><button class="btn btnGiam" type="button"><i class="icon-minus"></i></button><button class="btn btnTang" type="button"><i class="icon-plus"></i></button><button class="btn btn-danger btnXoa" type="button"><i class="icon-remove icon-white"></i></button></div>
+                </td>
+                <td>@item.Price.ToString("n0")</td>
+                <td>@((item.Price * item.Quantity).ToString("n0"))</td>
+            </tr>
+        }
+        <tr>
+            <td colspan="4" style="text-align:right"><strong><localize>Total</localize> = </strong></td>
+            <td class="label label-important" style="display:block"> <strong>@Model.Total.ToString("n0")</strong></td>
+        </tr>
+    </tbody>
+</table>
+
+<div>
+    <a class="btn btn-success" href="/@CultureInfo.CurrentCulture.Name/Order/Create">Tạo đơn hàng</a>
+</div>

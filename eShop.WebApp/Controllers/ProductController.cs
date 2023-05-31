@@ -5,6 +5,7 @@ using eShop.ViewModels.Catalog.Categories;
 using eShop.ViewModels.Catalog.Products;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
+using System.Security.Claims;
 
 namespace eShop.WebApp.Controllers
 {
@@ -28,7 +29,6 @@ namespace eShop.WebApp.Controllers
         public async Task<IActionResult> Category(int id, GetProductRequest request)
         {
             ViewData["baseUrl"] = _configuration.GetValue<string>(SystemConstants.AppSettings.BaseAddress);
-
             request.categoryId = id;
             request.languageId = CultureInfo.CurrentCulture.Name;
             if (request.pageIndex == 0) request.pageIndex = 1;
@@ -48,7 +48,6 @@ namespace eShop.WebApp.Controllers
         public async Task<IActionResult> Detail(int id)
         {
             ViewData["baseUrl"] = _configuration.GetValue<string>(SystemConstants.AppSettings.BaseAddress);
-
             var productResult = await _productApiClient.GetById(id, CultureInfo.CurrentCulture.Name);
             if (!productResult.success) return BadRequest(productResult.message);
 

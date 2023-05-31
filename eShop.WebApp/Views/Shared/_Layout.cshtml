@@ -1,5 +1,5 @@
 ﻿@{
-    var culture = CultureInfo.CurrentCulture.Name;
+    string culture = CultureInfo.CurrentCulture.Name;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +59,7 @@
                     <span class="icon-bar"></span>
                 </a>
                 <div class="navbar-inner">
-                    <a class="brand" href="index.html"><img src="/themes/images/logo.png" alt="Bootsshop" /></a>
+                    <a class="brand" href="/@culture"><img src="/themes/images/logo.png" alt="Bootsshop" /></a>
                     <form class="form-inline navbar-search" method="post" action="products.html">
                         <input id="srchFld" class="srchTxt" type="text" />
                         <select class="srchTxt">
@@ -154,6 +154,51 @@
     <script src="/themes/js/jquery.lightbox-0.5.js"></script>
 
     @RenderSection("Scripts", false);
+
+    <script>
+        $('body').on('click', '.btn-add-product', function () {
+            let userId = '@(User.FindFirstValue(ClaimTypes.NameIdentifier))';
+            if (userId != 'undefined' && userId != "") {
+                let productId = $(this).closest('.product').attr('data-id');
+                $.get('/@culture/Cart/Them?userId=' + userId + '&productId=' + productId, function (data) {
+                    if (data == "ok") {
+                        alert('Đã thêm vào giỏ hàng');
+                    } else {
+                        alert(data);
+                    }
+                });
+            } else {
+                alert("Bạn cần đăng nhập để thực hiện chức năng này");
+            }
+        });
+
+        $('body').on("change", '.ipSoLuong', function () {
+            let productId = $(this).closest('.product').attr('data-id');
+            let soLuong = parseInt($(this).val());
+            AddItemToCart(productId, soLuong, false);
+        });
+
+        $('body').on('click', '.btn-add-product-sl', function () {
+            let productId = $(this).closest('.product').attr('data-id');
+            let soLuong = parseInt($(this).closest('.product').find("input[type=number]").val());
+            if (soLuong.toString() == 'NaN' || soLuong <= 0) {
+                alert('Số lượng không hợp lệ');
+            } else {
+                AddItemToCart(productId, soLuong, true);
+            }
+        });
+
+        function AddItemToCart(productId, soLuong, show) {
+            let userId = '@User.FindFirstValue(ClaimTypes.NameIdentifier)';
+            $.get('/@CultureInfo.CurrentCulture.Name/Cart/DoiSL?userId=' + userId + '&productId=' + productId + '&quantity=' + soLuong, function (data) {
+                if (data != "ok") {
+                    alert(data);
+                } else if (show) {
+                    alert("Đã thêm vào giỏ hàng");
+                }
+            });
+        }
+    </script>
 
     <!-- Themes switcher section ============================================================================================= -->
     <div id="secectionBox">

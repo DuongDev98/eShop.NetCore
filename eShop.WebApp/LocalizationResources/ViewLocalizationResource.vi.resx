@@ -124,6 +124,9 @@
   <data name="ALREADY REGISTERED" xml:space="preserve">
     <value>ĐÃ CÓ TÀI KHOẢN</value>
   </data>
+  <data name="Cart" xml:space="preserve">
+    <value>Giỏ hàng</value>
+  </data>
   <data name="CategoryUrl" xml:space="preserve">
     <value>danh-muc</value>
     <comment>home/index</comment>
@@ -135,6 +138,9 @@
   <data name="Delivery" xml:space="preserve">
     <value>Vận chuyển</value>
     <comment>header</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Mô tả</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>Tiếng Anh</value>
@@ -151,6 +157,9 @@
     <value>Trang chủ</value>
     <comment>Trang chủ</comment>
   </data>
+  <data name="Items in your cart" xml:space="preserve">
+    <value>Mặt hàng trong giỏ</value>
+  </data>
   <data name="Latest Products" xml:space="preserve">
     <value>Sản phẩm mới</value>
     <comment>home/index</comment>
@@ -164,6 +173,12 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Mật khẩu</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Đơn giá</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Sản phẩm</value>
   </data>
   <data name="Product Details" xml:space="preserve">
     <value>Chi tiết sản phẩm</value>
@@ -181,12 +196,18 @@
     <value>san-pham</value>
     <comment>home/index</comment>
   </data>
+  <data name="Quantity/Update" xml:space="preserve">
+    <value>Số lượng/Cập nhật</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Đăng ký</value>
   </data>
   <data name="Specials Offer" xml:space="preserve">
     <value>Khuyến mại</value>
     <comment>header</comment>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Tổng cộng</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Tài khoản</value>

@@ -1,0 +1,66 @@
+﻿@using eShop.ViewModels.Catalog.Orders
+@model OrderCreateRequest
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-action="Create">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th><localize>Product</localize></th>
+                <th><localize>Quantity/Update</localize></th>
+                <th><localize>Price</localize></th>
+                <th><localize>Total</localize></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 0;
+                foreach (OrderDetailVm item in (ViewData["details"] as List<OrderDetailVm>))
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Quantity.ToString("n0")</td>
+                        <td>@item.Price.ToString("n0")</td>
+                        <td>@((item.Price * item.Quantity).ToString("n0"))</td>
+
+                        <div style="display: none;">
+                            <input name="OrderDetais[@i].ProductId" type="text" value="@item.ProductId" />
+                            <input name="OrderDetais[@i].Price" type="number" value="@item.Price" />
+                            <input name="OrderDetais[@i].Quantity" type="number" value="@item.Quantity" />
+                        </div>
+
+                    </tr>
+                    i++;
+                }
+            }
+        </tbody>
+    </table>
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Address" class="control-label"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Phone" class="control-label"></label>
+        <input asp-for="Phone" class="form-control" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Xác nhận mua hàng" class="btn btn-primary" />
+    </div>
+</form>
